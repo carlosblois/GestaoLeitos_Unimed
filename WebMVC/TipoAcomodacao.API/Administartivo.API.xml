@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Administrativo.API</name>
+    </assembly>
+    <members>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Id_TipoAcomodacao">
+            <summary>
+            Identificador do Tipo de Acomodação
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Nome_TipoAcomodacao">
+            <summary>
+            Nome do Tipo de Acomodação
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.CodExterno_TipoAcomodacao">
+            <summary>
+            Codigo externo do Tipo de Acomodação, com proposito de integração.
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Id_CaracteristicaAcomodacao">
+            <summary>
+            Identificador da Caracteristica da Acomodação
+            </summary>
+        </member>
+    </members>
+</doc>

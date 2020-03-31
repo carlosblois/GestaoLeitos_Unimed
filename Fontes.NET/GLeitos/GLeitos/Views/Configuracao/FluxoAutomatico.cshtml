@@ -1,0 +1,204 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.FluxoAutomaticoView
+@{
+                /**/
+
+                Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript: carregaTela('@Url.Action("Index", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>Fluxo Automático<a href="#" onclick="javascript: carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+            
+            @using (Html.BeginForm("SalvarFluxoAutomatico", "Configuracao", FormMethod.Post,
+                new { enctype = "multipart/form-data", name = "FormFluxoAutomatico", id = "FormFluxoAutomatico", @class = "templatemo-login-form" }))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="background_checklist">
+                    <div class="row form-group">
+                        <div class="col-lg-4 col-md-4 form-group">
+                            <label for="inputFirstName">Tipo Situação Acomodação Origem</label> <!-- Tipo Situação Acomodação -->
+                            @Html.HiddenFor(model => model.FluxoAutomatico.id_TipoSituacaoAcomodacaoOrigem, new { @id = "hdnid_TipoSituacaoAcomodacaoOrigem" })
+                            <select id="selTipoSituacaoAcomodacaoOrigem" class="form-control" @Model.dropDisabled>
+                                <option value="">Selecione</option>
+                                @foreach (var item in Model.ListaTipoSituacaoAcomodacao.OrderBy(m => m.ordem))
+                                {
+                                    if (item.id_TipoSituacaoAcomodacao == Model.FluxoAutomatico.id_TipoSituacaoAcomodacaoOrigem)
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao" selected >@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao">@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.FluxoAutomatico.id_TipoSituacaoAcomodacaoOrigem, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 form-group">
+                            <label for="inputFirstName">Tipo Atividade Acomodação Origem</label> <!-- Tipo Atividade Acomodação -->
+                            @Html.HiddenFor(model => model.FluxoAutomatico.id_TipoAtividadeAcomodacaoOrigem, new { @id = "hdnid_TipoAtividadeAcomodacaoOrigem" })
+                            <select id="selTipoAtividadeAcomodacaoOrigem" class="form-control" @Model.dropDisabled>
+                                <option value="">Selecione</option>
+                                @foreach (var item in Model.ListaTipoAtividadeAcomodacao.OrderBy(m => m.ordem))
+                                {
+                                    if (item.id_TipoAtividadeAcomodacao == Model.FluxoAutomatico.id_TipoAtividadeAcomodacaoOrigem)
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao" selected >@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao">@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.FluxoAutomatico.id_TipoAtividadeAcomodacaoOrigem, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 form-group">
+                            <label for="inputFirstName">Tipo Ação Acomodação Origem</label> <!-- Tipo Acao Acomodação -->
+                            @Html.HiddenFor(model => model.FluxoAutomatico.id_TipoAcaoAcomodacaoOrigem, new { @id = "hdnid_TipoAcaoAcomodacaoOrigem" })
+                            <select id="selTipoAcaoAcomodacaoOrigem" class="form-control" @Model.dropDisabled>
+                                <option value="">Selecione</option>
+                                @foreach (var item in Model.ListaTipoAcaoAcomodacao.OrderBy(m => m.ordem))
+                                {
+                                    if (item.id_TipoAcaoAcomodacao == Model.FluxoAutomatico.id_TipoAcaoAcomodacaoOrigem)
+                                    {
+                                        <option value="@item.id_TipoAcaoAcomodacao" selected >@item.nome_TipoAcaoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAcaoAcomodacao">@item.nome_TipoAcaoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.FluxoAutomatico.id_TipoAtividadeAcomodacaoOrigem, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-lg-4 col-md-4 form-group">
+                            <label for="inputFirstName">Tipo Situação Acomodação Destino</label> <!-- Tipo Situação Acomodação Destino-->
+                            @Html.HiddenFor(model => model.FluxoAutomatico.id_TipoSituacaoAcomodacaoDestino, new { @id = "hdnid_TipoSituacaoAcomodacaoDestino" })
+                            <select id="selTipoSituacaoAcomodacaoDestino" class="form-control">
+                                <option value="">Selecione</option>
+                                @foreach (var item in Model.ListaTipoSituacaoAcomodacao.OrderBy(m => m.ordem))
+                                {
+                                    if (item.id_TipoSituacaoAcomodacao == Model.FluxoAutomatico.id_TipoSituacaoAcomodacaoDestino)
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao" selected >@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao">@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.FluxoAutomatico.id_TipoSituacaoAcomodacaoDestino, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 form-group">
+                            <label for="inputFirstName">Tipo Atividade Acomodação Destino</label> <!-- Tipo Atividade Acomodação Detino-->
+                            @Html.HiddenFor(model => model.FluxoAutomatico.id_TipoAtividadeAcomodacaoDestino, new { @id = "hdnid_TipoAtividadeAcomodacaoDestino" })
+                            <select id="selTipoAtividadeAcomodacaoDestino" class="form-control">
+                                <option value="">Selecione</option>
+                                @foreach (var item in Model.ListaTipoAtividadeAcomodacao.OrderBy(m => m.ordem))
+                                {
+                                    if (item.id_TipoAtividadeAcomodacao == Model.FluxoAutomatico.id_TipoAtividadeAcomodacaoDestino)
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao" selected>@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao">@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.FluxoAutomatico.id_TipoAtividadeAcomodacaoOrigem, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 form-group formLine">
+                            <label for="control-label templatemo-block">&nbsp;&nbsp;</label>
+                            <div>
+                                <a href="#" onclick="javascript: salvarfluxo('@Url.Action("SalvarFluxoAutomatico", "Configuracao")');"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Salvar</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <table id="tblrelacionamento" class="table table-responsive">
+                        <thead>
+                            <tr style="background-color:#003A2F;">
+                                <td>SITUAÇÃO ORIGEM</td>
+                                <td>ATIVIDADE ORIGEM</td>
+                                <td>AÇÃO ORIGEM</td>
+                                <td>SITUAÇÃO DESTINO</td>
+                                <td>ATIVIDADE DESTINO</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaFluxoAutomatico.OrderBy(m => m.nome_TipoSituacaoAcomodacaoOrigem))
+                            {
+                                <tr class="linhaheight">
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoSituacaoAcomodacaoOrigem.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoAtividadeAcomodacaoOrigem.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoAcaoAcomodacao.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoSituacaoAcomodacaoDestino.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoAtividadeAcomodacaoDestino.Trim()</p>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        @*<a href="#" title="Editar Fluxo" onclick="javascript: editar('@Url.Action("FluxoAutomatico", "Configuracao", new { id_tiposituacaoacomodacao = item.id_TipoSituacaoAcomodacaoOrigem, id_tipoatividadeacomodacao = item.id_TipoAtividadeAcomodacaoOrigem, id_tipoacaoacomodacao=item.id_TipoAcaoAcomodacaoOrigem })');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>*@
+                                        <a href="#" title="Excluir SLA Situação" onclick="javascript: excluir('@Url.Action("ExcluirFluxoAutomatico", "Configuracao", new { id_tiposituacaoacomodacaoOrigem = item.id_TipoSituacaoAcomodacaoOrigem, id_tipoatividadeacomodacaoOrigem = item.id_TipoAtividadeAcomodacaoOrigem, id_tipoacaoacomodacaoOrigem=item.id_TipoAcaoAcomodacaoOrigem, id_tiposituacaoacomodacaoDestino = item.id_TipoSituacaoAcomodacaoDestino, id_tipoatividadeacomodacaoDestino = item.id_TipoAtividadeAcomodacaoDestino })', 'Deseja excluir este item?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+            }
+
+        </div>
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/valida.fluxoautomatico.js")

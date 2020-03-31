@@ -1,0 +1,371 @@
+﻿@using System.Configuration
+@using ExpoFramework.Framework
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Painel Administrativo - GL</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+
+    <link href='http://fonts.googleapis.com/css?family=Calibri:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/all.css")
+    @Styles.Render("~/Content/Adm/bootstrap.min.css")
+    @Styles.Render("~/Content/Adm/templatemo-style.css")
+    @Styles.Render("~/Content/mais.css")
+    @Styles.Render("~/Content/datatables.min.css")
+    @Styles.Render("~/Content/jquery.modal.min.css")
+    @*@Styles.Render("~/Content/Dashboard/dashboard.css")*@
+
+
+    @Scripts.Render("~/scripts/adm/jquery-1.11.2.min.js")
+    @Scripts.Render("~/scripts/adm/bootstrap-filestyle.min.js")
+    @Scripts.Render("~/scripts/adm/templatemo-script.js")
+    @Scripts.Render("~/scripts/datatables.min.js")
+    @Scripts.Render("~/scripts/funcoes.js")
+    @RenderSection("scripts", required: false)
+
+
+    @if (Session["id_PerfilSel"] == null)
+    {
+        <script>window.document.location = '@Url.Action("LogoffAcesso", "Login", new { Mensagem = "Acesso restrito à administradores." })'</script>
+    }
+    @if (!Funcoes.AcessoAdministrador(Session["id_PerfilSel"].ToString(), ConfigurationManager.AppSettings["CodPerfilAdministrador"].ToString()))
+    {
+        <script>window.document.location = '@Url.Action("LogoffAcesso", "Login", new { Mensagem = "Acesso restrito à administradores." })'</script>
+    }
+
+</head>
+
+<body>
+    <div class="loader">
+        <img src="~/images/loading.gif" alt="Processando...">
+    </div>
+    <div class="msgbackground">
+        <main id="idQuestaoGL" class="mainmsg">
+            <section class="sectionmsg">
+                <div>
+                    <i class="fas fa-exclamation-triangle fa-2x imsg"></i>
+                    <p class="pmsg"><label id="lblQuestion">Deseja excluir este item?</label></p>
+                    <input type="hidden" id="urlExclusao" value="" />
+                    <div>
+                        <button type="button" class="buttonnomsg buttonmsg" onclick="excluir_no();">Não</button>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="excluir_yes();">Sim</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="msgokbackground">
+        <main id="idMsgGL" class="mainmsg">
+            <section class="sectionmsg">
+                <div>
+                    <i class="fas fa-exclamation-triangle fa-2x imsg"></i>
+                    <p class="pmsg"><label id="lblMsgOK">O item foi salvo com sucesso?</label></p>
+                    <div>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="msg_ok();">OK</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="msgencerrabackground">
+        <main id="idQuestaoGL" class="mainmsg">
+            <section class="sectionmsg">
+                <div>
+                    <i class="fas fa-exclamation-triangle fa-2x imsg"></i>
+                    <p class="pmsg"><label id="lblQuestionAtividade">Deseja encerrar esta atividade?</label></p>
+                    <div>
+                        <button type="button" class="buttonnomsg buttonmsg" onclick="EncerrarAtividade_no();">Não</button>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="EncerrarAtividade_yes();">Sim</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="msgencaminhamento" id="idDivMsgEncaminhamento">
+        <main id="idMsgEncaminhamento" class="mainmsgEncaminhamento">
+            <div class="modalEncaminhamento" style="display:inline-block;">
+
+
+                @*<div>*@
+                <a class="close-modal" onclick="FecharEncaminhamento();">Close</a>
+                <p class="pmsg"><label>Encaminhar para?</label></p>
+                <div id="divListaEncaminhamento" class="pmsgitens">
+
+                </div>
+                <div>
+                    <button type="button" class="buttonyesmsg buttonmsg" onclick="EncaminharAtividade();">OK</button>
+                </div>
+                @*</div>*@
+
+            </div>
+        </main>
+    </div>
+    <div class="dashboard_container">
+        <div class="jquery-modal blocker hideModal" id="modalAcomodacao">
+            <div class="modal" style="display:inline-block;">
+                <a class="close-modal" onclick="FecharDetalheAcomodacao();">Close</a>
+                <div class="title"><label id="lblModalAcomodacao">1125</label>&nbsp;<label id="lblModalSetor">NORTE</label></div>
+                <input type="hidden" id="hdnIdAcomodacao" value="" />
+                <input type="hidden" id="hdnPerfilUsuario" value="" />
+                <input type="hidden" id="hdnPerfilAdministrador" value="" />
+                <input type="hidden" id="hdnCodAcesso" value="" />
+                <div class="modaltab">
+                    <div class="modaltabColumn">
+                        Paciente:&nbsp;<label id="lblModalPaciente">Alexandre</label><br>
+                        Sexo:&nbsp;<label id="lblModalGenero">Masculino</label> <br>
+                        Idade:&nbsp;<label id="lblModalIdade">43</label>
+                    </div>
+                    <div class="modaltabColumn">
+                        Situação: <strong>&nbsp;<label id="lblModalSituacao">Alta</label></strong> <br>
+                        <input type="hidden" id="hdnIdSituacaoAcomodacao" value="" />
+                        <input type="hidden" id="hdnIdTipoSituacaoAcomodacao" value="" />
+                        Atividade: <strong>&nbsp;<label id="lblModalAtividade">Higienizacao</label></strong>
+                        <input type="hidden" id="hdnIdAtividadeAcomodacao" value="" />
+                        <input type="hidden" id="hdnIdTipoAtividadeAcomodacao" value="" />
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <div class="modalSLA">
+                    <div class="modaltabColumn">
+                        <title>SLA</title>
+                        <img class="imgModalModal" id="imgModalSLA" src="~/images/icon_modal_red_clock.png">
+                        <p><label id="lblModalTempoExecucaoSLA">50</label></p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Meta</title>
+                        <img class="imgModalModal" id="imgModalMeta" src="~/images/icon_modal_target.png">
+                        <p><label id="lblModalTempoExecucao">50</label>&nbsp;min</p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Status</title>
+                        <p class="lineStatus"><label id="lblModalAcaoAtividade">Iniciado</label><br><label id="lblInicioAcao">11:00</label>h</p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Tipo</title>
+                        <p class="lineType"><label id="lblModalTipoAcomodacao">Privativo</label></p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Hig. Plus</title>
+                        <a onclick="LimpezaPlus();" id="linkLimpezaPlus"><img id="imgLimpezaPlus" src="~/images/icon_modal_plus.png"></a>
+                        <input type="hidden" id="hdncod_Plus" value="" />
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Isolar</title>
+                        <a onclick="Isolar();" id="linkIsolar"><img id="imgIsolar" src="~/images/icon_modal_alert.png"></a>
+                        <input type="hidden" id="hdncod_Isolamento" value="" />
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Priorizar</title>
+                        <a onclick="Priorizar();" id="linkPriorizar"><img id="imgPriorizar" src="~/images/icon_modal_bell.png"></a>
+                        <input type="hidden" id="hdnprioridadeAtividade" value="" />
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Encaminhar</title>
+                        <a onclick="PrepararEncaminhamento();" id="linkEncaminhar"><img id="imgEncaminhar" src="~/images/icon_modal_return.png"></a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <div class="modalHistory" id="divModalHistory">
+                    @*<div class="titleLine">
+                <div class="modaltabColumn">
+                    <title>SLA</title>
+                </div>
+                <div class="modaltabColumn">
+                    <title>Atividades</title>
+                </div>
+                <div class="modaltabColumn">
+                    <title>Chamada</title>
+                </div>
+                <div class="modaltabColumn">
+                    <title>Aceite</title>
+                </div>
+                <div class="modaltabColumn">
+                    <title>Check-In</title>
+                </div>
+                <div class="modaltabColumn">
+                    <title>Check-Out</title>
+                </div>
+                <div class="modaltabColumn">
+                    <title>Ação</title>
+                </div>
+                <div class="cb"></div>
+            </div>
+            <div class="line">
+                <div class="modaltabColumn">
+                    <img class="imgModal" src="~/images/icon_modal_red_clock.png">
+                </div>
+                <div class="modaltabColumn">
+                    Camareira
+                </div>
+                <div class="modaltabColumn">
+                    09:35
+                </div>
+                <div class="modaltabColumn">
+                    09:37
+                </div>
+                <div class="modaltabColumn">
+                    09:43
+                </div>
+                <div class="modaltabColumn">
+                    09:57
+                </div>
+                <div class="modaltabColumn">
+                    <img src="~/images/icon_modal_action_off.png">
+                </div>
+                <div class="cb"></div>
+            </div>
+            <div class="line">
+                <div class="modaltabColumn">
+                    <img class="imgModal" src="~/images/icon_modal_red_clock.png">
+                </div>
+                <div class="modaltabColumn">
+                    Camareira
+                </div>
+                <div class="modaltabColumn">
+                    09:35
+                </div>
+                <div class="modaltabColumn">
+                    09:37
+                </div>
+                <div class="modaltabColumn">
+                    09:43
+                </div>
+                <div class="modaltabColumn">
+                    09:57
+                </div>
+                <div class="modaltabColumn">
+                    <img src="~/images/icon_modal_action_on.png">
+                </div>
+                <div class="cb"></div>
+            </div>
+            <div class="line">
+                <div class="modaltabColumn">
+                    <img class="imgModal" src="~/images/icon_modal_green_clock.png">
+                </div>
+                <div class="modaltabColumn">
+                    Camareira
+                </div>
+                <div class="modaltabColumn">
+                    09:35
+                </div>
+                <div class="modaltabColumn">
+                    09:37
+                </div>
+                <div class="modaltabColumn">
+                    09:43
+                </div>
+                <div class="modaltabColumn">
+                    09:57
+                </div>
+                <div class="modaltabColumn">
+                    <img src="~/images/icon_modal_action_off.png">
+                </div>
+                <div class="cb"></div>
+            </div>
+            <div class="line">
+                <div class="modaltabColumn">
+                    <img class="imgModal" src="~/images/icon_modal_yelow_clock.png">
+                </div>
+                <div class="modaltabColumn">
+                    Camareira
+                </div>
+                <div class="modaltabColumn">
+                    09:35
+                </div>
+                <div class="modaltabColumn">
+                    09:37
+                </div>
+                <div class="modaltabColumn">
+                    09:43
+                </div>
+                <div class="modaltabColumn">
+                    09:57
+                </div>
+                <div class="modaltabColumn">
+                    <img src="~/images/icon_modal_action_off.png">
+                </div>
+                <div class="cb"></div>
+            </div>*@
+                </div>
+            </div>
+        </div>
+        <!--Fundo principal-->
+    </div>
+
+    <div class="templatemo-flex-row">
+        <div class="templatemo-sidebar">
+            <header class="templatemo-site-header">
+                <!--div class="square"></div-->
+                <img src="~/images/gl-logo.svg" class="logo-LG" alt="Logo Gestão de Leitos">
+                <!--svg class="logo-LG" alt="Logo Gestão de Leitos">Gestão de Leitos</svg-->
+                <h1>Painel Administrativo</h1>
+            </header>
+
+            <div class="mobile-menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="templatemo-left-nav">
+                <!--Menu Lateral-->
+                <ul>
+                    <!--Empresa-->
+                    <li class="@ViewBag.MenuEmpresa"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaEmpresa", "Adm", new { area = "" })');return false;"><i class="fa fa-building fa-fw"></i>Empresa</a></li>
+                    <!--Setor-->
+                    <li class="@ViewBag.MenuSetor"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaSetor", "Adm", new { area = "" })');return false;"><i class="fa fa-arrows-alt fa-fw"></i>Setor</a></li>
+                    <!--Característica Acomodação-->
+                    <li class="@ViewBag.MenuCaracteristicaAcomodacao"><a href="#" onclick="javascript: carregaTela('@Url.Action("CaracteristicaAcomodacao", "Adm", new { area = "" })');return false;"><i class="fa fa-id-card fa-fw"></i>Característica Acomodação</a></li>
+                    <!--Tipo Acomodação-->
+                    <li class="@ViewBag.MenuTipoAcomodacao"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaTipoAcomodacao", "Adm", new { area = "" })');return false;"><i class="fa fa-tenge fa-fw"></i>Tipo Acomodação</a></li>
+                    <!--Acomodação-->
+                    <li class="@ViewBag.MenuAcomodacao"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaAcomodacao", "Adm", new { area = "" })');return false;"><i class="fa fa-bed fa-fw"></i>Acomodação</a></li>
+                    <!--Perfil-->
+                    <li class="@ViewBag.MenuPerfil"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaPerfil", "Usuario", new { area = "" })');return false;"><i class="fa fa-user-circle fa-fw"></i>Perfil</a></li>
+                    <!--Usuário-->
+                    <li class="@ViewBag.MenuUsuario"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaUsuario", "Usuario", new { area = "" })');return false;"><i class="fa fa-fingerprint fa-fw"></i>Usuário</a></li>
+                    <!--Atividade-->
+                    @*<li class="@ViewBag.MenuAtividade"><a href="#" onclick="javascript: carregaTela('@Url.Action("Logoff", "Login", new { area = "" })');return false;"><i class="fa fa-hand-holding-heart fa-fw"></i>Atividade</a></li>*@
+                    @*Situação
+        <li class="@ViewBag.MenuSituacao"><a href="#" onclick="javascript: carregaTela('@Url.Action("Logoff", "Login", new { area = "" })');return false;"><i class="fa fa-file-medical-alt fa-fw"></i>Situação</a></li>*@
+                    <!--SLA Situaçao-->
+                    <li class="@ViewBag.MenuSLASituacao"><a href="#" onclick="javascript: carregaTela('@Url.Action("SlaSituacao", "Configuracao", new { area = "" })');return false;"><i class="fa fa-clock fa-fw"></i>SLA Situação</a></li>
+                    <!--SLA-->
+                    <li class="@ViewBag.MenuSLA"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListarSla", "Configuracao", new { area = "" })');return false;"><i class="fa fa-clock fa-fw"></i>SLA</a></li>
+                    <!--Item Check-lists-->
+                    <li class="@ViewBag.MenuItemCheckList"><a href="#" onclick="javascript: carregaTela('@Url.Action("ItemCheckList", "Configuracao", new { area = "" })');return false;"><i class="fa fa-check-square fa-fw"></i>Item de Check-lists</a></li>
+                    <!--Check-lists-->
+                    <li class="@ViewBag.MenuCheckList"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaCheckList", "Configuracao", new { area = "" })');return false;"><i class="fa fa-tasks fa-fw"></i>Check-Lists</a></li>
+                    <!--Fluxo Automático-->
+                    <li class="@ViewBag.MenuFluxoAutomatico"><a href="#" onclick="javascript: carregaTela('@Url.Action("FluxoAutomatico", "Configuracao", new { area = "" })');return false;"><i class="fa fa-stream fa-fw"></i>Fluxo Automático</a></li>
+
+                    <li class="@ViewBag.MenuFluxoAutomaticoCheck"><a href="#" onclick="javascript: carregaTela('@Url.Action("FluxoAutomaticoCheck", "Configuracao", new { area = "" })');return false;"><i class="fa fa-stream fa-fw"></i>Fluxo Check-List</a></li>
+                    <!--Operação-->
+                    @*<li class="@ViewBag.MenuOperacao"><a href="#" onclick="javascript: carregaTela('@Url.Action("Logoff", "Login", new { area = "" })');return false;"><i class="fa fa-cog fa-fw"></i>Operação</a></li>*@
+                    <!--Módulo-->
+                    @*<li class="@ViewBag.MenuModulo"> <a href="#" onclick="javascript: carregaTela('@Url.Action("Logoff", "Login", new { area = "" })');return false;"><i class="fa fa-dice-d6 fa-fw"></i>Módulo</a></li>*@
+
+                    <!--Sair-->
+                    <li><a href="#" onclick="javascript: carregaTela('@Url.Action("Logoff", "Login", new { area = "" })');return false;"><i class="fa fa-sign-out-alt fa-fw"></i>Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+
+        <!-- Main content -->
+        <div class="templatemo-content col-1 light-gray-bg">
+            <!--Fundo principal-->
+            @RenderBody()
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/scripts/homelayout.js")
+</body>
+</html>

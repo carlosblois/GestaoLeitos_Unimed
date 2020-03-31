@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Administrativo.API</name>
+    </assembly>
+    <members>
+        <member name="M:Administrativo.API.Controllers.AcessoEmpresaPerfilTSTAController.ConsultarAcessoEmpresaPerfilTSTAPorIdEmpresaIdPerfil(System.Int32,System.Int32)">
+            <summary>
+            Consulta acessos de uma empresa / perfil.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+            <param name="idPerfil">
+            Identificador de perfil.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcessoEmpresaPerfilTSTAController.SalvarAcessoEmpresaPerfilTSTA(Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem)">
+            <summary>
+            Inclui / atualiza um acesso.
+            </summary>
+            <param name="acessoToSave">
+            Objeto que representa o Acesso
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcessoEmpresaPerfilTSTAController.ExcluirAcessoEmpresaPerfilTSTA(System.Int32)">
+            <summary>
+            Exclui um Acesso.
+            </summary>
+            <param name="Id_AcessoEmpresaPerfilTipoSituacaoTipoAtividade">
+            Identificador do acesso
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcessoEmpresaPerfilTSTAController.ExcluirAcessoEmpresaPerfilTSTATodos(System.Int32,System.Int32)">
+            <summary>
+            Excluir todos os acessos de uma empresa / perfil.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+            <param name="idPerfil">
+            Identificador de perfil.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.SalvarAcomodacao(Administrativo.API.Model.AcomodacaoItem)">
+            <summary>
+            Inclui / atualiza uma Acomodação.
+            </summary>
+            <param name="acomodacaoToSave">
+            Objeto que representa a Acomodação
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.IsolarAcomodacao(System.Int32,Administrativo.API.Enum.ExpoEnum.Isolar)">
+            <summary>
+            Isolar uma acomodação.
+            </summary>
+            <param name="idAcomodacao">
+            Identificador da Acomodação.
+            </param>
+            <param name="isolar">
+            Indica se é para isolar ou não S/N
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.ExcluirAcomodacao(System.Int32)">
+            <summary>
+            Exclui uma acomodação.
+            </summary>
+            <param name="id_Acomodacao">
+            Identificador da acomodação
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.ConsultarAcomodacaoPorIdEmpresa(System.Int32,System.Int32)">
+            <summary>
+            Consulta acomodação de uma empresa e um setor.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+            <param name="idSetor">
+            Identificador de setor.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.ConsultarAcomodacaoPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta acomodação de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacao_(System.Int32)">
+            <summary>
+            Consulta acomodação e o detalhamento da situacao e atividade.
+            </summary>
+            <param name="IdAcomodacao">
+            Identificador da Acomodacao.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.ConsultarAcomodacaoPorIdEmpresaPorIdSituacaoSemAtividade(System.Int32,System.Int32)">
+            <summary>
+            Consulta acomodação de uma empresa em determinada situação e sem atividade.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+            <param name="IdSituacao">
+            Identificador de Situacao da Acomodacao.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.AcomodacaoController.ConsultarAcomodacaoPorIdEmpresaPorIdSituacao(System.Int32,System.Int32)">
+            <summary>
+            Consulta acomodação de uma empresa em determinada situação.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+            <param name="IdSituacao">
+            Identificador de Situacao da Acomodacao.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.CaracteristicaAcomodacaoController.SalvarCaracteristicaAcomodacao(Administrativo.API.Model.CaracteristicaAcomodacaoItem)">
+            <summary>
+            Inclui / atualiza uma Caracteristica de Acomodação.
+            </summary>
+            <param name="caracteristicaAcomodacaoToSave">
+            Objeto que representa uma Caracteristica de Acomodação
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.CaracteristicaAcomodacaoController.ExcluirCaracteristicaAcomodacao(System.Int32)">
+            <summary>
+            Exclui uma caracteristica de acomodação.
+            </summary>
+            <param name="id_caracteristicaAcomodacao">
+            Identificador da Caracteristica de Acomodação
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.CaracteristicaAcomodacaoController.ConsultarCaracteristicaAcomodacao">
+            <summary>
+            Consulta Caracteristicas de Acomodação.
+            </summary>
+        </member>
+        <member name="M:Administrativo.API.Controllers.EmpresaController.SalvarEmpresa(Administrativo.API.Model.EmpresaItem)">
+            <summary>
+            Inclui / atualiza uma empresa.
+            </summary>
+            <param name="empresaToSave">
+            Objeto que representa a Empresa
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.EmpresaController.ExcluirEmpresa(System.Int32)">
+            <summary>
+            Exclui uma empresa.
+            </summary>
+            <param name="id_Empresa">
+            Identificador da empresa
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.EmpresaController.ConsultarEmpresaPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta uma empresa.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador de empresa
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.EmpresaController.ConsultarEmpresa">
+            <summary>
+            Consulta todas as empresa.
+            </summary>
+        </member>
+        <member name="M:Administrativo.API.Controllers.SetorController.SalvarSetor(Administrativo.API.Model.SetorItem)">
+            <summary>
+            Inclui / atualiza um Setor.
+            </summary>
+            <param name="setorToSave">
+            Objeto que representa o Setor
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.SetorController.ExcluirSetor(System.Int32,System.Int32)">
+            <summary>
+            Exclui um setor de uma empresa.
+            </summary>
+            <param name="id_Empresa">
+            Identificador da empresa
+            </param>
+            <param name="id_Setor">
+            Identificador do Setor
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.SetorController.ConsultarSetorPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta o setor de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.TipoAcomodacaoController.SalvarTipoAcomodacao(Administrativo.API.Model.TipoAcomodacaoItem)">
+            <summary>
+            Inclui / atualiza um Tipo de Acomodação.
+            </summary>
+            <param name="tipoAcomodacaoToSave">
+            Objeto que representa o Tipo de Acomodação
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.TipoAcomodacaoController.ConsultarTipoAcomodacaoPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta o tipo de acomodação de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.TipoAcomodacaoController.ConsultarTipoAcomodacaoPorIdAcomodacao(System.Int32,System.Int32)">
+            <summary>
+            Consulta o tipo de acomodação de uma acomodacao.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa.
+            </param>
+            <param name="idAcomodacao">
+            Identificador de Acomodacao.
+            </param>
+        </member>
+        <member name="M:Administrativo.API.Controllers.TipoAcomodacaoController.ExcluirTipoAcomodacao(System.Int32,System.Int32)">
+            <summary>
+            Exclui um tipo de acomodação de uma empresa.
+            </summary>
+            <param name="id_Empresa">
+            Identificador da empresa
+            </param>
+            <param name="id_TipoAcomodacao">
+            Identificador do tipo de acomodação
+            </param>
+        </member>
+        <member name="P:Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem.Id_AcessoEmpresaPerfilTipoSituacaoTipoAtividade">
+            <summary>
+            Identificador do acesso (Identity)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem.Id_Perfil">
+            <summary>
+            Identificador do Perfil
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situacao
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do tipo de atividade.
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcessoEmpresaPerfilTSTAItem.Cod_Tipo">
+            <summary>
+            Codigo que caracteriza o acesso V visualizar / E executar . (Max 1)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.Id_Acomodacao">
+            <summary>
+            Identificador da Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.Nome_Acomodacao">
+            <summary>
+            Nome da Acomodação
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.Id_TipoAcomodacao">
+            <summary>
+            Identificador do Tipo de Acomodação
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.Id_Setor">
+            <summary>
+            Identificador do Setor.
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.CodExterno_Acomodacao">
+            <summary>
+            Codigo externo da Acomodação, com proposito de integração. (Max 5)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.AcomodacaoItem.Cod_Isolamento">
+            <summary>
+            Codigo do isolamento da Acomodação. (Max 1) S/N
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.CaracteristicaAcomodacaoItem.id_CaracteristicaAcomodacao">
+            <summary>
+            Identificador de Caracteristica da Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.CaracteristicaAcomodacaoItem.nome_CaracteristicaAcomodacao">
+            <summary>
+            Nome da Caracteristica da Acomodação (Max 50)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Nome_Empresa">
+            <summary>
+            Nome da Empresa (Max 60)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.CodExterno_Empresa">
+            <summary>
+            Codigo externo da empresa, com proposito de integração. (Max 6)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Endereco_Empresa">
+            <summary>
+            Endereço da empresa. (Max 150)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Complemento_Empresa">
+            <summary>
+            Complemento do endereço da empresa. (Max 30)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Numero_Empresa">
+            <summary>
+            Numero do endereço da empresa. (Max 10)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Bairro_Empresa">
+            <summary>
+            Bairro do endereço da empresa. (Max 30)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Cidade_Empresa">
+            <summary>
+            Cidade do endereço da empresa. (Max 80)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Estado_Empresa">
+            <summary>
+            Estado do endereço da empresa. (Max 2)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Cep_Empresa">
+            <summary>
+            Cep do endereço da empresa. (Max 8)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Fone_Empresa">
+            <summary>
+            Telefone da empresa. (Max 20)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.Contato_Empresa">
+            <summary>
+            Contato da empresa. (Max 30)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.CGC_Empresa">
+            <summary>
+            CGC da empresa. (Max 19)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.InscricaoMunicipal_Empresa">
+            <summary>
+            Inscricao Municipal da empresa. (Max 12)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.InscricaoEstadual_Empresa">
+            <summary>
+            Inscricao Estadual da empresa. (Max 14)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.EmpresaItem.CNES_Empresa">
+            <summary>
+            CNES da empresa. (Max 7)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.SetorItem.id_Setor">
+            <summary>
+            Identificador do Setor (Identity)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.SetorItem.id_Empresa">
+            <summary>
+            Identificador da Empresa 
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.SetorItem.nome_Setor">
+            <summary>
+            Nome do Setor (Max 50)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.SetorItem.CodExterno_Setor">
+            <summary>
+            Codigo externo do Setor, com proposito de integração. (Max 4)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Id_TipoAcomodacao">
+            <summary>
+            Identificador do Tipo de Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Nome_TipoAcomodacao">
+            <summary>
+            Nome do Tipo de Acomodação (Max 50)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.CodExterno_TipoAcomodacao">
+            <summary>
+            Codigo externo do Tipo de Acomodação, com proposito de integração. (Max 2)
+            </summary>
+        </member>
+        <member name="P:Administrativo.API.Model.TipoAcomodacaoItem.Id_CaracteristicaAcomodacao">
+            <summary>
+            Identificador da Caracteristica da Acomodação
+            </summary>
+        </member>
+    </members>
+</doc>

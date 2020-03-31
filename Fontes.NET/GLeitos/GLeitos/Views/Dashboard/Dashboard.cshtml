@@ -1,0 +1,115 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.DashboardView
+@{
+    Layout = "../Layout/_LayoutDashboard.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="dashboard_container">
+    <div class="titleBox" id="teste">SITUAÇÃO DOS LEITOS</div>
+    <div id="bedSituationNew">
+        <div id="bedSituationContainerNew">
+        @*<div onmousemove="showCoords(event)" onmouseout="stopshowCoords()" id="bedSituationContainerNew">*@
+            @*<span class="btLeft"><div class="arrowLeft"></div></span>*@
+            @{ int boxWidth = 0;}
+            @foreach (DashboardHeaderTO item in Model.HeaderSituacao.OrderBy(m => m.ordem))
+            {
+                boxWidth += 230;
+                <a href="#" onclick="javascript: carregaTela('@Url.Action("DashboardSituacao", "Dashboard", new { id_tiposituacaoacomodacao = item.id_TipoSituacaoAcomodacao })');return false;">
+                    <div class="box">
+                        <img style="width:40px;height:40px;" src="../images/@item.imagem" />
+                        <label style="cursor:pointer;color:@item.corsituacao">@item.nome_TipoSituacaoAcomodacao</label>
+                        <div class="line">
+                            <div class="value">@item.qtd</div>
+                            <div class="percentage">@item.perc%</div>
+                        </div>
+                    </div>
+                </a>
+            }
+            @*<span class="btRight"><div class="arrowRight"></div></span>*@
+        </div>
+        <input type="hidden" id="hdnboxWidth" value="@boxWidth" />
+    </div>
+
+    <div class="titleBox">PAINÉIS DAS ATIVIDADES</div>
+    <div id="pannelActivities">
+        @*<div onmousemove="showCoordsPannel(event)" onmouseout="stopShowCoordsPannel()" id="pannelActivitiesContainerNew">*@
+        <div id="pannelActivitiesContainerNew">
+            @*<span class="btLeft"><div class="arrowLeft"></div></span>*@
+            @foreach (DashboardBodyAtividadeTO item in Model.BodyAtividade.OrderBy(m => m.ordem))
+            {
+            <div class="box">
+                <div class="atividade">
+                    @if (item.totalAcessos != "0")
+                    {
+                        <div class="totalLogado" title="@item.totalAcessos usuário(s) ativo(s)">
+                            <label>@item.totalAcessos</label>
+                        </div>
+                    }
+                    else
+                    {
+                    <div class="totalLogadoVazio">
+                        <label>&nbsp;</label>
+                    </div>
+                    }
+                    <a href="#" onclick="javascript: carregaTela('@Url.Action("DashboardAtividade", "Dashboard", new { id_tipoatividadeacomodacao = item.id_TipoAtividadeAcomodacao })');return false;">
+                        <span style="padding-bottom: 16px;"><img style="width:48px;height:48px;" src="../images/@item.imagem" /></span>
+                        <label style="color:#00A99D;cursor:pointer;padding-top:5px;">@item.nome_TipoAtividadeAcomodacao</label>
+                    </a>
+                </div>
+                <div class="line">
+                    @*<div class="beds"><div class="valor">@item.qtD_POR_ATV</div></div>*@
+                    <div class="beds">@item.qtD_POR_ATV</div>
+                    <div class="divider"></div>
+                    <div class="percentage">@item.peR_POR_ATV%</div>
+                </div>
+                <div class="cb"></div>
+                @*<label class="time" style="color:@item.corsla">@item.tempO_Utilizado min</label>*@
+                @foreach (DashboardBodySituacaoTO itemsit in item.DashboardSituacao.OrderBy(m => m.ordem))
+                {
+                    string corLinha;
+                    if (int.Parse(itemsit.qtD_POR_SIT) > 0)
+                    {
+                        corLinha = "#b8d56d";
+                    }
+                    else
+                    {
+                        corLinha = "#fff";
+                    }
+                    //if (!string.IsNullOrWhiteSpace(@itemsit.qtD_POR_SIT) && int.Parse(@itemsit.qtD_POR_SIT) != 0)
+                    //{
+                        <a href="#" class="LinkTitulo" onclick="javascript: carregaTela('@Url.Action("DashboardSituacaoAtividade", "Dashboard", new { id_tiposituacaoacomodacao = itemsit.id_TipoSituacaoAcomodacao, id_tipoatividadeacomodacao = item.id_TipoAtividadeAcomodacao })');return false;">
+                            <div class="statusLine" >
+                                <span class="status"><b><span style="color:@corLinha">@itemsit.qtD_POR_SIT</span></b>@itemsit.nome_TipoSituacaoAcomodacao</span>
+                                <span class="clock"><img src="../@itemsit.imagem" /> @itemsit.MaiorTempo</span>
+                            </div>
+                        </a>
+                    @*}
+                    else
+                    {
+                        <div class="statusLine">
+                                <span class="status"><b>@itemsit.qtD_POR_SIT</b>@itemsit.nome_TipoSituacaoAcomodacao</span>
+                                <span class="clock"><img src="../@itemsit.imagem" /> @itemsit.tempO_UtilizadoAt</span>
+                        </div>
+                    }*@
+
+                }
+            </div>
+            }
+            @*<span class="btRight"><div class="arrowRight"></div></span>*@
+        </div>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@*<input type="text" value="" id="txtResultado" width="500px" />
+    <input type="button" onclick="getAPI('@Model.url_getAcomodacao','@Model.token_modulo');" value="Consultar" />*@
+@Scripts.Render("~/scripts/dashboard.js")
+@Scripts.Render("~/scripts/homelayout.js")

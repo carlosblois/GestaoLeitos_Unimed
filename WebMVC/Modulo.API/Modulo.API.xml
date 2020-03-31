@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Modulo.API</name>
+    </assembly>
+    <members>
+        <member name="M:Modulo.API.Controllers.EmpresaPerfilModuloController.SalvarEmpresaPerfilModulo(Modulo.API.Model.EmpresaPerfilModuloItem)">
+            <summary>
+            Inclui uma associação de modulo e perfil.
+            </summary>
+        </member>
+        <member name="M:Modulo.API.Controllers.EmpresaPerfilModuloController.ExcluirEmpresaPerfilModulo(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Exclui uma associação de modulo e perfil.
+            </summary>
+        </member>
+        <member name="M:Modulo.API.Controllers.ModuloController.SalvarModulo(Modulo.API.Model.ModuloItem)">
+            <summary>
+            Inclui / atualiza um módulo.
+            Permite a inclusão em conjunto da coleção de operações para um determinado módulo. (opcional)
+            Durante a atualização apenas o módulo é considerado.
+            </summary>
+        </member>
+        <member name="M:Modulo.API.Controllers.ModuloController.ExcluirModulo(System.Int32)">
+            <summary>
+            Exclui um modulo.
+            </summary>
+        </member>
+        <member name="M:Modulo.API.Controllers.OperacaoController.SalvarOperacao(Modulo.API.Model.OperacaoItem)">
+            <summary>
+            Inclui / atualiza uma operação.
+            </summary>
+        </member>
+        <member name="M:Modulo.API.Controllers.OperacaoController.ExcluirOperacao(System.Int32)">
+            <summary>
+            Exclui uma operação.
+            </summary>
+        </member>
+        <member name="P:Modulo.API.Model.OperacaoItem.Id_Operacao">
+            <summary>
+            Identificador da Operação (Identity)
+            </summary>
+        </member>
+    </members>
+</doc>

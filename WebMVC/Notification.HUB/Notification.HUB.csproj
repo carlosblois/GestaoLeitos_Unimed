@@ -1,0 +1,151 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/6c28bd8d-b1ec-47de-96df-a3c1b5c0579a/resourcegroups/RSG_EXPO/providers/microsoft.insights/components/ExpoInsights</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/6c28bd8d-b1ec-47de-96df-a3c1b5c0579a/resourcegroups/RSG_EXPO/providers/microsoft.insights/components/ExpoInsights</ApplicationInsightsAnnotationResourceId>
+    <UserSecretsId>52dd0fa6-a656-4fb3-be09-58d4fa9f9584</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IntegrationEvents\EventHandling\UsuarioInclusaoIntegrationEventHandler.cs" />
+    <Compile Remove="IntegrationEvents\Events\Modulo\EmpresaPerfilModuloExclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\Modulo\EmpresaPerfilModuloInclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\Modulo\ModuloExclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\Modulo\ModuloInclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\Modulo\OperacaoExclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\Modulo\OperacaoInclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\UsuarioInclusaoIntegrationEvent.cs" />
+    <Compile Remove="Model\EmpresaPerfilModuloItem.cs" />
+    <Compile Remove="Model\ModuloItem.cs" />
+    <Compile Remove="Model\OperacaoItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\AcessoEmpresaPerfilTSTAExclusaoIE.cs" Link="IntegrationEvents\Events\Administrativo\AcessoEmpresaPerfilTSTAExclusaoIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\AcessoEmpresaPerfilTSTASaveIE.cs" Link="IntegrationEvents\Events\Administrativo\AcessoEmpresaPerfilTSTASaveIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\AcomodacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Administrativo\AcomodacaoExclusaoIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\AcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Administrativo\AcomodacaoSaveIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\CaracteristicaAcomodacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Administrativo\CaracteristicaAcomodacaoExclusaoIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\CaracteristicaAcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Administrativo\CaracteristicaAcomodacaoSaveIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\EmpresaExclusaoIE.cs" Link="IntegrationEvents\Events\Administrativo\EmpresaExclusaoIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\EmpresaInclusaoIntegrationEvent.cs" Link="IntegrationEvents\Events\Administrativo\EmpresaInclusaoIntegrationEvent.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\EmpresaSaveIE.cs" Link="IntegrationEvents\Events\Administrativo\EmpresaSaveIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\SetorAtualizarIntegrationEvent.cs" Link="IntegrationEvents\Events\Administrativo\SetorAtualizarIntegrationEvent.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\SetorExclusaoIE.cs" Link="IntegrationEvents\Events\Administrativo\SetorExclusaoIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\SetorSaveIE.cs" Link="IntegrationEvents\Events\Administrativo\SetorSaveIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\TipoAcomodacaoAtualizarIntegrationEvent.cs" Link="IntegrationEvents\Events\Administrativo\TipoAcomodacaoAtualizarIntegrationEvent.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\TipoAcomodacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Administrativo\TipoAcomodacaoExclusaoIE.cs" />
+    <Compile Include="..\Administrativo.API\IntegrationEvents\Events\TipoAcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Administrativo\TipoAcomodacaoSaveIE.cs" />
+    <Compile Include="..\Administrativo.API\TO\ConsultarAcomodacaoDetalhePorIdAcomodacaoTO.cs" Link="TO\ConsultarAcomodacaoDetalhePorIdAcomodacaoTO.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ChecklistExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\ChecklistExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ChecklistItemChecklistExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\ChecklistItemChecklistExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ChecklistItemChecklistIncluirIE.cs" Link="IntegrationEvents\Events\Configuracao\ChecklistItemChecklistIncluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ChecklistSaveIE.cs" Link="IntegrationEvents\Events\Configuracao\ChecklistSaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ChecklistTipoSituacaoTATAExcluirIE.cs" Link="IntegrationEvents\Events\Configuracao\ChecklistTipoSituacaoTATAExcluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ChecklistTipoSituacaoTATAIncluirIE.cs" Link="IntegrationEvents\Events\Configuracao\ChecklistTipoSituacaoTATAIncluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\EmpresaInclusaoIntegrationEvent.cs" Link="IntegrationEvents\Events\Configuracao\EmpresaInclusaoIntegrationEvent.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\FluxoAutomaticoAcaoExcluirIE.cs" Link="IntegrationEvents\Events\Configuracao\FluxoAutomaticoAcaoExcluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\FluxoAutomaticoAcaoIncluirIE.cs" Link="IntegrationEvents\Events\Configuracao\FluxoAutomaticoAcaoIncluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\FluxoAutomaticoCheckExcluirIE.cs" Link="IntegrationEvents\Events\Configuracao\FluxoAutomaticoCheckExcluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\FluxoAutomaticoCheckIncluirIE.cs" Link="IntegrationEvents\Events\Configuracao\FluxoAutomaticoCheckIncluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\FluxoAutomaticoSituacaoExcluirIE.cs" Link="IntegrationEvents\Events\Configuracao\FluxoAutomaticoSituacaoExcluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\FluxoAutomaticoSituacaoIncluirIE.cs" Link="IntegrationEvents\Events\Configuracao\FluxoAutomaticoSituacaoIncluirIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ItemChecklistExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\ItemChecklistExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\ItemChecklistSaveIE.cs" Link="IntegrationEvents\Events\Configuracao\ItemChecklistSaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\SLAExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\SLAExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\SLASaveIE.cs" Link="IntegrationEvents\Events\Configuracao\SLASaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\SLASituacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\SLASituacaoExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\SLASituacaoSaveIE.cs" Link="IntegrationEvents\Events\Configuracao\SLASituacaoSaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoAcaoAcomodacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoAcaoAcomodacaoExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoAcaoAcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoAcaoAcomodacaoSaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoAtividadeAcomodacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoAtividadeAcomodacaoExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoAtividadeAcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoAtividadeAcomodacaoSaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoSituacaoAcomodacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoSituacaoAcomodacaoExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoSituacaoAcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoSituacaoAcomodacaoSaveIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoSituacaoTAAExclusaoIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoSituacaoTAAExclusaoIE.cs" />
+    <Compile Include="..\Configuracao.API\IntegrationEvents\Events\TipoSituacaoTAAIncluirIE.cs" Link="IntegrationEvents\Events\Configuracao\TipoSituacaoTAAIncluirIE.cs" />
+    <Compile Include="..\Modulo.API\IntegrationEvents\Events\EmpresaPerfilModuloExclusaoIE.cs" Link="IntegrationEvents\Events\Modulo\EmpresaPerfilModuloExclusaoIE.cs" />
+    <Compile Include="..\Modulo.API\IntegrationEvents\Events\EmpresaPerfilModuloInclusaoIE.cs" Link="IntegrationEvents\Events\Modulo\EmpresaPerfilModuloInclusaoIE.cs" />
+    <Compile Include="..\Modulo.API\IntegrationEvents\Events\ModuloExclusaoIE.cs" Link="IntegrationEvents\Events\Modulo\ModuloExclusaoIE.cs" />
+    <Compile Include="..\Modulo.API\IntegrationEvents\Events\ModuloInclusaoIE.cs" Link="IntegrationEvents\Events\Modulo\ModuloInclusaoIE.cs" />
+    <Compile Include="..\Modulo.API\IntegrationEvents\Events\OperacaoExclusaoIE.cs" Link="IntegrationEvents\Events\Modulo\OperacaoExclusaoIE.cs" />
+    <Compile Include="..\Modulo.API\IntegrationEvents\Events\OperacaoInclusaoIE.cs" Link="IntegrationEvents\Events\Modulo\OperacaoInclusaoIE.cs" />
+    <Compile Include="..\Modulo.API\Model\EmpresaPerfilModuloItem.cs" Link="Model\Modulo\EmpresaPerfilModuloItem.cs" />
+    <Compile Include="..\Modulo.API\Model\ModuloItem.cs" Link="Model\Modulo\ModuloItem.cs" />
+    <Compile Include="..\Modulo.API\Model\OperacaoItem.cs" Link="Model\Modulo\OperacaoItem.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\AcaoSaveIE.cs" Link="IntegrationEvents\Events\Operacional\AcaoSaveIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\AtividadePriorizadaIE.cs" Link="IntegrationEvents\Events\Operacional\AtividadePriorizadaIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\AtividadeSaveIE.cs" Link="IntegrationEvents\Events\Operacional\AtividadeSaveIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\FinalizaAcaoAcomodacaoIE.cs" Link="IntegrationEvents\Events\Operacional\FinalizaAcaoAcomodacaoIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\FinalizaAtividadeAcomodacaoIE.cs" Link="IntegrationEvents\Events\Operacional\FinalizaAtividadeAcomodacaoIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\GeraAcaoAcomodacaoIE.cs" Link="IntegrationEvents\Events\Operacional\GeraAcaoAcomodacaoIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\GeraAcaoAcomodacaoSolicitarIE.cs" Link="IntegrationEvents\Events\Operacional\GeraAcaoAcomodacaoSolicitarIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\MensagemSaveIE.cs" Link="IntegrationEvents\Events\Operacional\MensagemSaveIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\PacienteAcomodacaoSaveIE.cs" Link="IntegrationEvents\Events\Operacional\PacienteAcomodacaoSaveIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\PacienteSaveIE.cs" Link="IntegrationEvents\Events\Operacional\PacienteSaveIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\RespostaChecklistSaveIE.cs" Link="IntegrationEvents\Events\Operacional\RespostaChecklistSaveIE.cs" />
+    <Compile Include="..\Operacional.API\IntegrationEvents\Events\SituacaoSaveIE.cs" Link="IntegrationEvents\Events\Operacional\SituacaoSaveIE.cs" />
+    <Compile Include="..\Operacional.API\Model\AcaoItem.cs" Link="Model\Operacional\AcaoItem.cs" />
+    <Compile Include="..\Operacional.API\Model\AtividadeItem.cs" Link="Model\Operacional\AtividadeItem.cs" />
+    <Compile Include="..\Operacional.API\Model\CheckRespostaAtividadeItem.cs" Link="Model\Operacional\CheckRespostaAtividadeItem.cs" />
+    <Compile Include="..\Operacional.API\Model\MensagemItem.cs" Link="Model\Operacional\MensagemItem.cs" />
+    <Compile Include="..\Operacional.API\Model\PacienteAcomodacaoItem.cs" Link="Model\Operacional\PacienteAcomodacaoItem.cs" />
+    <Compile Include="..\Operacional.API\Model\PacienteItem.cs" Link="Model\Operacional\PacienteItem.cs" />
+    <Compile Include="..\Operacional.API\Model\RespostasChecklistItem.cs" Link="Model\Operacional\RespostasChecklistItem.cs" />
+    <Compile Include="..\Operacional.API\Model\SituacaoItem.cs" Link="Model\Operacional\SituacaoItem.cs" />
+    <Compile Include="..\Operacional.API\TO\ConsultarAcessoAtividadeEmpresaPerfilTO.cs" Link="TO\ConsultarAcessoAtividadeEmpresaPerfilTO.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\EmpresaInclusaoIntegrationEvent.cs" Link="IntegrationEvents\Events\Usuario\EmpresaInclusaoIntegrationEvent.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\EmpresaPerfilExclusaoIE.cs" Link="IntegrationEvents\Events\Usuario\EmpresaPerfilExclusaoIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\EmpresaPerfilInclusaoIE.cs" Link="IntegrationEvents\Events\Usuario\EmpresaPerfilInclusaoIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\PerfilSaveIntegrationEvent.cs" Link="IntegrationEvents\Events\Usuario\PerfilSaveIntegrationEvent.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\UsuarioAtualizaLoginIE.cs" Link="IntegrationEvents\Events\Usuario\UsuarioAtualizaLoginIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\UsuarioAtualizaSenhaIE.cs" Link="IntegrationEvents\Events\Usuario\UsuarioAtualizaSenhaIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\UsuarioEmpresaPerfilExclusaoIE.cs" Link="IntegrationEvents\Events\Usuario\UsuarioEmpresaPerfilExclusaoIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\UsuarioEmpresaPerfilInclusaoIE.cs" Link="IntegrationEvents\Events\Usuario\UsuarioEmpresaPerfilInclusaoIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\UsuarioExclusaoIE.cs" Link="IntegrationEvents\Events\Usuario\UsuarioExclusaoIE.cs" />
+    <Compile Include="..\Usuario.API\IntegrationEvents\Events\UsuarioInclusaoIE.cs" Link="IntegrationEvents\Events\Usuario\UsuarioInclusaoIE.cs" />
+    <Compile Include="..\Usuario.API\Model\EmpresaPerfilItem.cs" Link="Model\Usuario\EmpresaPerfilItem.cs" />
+    <Compile Include="..\Usuario.API\Model\PerfilItem.cs" Link="Model\Usuario\PerfilItem.cs" />
+    <Compile Include="..\Usuario.API\Model\UsuarioEmpresaPerfilItem.cs" Link="Model\Usuario\UsuarioEmpresaPerfilItem.cs" />
+    <Compile Include="..\Usuario.API\Model\UsuarioItem.cs" Link="Model\Usuario\UsuarioItem.cs" />
+    <Compile Include="..\Usuario.API\Model\UsuarioPerfilItem.cs" Link="Model\Usuario\UsuarioPerfilItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IntegrationEvents\Events\Administrativo\" />
+    <Folder Include="IntegrationEvents\Events\Configuracao\" />
+    <Folder Include="IntegrationEvents\Events\Modulo\" />
+    <Folder Include="IntegrationEvents\Events\Usuario\" />
+    <Folder Include="Model\Administrativo\" />
+    <Folder Include="Model\Modulo\" />
+    <Folder Include="Model\Configuracao\" />
+    <Folder Include="Model\Operacional\" />
+    <Folder Include="Model\Usuario\" />
+    <Folder Include="TO\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.8.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuildingBlocks.EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\EventBusServiceBus\EventBusServiceBus.csproj" />
+    <ProjectReference Include="..\IntegrationEventLogEF\IntegrationEventLogEF.csproj" />
+    <ProjectReference Include="..\Microsoft.AspNetCore.HealthChecks\Microsoft.AspNetCore.HealthChecks.csproj" />
+    <ProjectReference Include="..\Microsoft.Extensions.HealthChecks.AzureStorage\Microsoft.Extensions.HealthChecks.AzureStorage.csproj" />
+    <ProjectReference Include="..\Microsoft.Extensions.HealthChecks\Microsoft.Extensions.HealthChecks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>

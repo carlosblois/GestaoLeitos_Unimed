@@ -1,0 +1,829 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Configuracao.API</name>
+    </assembly>
+    <members>
+        <member name="M:Configuracao.API.Controllers.CheckListController.SalvarChecklist(Configuracao.API.Model.ChecklistItem)">
+            <summary>
+            Inclui / atualiza um checklist.
+            </summary>
+            <param name="checklistToSave">
+            Objeto que representa o checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.CheckListController.ExcluirChecklist(System.Int32)">
+            <summary>
+            Exclui um checklist.
+            </summary>
+            <param name="id_Checklist">
+            Identificador do checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.CheckListController.ConsultarChecklist">
+            <summary>
+            Consulta os checklist.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.CheckListController.ConsultarChecklistDetalhe(System.Int32)">
+            <summary>
+            Consulta os checklist e seus items.
+            </summary>
+            <param name="IdChecklist">
+            Identificador do checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.CheckListController.ConsultarChecklistDetalhePorTipoSituacaoPorTipoAtividadePorTipoAcomodacao(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta o checklist e seus items de uma determinada situação / atividade / tipo acomodação de uma empresa.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa
+            </param>
+            <param name="IdTipoAcomodacao">
+            Identificador do Tipo de Acomodação
+            </param>
+            <param name="IdTipoAtividade">
+            Identificador do Tipo de Atividade
+            </param>
+            <param name="IdTipoSituacao">
+            Identificador do Tipo de Situação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ChecklistItemChecklistController.IncluirChecklistItemChecklist(Configuracao.API.Model.ChecklistItemChecklistItem)">
+            <summary>
+            Inclui uma associação de Checklist e Item de checklist.
+            </summary>
+            <param name="checklistItemChecklistToSave">
+            Objeto que representa a associação de checklist e item de checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ChecklistItemChecklistController.ExcluirChecklistItemChecklist(System.Int32,System.Int32)">
+            <summary>
+            Exclui uma associação de checklist e item de checklist.
+            </summary>
+            <param name="Id_Checklist">
+            Identificador do checklist.
+            </param>
+            <param name="Id_ItemChecklist">
+            Identificador do item de checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoController.ConsultarChecklistTipoSituacaoTipoAtividadeTipoAcomodacao(System.Int32)">
+            <summary>
+            Consulta.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador de Empresa
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoController.IncluirChecklistTipoSituacaoTipoAtividadeTipoAcomodacao(Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem)">
+            <summary>
+            Inclui uma associação de Checklist e Tipo de Situacao / Atividade /Tipo de acomodacao.
+            </summary>
+            <param name="checklistTipoSituacaoTipoAtividadeTipoAcomodacaoToSave">
+            Objeto que representa a associação de checklist e tipo de situacao/ Atividade /Tipo de acomodacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoController.ExcluirChecklistTipoSituacaoTipoAtividadeTipoAcomodacao(System.Int32)">
+            <summary>
+            Exclui uma associação de checklist e tipo de situacao/ Atividade /Tipo de acomodacao
+            </summary>
+            <param name="Id_CheckTSTAT">
+            Identificador da associação tipo de situacao/ Atividade /Tipo de acomodacao.
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoAcaoController.ConsultarFluxoAutomaticoPorEmpresa(System.Int32)">
+            <summary>
+            Consulta os fluxos automaticos de uma empresa.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa 
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoAcaoController.ConsultarFluxoAutomaticoPorAcaoPorTipoAtividadePorTipoSituacaoPorEmpresa(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta os fluxos automaticos de uma acao / atividade / situacao. Especificas com destino Situacao / Tipo Atividade
+            </summary>
+            <param name="IdTipoSituacaoAcomodacaoOrigem">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="IdTipoAtividadeAcomodacaoOrigem">
+            Identificador do Tipo de Atividade de Acomodação 
+            </param>
+            <param name="IdTipoAcaoAcomodacaoOrigem">
+            Identificador do Tipo de Ação de Acomodação
+            </param>
+            <param name="IdEmpresa">
+            Identificador da Empresa 
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoAcaoController.IncluirFluxoAutomaticoAcao(Configuracao.API.Model.FluxoAutomaticoAcaoItem)">
+            <summary>
+            Inclui uma associação de Tipo de Situacao / Tipo Atividade / Ação origem para Tipo de Situacao / Tipo Atividade destino.
+            </summary>
+            <param name="FluxoAutomaticoAcaoToSave">
+            Objeto que representa a Origem e destino do Fluxo automatico de ação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoAcaoController.ExcluirFluxoAutomaticoAcao(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Exclui uma associação de Tipo de Situacao / Tipo Atividade / Ação origem para Tipo de Situacao / Tipo Atividade destino.
+            </summary>
+            <param name="Id_TipoSituacaoAcomodacaoOrigem">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="Id_TipoAtividadeAcomodacaoOrigem">
+            Identificador do Tipo de Atividade de Acomodação 
+            </param>
+            <param name="Id_TipoAcaoAcomodacaoOrigem">
+            Identificador do Tipo de Ação de Acomodação
+            </param>
+            <param name="Id_TipoSituacaoAcomodacaoDestino">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="Id_TipoAtividadeAcomodacaoDestino">
+            Identificador do Tipo de Atividade de Acomodação 
+            </param>
+            <param name="IdEmpresa">
+            Identificador da Empresa 
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoCheckController.ConsultarFluxoAutomatico">
+            <summary>
+            Consulta os fluxos automaticos de checklist.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoCheckController.ConsultarFluxoAutomaticoPorTipoSituacao(System.Int32)">
+            <summary>
+            Consulta os fluxos automaticos de checklist por situacao.
+            </summary>
+            <param name="IdTipoSituacaoAcomodacao">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoCheckController.ConsultarFluxoAutomaticoPorTipoSituacaoPorIdChecklist(System.Int32,System.Int32)">
+            <summary>
+            Consulta os fluxos automaticos de checklist por situacao.
+            </summary>
+            <param name="IdTipoSituacaoAcomodacao">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="IdCheckList">
+            Identificador do Checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoCheckController.IncluirFluxoAutomaticoCheck(Configuracao.API.Model.FluxoAutomaticoCheckItem)">
+            <summary>
+            Inclui uma associação de Item de checklist com  TipoSituacao / Tipo Atividade destino.
+            </summary>
+            <param name="FluxoAutomaticoCheckToSave">
+            Objeto que representa o Fluxo automatico de check
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoCheckController.ExcluirFluxoAutomaticoCheck(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Exclui uma associação de item de checklist com Tipo de Situacao / Tipo Atividade.
+            </summary>
+            <param name="Id_TipoSituacaoAcomodacao">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="Id_TipoAtividadeAcomodacao">
+            Identificador do Tipo de Atividade de Acomodação
+            </param>
+            <param name="Id_Checklist">
+            Identificador do Checklist
+            </param>
+            <param name="Id_ItemChecklist">
+            Identificador do item de checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoSituacaoController.ConsultarFluxoAutomaticoPorEmpresa(System.Int32)">
+            <summary>
+            Consulta os fluxos automaticos de situacao de uma empresa.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa 
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoSituacaoController.ConsultarFluxoAutomaticoPorTipoSituacaoPorEmpresa(System.Int32,System.Int32)">
+            <summary>
+            Consulta os fluxos automaticos de situacao por situacao e empresa.
+            </summary>
+            <param name="IdTipoSituacaoAcomodacaoOrigem">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="IdEmpresa">
+            Identificador da Empresa 
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoSituacaoController.IncluirFluxoAutomaticoSituacao(Configuracao.API.Model.FluxoAutomaticoSituacaoItem)">
+            <summary>
+            Inclui uma associação de Tipo de Situacao origem para Tipo de Situacao / Tipo Atividade destino.
+            </summary>
+            <param name="FluxoAutomaticoSituacaoToSave">
+            Objeto que representa a Origem e destino do Fluxo automatico de situacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.FluxoAutomaticoSituacaoController.ExcluirFluxoAutomaticoSituacao(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Exclui uma associação de Tipo de Situacao / Tipo Atividade / Ação origem para Tipo de Situacao / Tipo Atividade destino.
+            </summary>
+            <param name="Id_TipoSituacaoAcomodacaoOrigem">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="Id_TipoSituacaoAcomodacaoDestino">
+            Identificador do Tipo de Situação de Acomodação
+            </param>
+            <param name="Id_TipoAtividadeAcomodacaoDestino">
+            Identificador do Tipo de Atividade de Acomodação 
+            </param>
+            <param name="IdEmpresa">
+            Identificador da Empresa 
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ItemChecklistController.SalvarItemChecklist(Configuracao.API.Model.ItemChecklistItem)">
+            <summary>
+            Inclui / atualiza um item de checklist.
+            </summary>
+            <param name="itemChecklistToSave">
+            Objeto que representa o item de checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ItemChecklistController.ExcluirItemChecklist(System.Int32)">
+            <summary>
+            Exclui um item de checklist.
+            </summary>
+            <param name="id_ItemChecklist">
+            Identificador do item de checklist
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.ItemChecklistController.ConsultarItemChecklist">
+            <summary>
+            Consulta os itens de checklist.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.SalvarSLA(Configuracao.API.Model.SLAItem)">
+            <summary>
+            Inclui / atualiza um SLA de uma ação / Atividade / Situação de uma empresa.
+            </summary>
+            <param name="slaToSave">
+            Objeto que representa o sla
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ExcluirSLA(System.Int32)">
+            <summary>
+            Exclui um SLA.
+            </summary>
+            <param name="id_SLA">
+            Identificador do SLA
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ConsultarSLAPorIdEmpresaIdTipoSituacaoIdTipoAtividadeIdTipoAcomodacao(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta o SLA de Atividade por / Atividade / Situação de uma empresa e tipo de acomodacao (ultima versao).
+            Essa consulta é uma consolidação dos tempos de SLA das ações de uma atividade
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoSituacao">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAtividade">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAcomodacao">
+            Identificador de Tipo de acomodacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ConsultarSLAPorIdEmpresaIdTipoSituacaoIdTipoAtividadeIdTipoAcaoIdTipoAcomodacao(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta o SLA de Ação / Atividade / Situação por tipo de acaomodacao de uma empresa (ultima versao).
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoSituacao">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAtividade">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAcao">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAcomodacao">
+            Identificador de Tipo de acomodacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ListarSLAPorIdEmpresaIdTipoSituacaoIdTipoAtividadeIdTipoAcaoIdTipoAcomodacao(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Listar os SLA de Ação / Atividade / Situação por tipo de acaomodacao de uma empresa (ultima versao).
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoSituacao">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAtividade">
+            Identificador de Tipo de atividade
+            </param>
+            <param name="idTipoAcao">
+            Identificador de Tipo de ação
+            </param>
+            <param name="idTipoAcomodacao">
+            Identificador de Tipo de acomodacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ConsultarSLAPorId(System.Int32,System.Int32)">
+            <summary>
+            Consulta SLA por Id do SLA.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idSla">
+            Identificador do Sla
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ConsultarSLAPorIdEmpresaIdTipoSituacaoIdTipoAtividadeIdTipoAcao(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta o SLA de Ação / Atividade / Situação de uma empresa (ultima versao).
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoSituacao">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAtividade">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAcao">
+            Identificador de Tipo de situacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLAController.ConsultarSLAPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta os SLAs de Ação / Atividade / Situação de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLASituacaoController.SalvarSLASituacao(Configuracao.API.Model.SLASituacaoItem)">
+            <summary>
+            Inclui / atualiza um SLA de Tipo de Situação de uma empresa.
+            </summary>
+            <param name="slaSituacaoToSave">
+            Objeto que representa o sla de tipo de situação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLASituacaoController.ExcluirSLASituacao(System.Int32)">
+            <summary>
+            Exclui um SLA de tipo de situação.
+            </summary>
+            <param name="id_SLA">
+            Identificador do SLA
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLASituacaoController.ConsultarSLASituacao">
+            <summary>
+            Consulta os SLAs de Situação.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLASituacaoController.ConsultarSLASituacaoPorIdEmpresaIdTipoSituacaoTipoAcomodacao(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta os SLAs de Situação de uma empresa de um tipo de Situacao em um tipo de acomodacao.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoSituacao">
+            Identificador de Tipo de situacao
+            </param>
+            <param name="idTipoAcomodacao">
+            Identificador de Tipo de acomodacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLASituacaoController.ConsultarSLASituacaoPorIdEmpresaIdTipoSituacao(System.Int32,System.Int32)">
+            <summary>
+            Consulta os SLAs de Situação de uma empresa de um tipo de Situacao.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoSituacao">
+            Identificador de Tipo de situacao
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.SLASituacaoController.ConsultarSLASituacaoPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta os SLAs de Situação de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoAcaoAcomodacaoController.SalvarTipoAcaoAcomodacao(Configuracao.API.Model.TipoAcaoAcomodacaoItem)">
+            <summary>
+            Inclui / atualiza um Tipo de Ação de Acomodação.
+            </summary>
+            <param name="tipoAcaoAcomodacaoToSave">
+            Objeto que representa o tipo de ação da Acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoAcaoAcomodacaoController.ExcluirTipoAcaoAcomodacao(System.Int32)">
+            <summary>
+            Exclui um tipo de Ação de acomodação.
+            </summary>
+            <param name="id_TipoAcaoAcomodacao">
+            Identificador do tipo de ação da acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoAcaoAcomodacaoController.ConsultarTipoAcaoAcomodacao">
+            <summary>
+            Consulta o tipo de ação de acomodação.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoAtividadeAcomodacaoController.SalvarTipoAtividadeAcomodacao(Configuracao.API.Model.TipoAtividadeAcomodacaoItem)">
+            <summary>
+            Inclui / atualiza um Tipo de Atividade de Acomodação.
+            </summary>
+            <param name="tipoAtividadeAcomodacaoToSave">
+            Objeto que representa o tipo de atividade da Acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoAtividadeAcomodacaoController.ExcluirTipoAtividadeAcomodacao(System.Int32)">
+            <summary>
+            Exclui um tipo de Atividade de acomodação.
+            </summary>
+            <param name="id_TipoAtividadeAcomodacao">
+            Identificador do tipo de atividade da acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoAtividadeAcomodacaoController.ConsultarTipoAtividadeAcomodacao">
+            <summary>
+            TELA ENCAMINHAR LEITO (código: 04) LeitoConsulta o tipo de situação de acomodação.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoAcomodacaoController.SalvarTipoSituacaoAcomodacao(Configuracao.API.Model.TipoSituacaoAcomodacaoItem)">
+            <summary>
+            Inclui / atualiza um Tipo de Situação de Acomodação.
+            </summary>
+            <param name="tipoSituacaoAcomodacaoToSave">
+            Objeto que representa o tipo de situação da Acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoAcomodacaoController.ExcluirTipoSituacaoAcomodacao(System.Int32)">
+            <summary>
+            Exclui um tipo de situacção da acomodação.
+            </summary>
+            <param name="id_TipoSituacaoAcomodacao">
+            Identificador do tipo de situação da acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoAcomodacaoController.ConsultarTipoSituacaAcomodacao">
+            <summary>
+            Consulta o tipo de situação de acomodação.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoTipoAtividadeController.IncluirTipoSituacaoTipoAtividadeAcomodacao(Configuracao.API.Model.TipoSituacaoTipoAtividadeAcomodacaoItem)">
+            <summary>
+            Inclui uma associação de Tipo de Situação e Tipo de Atividade de Acomodação.
+            </summary>
+            <param name="tipoSituacaoTipoAtividadeToSave">
+            Objeto que representa a associação de tipo de situação e tipo de atividade da Acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoTipoAtividadeController.ExcluirTipoSituacaoTipoAtividadeAcomodacao(System.Int32,System.Int32)">
+            <summary>
+            Exclui uma associação de tipo de situação e tipo de atividade da acomodação.
+            </summary>
+            <param name="id_TipoSituacaoAcomodacao">
+            Identificador do tipo de situação da acomodação
+            </param>
+            <param name="id_TipoAtividadeAcomodacao">
+            Identificador do tipo de atividade da acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoTipoAtividadeController.ConsultarTipoSituacaoTipoAtividadeAcomodacao">
+            <summary>
+            Consulta as associações entre todos tipo de situação e tipo de atividade de acomodação.
+            </summary>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoTipoAtividadeController.ConsultarTipoSituacaoTipoAtividadeAcomodacaoPorTipoAtividade(System.Int32)">
+            <summary>
+            Consulta as associações entre um tipo de atividade e seus tipos de situação de acomodação.
+            </summary>
+            <param name="idTipoAtividadeAcomodacao">
+            Identificador do tipo de atividade da acomodação
+            </param>
+        </member>
+        <member name="M:Configuracao.API.Controllers.TipoSituacaoTipoAtividadeController.ConsultarTipoSituacaoTipoAtividadeAcomodacaoPorTipoSituacao(System.Int32)">
+            <summary>
+            Consulta as associações entre um tipo de situação e seus tipos de atividade de acomodação.
+            </summary>
+            <param name="idTipoSituacaoAcomodacao">
+            Identificador do tipo de situação da acomodação
+            </param>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistItem.Id_Checklist">
+            <summary>
+            Identificador do Checklist (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistItem.Nome_Checklist">
+            <summary>
+            Nome do Checklist (Max 50)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistItemChecklistItem.Id_Checklist">
+            <summary>
+            Identificador do Checklist
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistItemChecklistItem.Id_ItemChecklist">
+            <summary>
+            Identificador do Item de Checklist
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem.Id_CheckTSTAT">
+            <summary>
+            Identificador (identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem.Id_Checklist">
+            <summary>
+            Identificador do Checklist
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situacao de Acomodacao.
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodacao.
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem.Id_TipoAcomodacao">
+            <summary>
+            Identificador do Tipo de Acomodacao.
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ChecklistTipoSituacaoTipoAtividadeTipoAcomodacaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa.
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoAcaoItem.Id_TipoAcaoAcomodacaoOrigem">
+            <summary>
+            Identificador do Tipo de Ação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoAcaoItem.Id_TipoAtividadeAcomodacaoOrigem">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação 
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoAcaoItem.Id_TipoSituacaoAcomodacaoOrigem">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoAcaoItem.Id_TipoAtividadeAcomodacaoDestino">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação 
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoAcaoItem.Id_TipoSituacaoAcomodacaoDestino">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoAcaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoCheckItem.Id_Checklist">
+            <summary>
+            Identificador do checklist
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoCheckItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação 
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoCheckItem.Id_ItemChecklist">
+            <summary>
+            Identificador do item de checklist
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoCheckItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação 
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoCheckItem.Cod_Resposta">
+            <summary>
+            Codigo da resposta, indica V /F para indicar que o fluxo ocorrerá para resposta V ou F do item de checklist
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoCheckItem.Cod_PermiteTotal">
+            <summary>
+            Codigo (S/N) que indica se pode se aplicar mesmo na FINALIZAR TOTAL
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoSituacaoItem.Id_TipoSituacaoAcomodacaoOrigem">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoSituacaoItem.Id_TipoAtividadeAcomodacaoDestino">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação 
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoSituacaoItem.Id_TipoSituacaoAcomodacaoDestino">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.FluxoAutomaticoSituacaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ItemChecklistItem.Id_ItemChecklist">
+            <summary>
+            Identificador do Item de Checklist (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.ItemChecklistItem.Nome_ItemChecklist">
+            <summary>
+            Nome do Item de Checklist (Max 50)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Id_SLA">
+            <summary>
+            Identificador do SLA (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Id_TipoAcaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Ação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Id_TipoAcomodacao">
+            <summary>
+            Identificador do Tipo de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Tempo_Minutos">
+            <summary>
+            Tempo em minutos referente ao SLA
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Versao_SLA">
+            <summary>
+            Versao do SLA
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLAItem.cod_enabled">
+            <summary>
+            Codigo para habilitar e desabilitar SLA N/S
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.Id_SLA">
+            <summary>
+            Identificador do SLA (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.Id_TipoAcomodacao">
+            <summary>
+            Identificador do Tipo de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.Id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.Tempo_Minutos">
+            <summary>
+            Tempo em minutos referente ao SLA
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.Versao_SLA">
+            <summary>
+            Versao do SLA
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.SLASituacaoItem.cod_enabled">
+            <summary>
+            Codigo para habilitar e desabilitar SLA N/S
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAcaoAcomodacaoItem.Id_TipoAcaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Ação de Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAcaoAcomodacaoItem.Nome_TipoAcaoAcomodacao">
+            <summary>
+            Nome do Tipo de Ação de Acomodação (Max 50)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAcaoAcomodacaoItem.Nome_Status">
+            <summary>
+            Nome do status do Tipo de Ação de Acomodação (Max 50)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAcaoAcomodacaoItem.imagem">
+            <summary>
+            Caminho da imagem
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAtividadeAcomodacaoItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAtividadeAcomodacaoItem.Nome_TipoAtividadeAcomodacao">
+            <summary>
+            Nome do Tipo de Atividade de Acomodação (Max 50)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAtividadeAcomodacaoItem.ordem">
+            <summary>
+            Ordem de apresentacao
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAtividadeAcomodacaoItem.imagem">
+            <summary>
+            Caminho da imagem
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoAtividadeAcomodacaoItem.qrcode">
+            <summary>
+            Caminho da imagem
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoSituacaoAcomodacaoItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoSituacaoAcomodacaoItem.Nome_TipoSituacaoAcomodacao">
+            <summary>
+            Nome do Tipo de situação de Acomodação (Max 50)
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoSituacaoAcomodacaoItem.ordem">
+            <summary>
+            Ordem de apresentacao
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoSituacaoAcomodacaoItem.imagem">
+            <summary>
+            Caminho da imagem
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoSituacaoTipoAtividadeAcomodacaoItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do Tipo de Situação de Acomodação
+            </summary>
+        </member>
+        <member name="P:Configuracao.API.Model.TipoSituacaoTipoAtividadeAcomodacaoItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do Tipo de Atividade de Acomodação
+            </summary>
+        </member>
+    </members>
+</doc>

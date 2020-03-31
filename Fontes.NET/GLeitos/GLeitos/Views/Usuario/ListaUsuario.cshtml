@@ -1,0 +1,85 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.ListaUsuarioView
+@{
+    /**/
+
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript:carregaTela('@Url.Action("Index", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>Usuário<a href="#" onclick="javascript:carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+
+            <div>
+                <a href="#" onclick="javascript: window.location.href='@Url.Action("Usuario", "Usuario", new { area = "" })'"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Novo Usuário</button></a>
+            </div>
+            <br />
+            <table id="tblusuario" class="table table-responsive">
+                <thead>
+                    <tr style="background-color:#003A2F;">
+                        <td>NOME</td>
+                        <td>LOGIN</td>
+                        <td>ATIVO</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListaUsuarios)
+                    {
+                    <tr class="linhaheight">
+                        <td>
+                            @item.nome_Usuario.Trim()
+                        </td>
+                        <td>
+                            @item.login_Usuario.Trim()
+                        </td>
+                        <td>
+                            @if (@item.ativo == 1)
+                            {
+                                <span>&nbsp;Sim</span>
+                            }
+                            else
+                            {
+                                <span>&nbsp;Não</span>
+                            }
+                        </td>
+                        <td style="text-align:right;">
+                            @*<div class="line-company">
+            <div class="icon-action">*@
+                            <a href="#" title="Editar" onclick="javascript: editar('@Url.Action("Usuario", "Usuario", new { id_usuario = item.id_Usuario})');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>
+                            <a href="#" title="Excluir" onclick="javascript: excluir('@Url.Action("ExcluirUsuario", "Usuario", new { id_usuario = item.id_Usuario})', 'Deseja desativar este usuário?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                            @*</div>
+            </div>*@
+                        </td>
+                    </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+
+    </div>
+
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/paginar.usuario.js")

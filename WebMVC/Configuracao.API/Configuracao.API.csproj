@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Configuracao.API</AssemblyName>
+    <UserSecretsId>bddcb487-93fb-47f8-90f7-5f57a53d3b01</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/6c28bd8d-b1ec-47de-96df-a3c1b5c0579a/resourcegroups/RSG_EXPO/providers/microsoft.insights/components/ExpoInsights</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/6c28bd8d-b1ec-47de-96df-a3c1b5c0579a/resourcegroups/RSG_EXPO/providers/microsoft.insights/components/ExpoInsights</ApplicationInsightsAnnotationResourceId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\useradmin\Source\Repos\Leitos\WebMVC\Configuracao.API\Configuracao.API.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\useradmin\Source\Repos\Leitos\WebMVC\Configuracao.API\Configuracao.API.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\SetorController.cs" />
+    <Compile Remove="Controllers\ValuesController.cs" />
+    <Compile Remove="Extension\ProdutoItemExtensions.cs" />
+    <Compile Remove="Infrastructure\EntityConfiguration\SetorDefaultItemEntityTypeConfiguration.cs" />
+    <Compile Remove="Infrastructure\EntityConfiguration\SetorItemEntityTypeConfiguration.cs" />
+    <Compile Remove="Infrastructure\ProdutoContextSeed.cs" />
+    <Compile Remove="Infrastructure\SetorContextSeed.cs" />
+    <Compile Remove="IntegrationEvents\EventHandling\EmpresaInclusaoIntegrationEventHandler.cs" />
+    <Compile Remove="IntegrationEvents\Events\EmpresaInclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\SetorAtualizarIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\SetorExclusaoIntegrationEvent.cs" />
+    <Compile Remove="IntegrationEvents\Events\SetorInclusaoIntegrationEvent.cs" />
+    <Compile Remove="Model\ISetorRepository.cs" />
+    <Compile Remove="Model\SetorDefaultItem.cs" />
+    <Compile Remove="Model\SetorItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\Controllers\ChecklistTipoSituacaoAcomodacaoController.en-US.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configuracao.API.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configuracao.API.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extension\" />
+    <Folder Include="IntegrationEvents\EventHandling\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.3.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.Kubernetes" Version="1.0.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuildingBlocks.EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\CacheRedis\CacheRedis.csproj" />
+    <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\EventBusServiceBus\EventBusServiceBus.csproj" />
+    <ProjectReference Include="..\IntegrationEventLogEF\IntegrationEventLogEF.csproj" />
+    <ProjectReference Include="..\Microsoft.AspNetCore.HealthChecks\Microsoft.AspNetCore.HealthChecks.csproj" />
+    <ProjectReference Include="..\Microsoft.Extensions.HealthChecks.AzureStorage\Microsoft.Extensions.HealthChecks.AzureStorage.csproj" />
+    <ProjectReference Include="..\Microsoft.Extensions.HealthChecks.SqlServer\Microsoft.Extensions.HealthChecks.SqlServer.csproj" />
+    <ProjectReference Include="..\Microsoft.Extensions.HealthChecks\Microsoft.Extensions.HealthChecks.csproj" />
+    <ProjectReference Include="..\QueryPlayer\QueryPlayer.csproj" />
+    <ProjectReference Include="..\WebHost.Customization\WebHost.Customization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>

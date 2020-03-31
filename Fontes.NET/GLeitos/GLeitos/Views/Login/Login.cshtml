@@ -1,0 +1,127 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.LoginView
+@{
+    Layout = "../Layout/_LayoutLogin.cshtml";
+}
+
+
+
+<div id="loginForm">
+    <div class="container">
+        <img class="logo" src="~/images/GL-logo.png" />
+        <h1>Bem-vindo!</h1>
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post,
+        new { enctype = "multipart/form-data", name = "FormLogin", id = "FormLogin" }))
+        {
+            @Html.ValidationSummary(true);
+
+            <div class="formLine">
+                <label>USUÁRIO</label>
+                @*<input type="text" name="nome" value="Usuário 1">*@
+
+                @Html.TextBoxFor(model => model.Login.login, new { @id = "login", @Class = "form-control", @placeholder = "" })
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="formLine">
+                @Html.ValidationMessageFor(x => x.Login.login, "", new { @class = "text-danger-yellow" })
+            </div>
+
+            <div class="formLine">
+                <label>SENHA</label>
+                @*<input type="password" name="senha" value="123456">*@
+
+                @Html.TextBoxFor(model => model.Login.senha, new { @type = "password", @id = "senha", @Class = "form-control", @placeholder = "" })
+                <i class="fas fa-unlock-alt"></i>
+            </div>
+            <div class="formLine">
+                @Html.ValidationMessageFor(x => x.Login.senha, "", new { @class = "text-danger-yellow" })
+            </div>
+
+
+            if (Model.logarUsuarioEmpresaTO.Count > 0)
+            {
+
+                <div class="formLine">
+                    <label>EMPRESA</label>
+                    @*@Html.HiddenFor(model => model.logarUsuarioEmpresaPerfilTO, new { @id = "hdn_id_LogarUsuarioEmpresaPerfilTO" })*@
+
+                    @Html.HiddenFor(model => model.Login.id_empresa, new { @id = "hdn_id_empresa" })
+                    <div class="custom-select">
+                        <select name="lstEmpresa" id="lstEmpresa">
+                            @foreach (LogarUsuarioEmpresaTO item in Model.logarUsuarioEmpresaTO)
+                            {
+                                if (Model.Login.id_empresa == item.id_Empresa.ToString())
+                                {
+                                    <option value="@item.id_Empresa" selected>@item.nome_Empresa</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id_Empresa">@item.nome_Empresa</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </div>
+            }
+
+            if (Model.logarUsuarioPerfilTO.Count > 0)
+            {
+                <div class="formLine">
+                    <label>PERFIL</label>
+                    @Html.HiddenFor(model => model.Login.id_perfil, new { @id = "hdn_id_perfil" })
+                    <div class="custom-select">
+                        <select name="lstPerfil" id="lstPerfil">
+
+                            @foreach (LogarUsuarioPerfilTO item in Model.logarUsuarioPerfilTO.OrderBy(m => m.nome_Perfil))
+                            {
+                                if (Model.Login.id_perfil == item.id_Perfil.ToString())
+                                {
+                                    <option value='@item.id_Perfil' selected>@item.nome_Perfil</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id_Perfil">@item.nome_Perfil</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </div>
+
+
+            }
+            <input class="btSubmit" id="btSubmit" type="button" value="Acessar">
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.mensagem))
+        {
+            <div class="formLine">
+                <div class="messagemSucesso">
+                    <p>@Model.mensagem</p>
+                </div>
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.erro))
+        {
+            <div class="formLine">
+                <div class="error messagemErro">
+                    <p>@Model.erro</p>
+                </div>
+            </div>
+        }
+
+        <div class="formLine" id="divMsgIE">
+            <div class="error messagemErro">
+                <p>Uso do Internet Explorer está bloqueado para o Gestão de Leitos.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Scripts.Render("~/scripts/valida.login.js")
+@Scripts.Render("~/scripts/utilitario.js")

@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Usuario.API</name>
+    </assembly>
+    <members>
+        <member name="M:Usuario.API.Controllers.EmpresaPerfilController.ConsultarPerfisPorIdEmpresa(System.Int32)">
+            <summary>
+            Consulta os perfis de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador da empresa
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.EmpresaPerfilController.IncluirEmpresaPerfil(Usuario.API.Model.EmpresaPerfilItem)">
+            <summary>
+            Inclui um perfil para uma determinada empresa.
+            </summary>
+            <param name="empresaPerfilToSave">
+            Objeto que representa um Perfil associado a uma empresa.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.EmpresaPerfilController.IncluirEmpresaPerfilGrupo(System.Collections.Generic.List{Usuario.API.Model.EmpresaPerfilItem})">
+            <summary>
+            Inclui um grupo de perfis para uma determinada empresa .
+            </summary>
+            <param name="lstEmpresaPerfilToSave">
+            Uma lista de objetos que representa um Perfil associado a uma empresa.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.EmpresaPerfilController.ExcluirEmpresaPerfil(System.Int32,System.Int32)">
+            <summary>
+            Exclui um perfil para uma determinada empresa .
+            </summary>
+            <param name="id_Empresa">
+            Identificador da empresa.
+            </param>
+            <param name="id_Perfil">
+            Identificador do perfil.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.PerfilController.SalvarPerfil(Usuario.API.Model.PerfilItem)">
+            <summary>
+            Inclui / atualiza um perfil.
+            Permite a inclusão em conjunto da coleção de perfis para uma determinada empresa. (opcional)
+            Durante a atualização apenas o perfil é considerado.
+            </summary>
+            <param name="perfilToSave">
+            Objeto que representa o Perfil
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.PerfilController.ConsultarPerfis">
+            <summary>
+            Consulta os perfis.
+            </summary>
+        </member>
+        <member name="M:Usuario.API.Controllers.PerfilController.ExcluirPerfil(System.Int32)">
+            <summary>
+            Exclui um perfil.
+            </summary>
+            <param name="id_Perfil">
+            Identificador do Perfil
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.AtualizaNomeUsuario(System.Int32,System.String)">
+            <summary>
+            Atualiza o Nome do usuario.
+            </summary>
+            <param name="id_Usuario">
+            Identificador do usuario
+            </param>
+            <param name="nome_Usuario">
+            Nome do usuario (Min 5 Max 50)
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.AtualizaLoginUsuario(System.Int32,System.String)">
+            <summary>
+            Atualiza o Login do usuario.
+            </summary>
+            <param name="id_Usuario">
+            Identificador do usuario
+            </param>
+            <param name="login_Usuario">
+            Login do usuario (Min 5 Max 20)
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.TrocaSenhaUsuario(System.Int32,System.String)">
+            <summary>
+            Atualiza a senha do usuario.
+            </summary>
+            <param name="id_Usuario">
+            Identificador do usuario
+            </param>
+            <param name="senha_Usuario">
+            Senha do usuario (Min 5 Max 10)
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.SalvarUsuario(Usuario.API.Model.UsuarioItem)">
+            <summary>
+            Inclui um usuario.
+            Permite a inclusão em conjunto da coleção de perfis do usuario para uma determinada empresa. (opcional)
+            </summary>
+            <param name="usuarioToSave">
+            Objeto que representa o Usuario
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.ExcluirUsuario(System.Int32)">
+            <summary>
+            Exclui um usuario.
+            </summary>
+            <param name="id_Usuario">
+            Identificador do Usuario
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.ValidarLoginUsuario(System.String,System.String)">
+            <summary>
+            Valida o Login do usuario.
+            </summary>
+            <param name="login_Usuario">
+            Login do Usuario
+            </param>
+            <param name="senha_Usuario">
+            Senha do Usuario
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.LogarUsuarioEmpresaPerfil(System.String,System.String)">
+            <summary>
+            TELA LOGIN (código: 01) ** Valida o Login do usuario e retorna as empresas e perfis associados.
+            </summary>
+            <param name="login_Usuario">
+            Login do Usuario
+            </param>
+            <param name="senha_Usuario">
+            Senha do Usuario
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioController.ConsultarUsuarioPorIdEmpresa(System.Int32)">
+            <summary>
+            Lista de usuario de uma determinada empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador da Empresa
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.IncluirEmpresaPerfil(Usuario.API.Model.UsuarioEmpresaPerfilItem)">
+            <summary>
+            Inclui um perfil especifico para um usuário de uma empresa.
+            </summary>
+            <param name="usuarioEmpresaPerfilToSave">
+            Objeto que representa o Perfil de um usuario em uma empresa
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.IncluirEmpresaPerfilGrupo(System.Collections.Generic.List{Usuario.API.Model.UsuarioEmpresaPerfilItem})">
+            <summary>
+            Inclui um grupo de perfis para um usuário de uma empresa.
+            </summary>
+            <param name="lstUsuarioEmpresaPerfilToSave">
+            Uma lista de objetos que representa um perfil de um usuario associado a uma empresa.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.ExcluirUsuarioEmpresaPerfil(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Exclui um perfil especifico de um usuário de uma empresa.
+            </summary>
+            <param name="id_Empresa">
+            Identificador da empresa.
+            </param>
+            <param name="id_Usuario">
+            Identificador do Usuario.
+            </param>
+            <param name="id_Perfil">
+            Identificador do perfil.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.ExcluirUsuarioEmpresaPerfilGrupo(System.Collections.Generic.List{Usuario.API.Model.UsuarioEmpresaPerfilItem})">
+            <summary>
+            Exclui um grupo de perfis de um usuário de uma empresa.
+            Nesse grupo de perfis podem existir usuários e empresas diferentes.
+            </summary>
+            <param name="lstUsuarioEmpresaPerfilToDelete">
+            Uma lista de objetos que representa um perfil de um usuario associado a uma empresa.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.ExcluirUsuarioEmpresaPerfilTodos(System.Int32)">
+            <summary>
+            Exclui todos os perfis de um usuário de uma empresa.
+            </summary>
+            <param name="id_Usuario">
+            Identificador de usuario.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.ConsultarPerfisPorIdUsuario(System.Int32)">
+            <summary>
+            Consulta os perfis de um usuário.
+            </summary>
+            <param name="idUsuario">
+            Identificador de usuario.
+            </param>
+        </member>
+        <member name="M:Usuario.API.Controllers.UsuarioEmpresaPerfilController.ConsultarPerfisPorIdUsuarioIdPerfil(System.Int32,System.Int32)">
+            <summary>
+            Consulta o perfil de um usuário.
+            </summary>
+            <param name="idUsuario">
+            Identificador de usuario.
+            </param>
+            <param name="idPerfil">
+            Identificador de perfil.
+            </param>
+        </member>
+        <member name="P:Usuario.API.Model.EmpresaPerfilItem.id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.EmpresaPerfilItem.id_Perfil">
+            <summary>
+            Identificador do Perfil 
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.EmpresaPerfilItem.cod_Tipo">
+            <summary>
+            Codigo do Tipo de Perfil - (Min 1 Max 1)
+            Determina a caracteristica do perfil
+            G - Gestão
+            O - Operação
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.LogAcessoItem.id_Log">
+            <summary>
+            Identificador do Log de acesso (Identity)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.LogAcessoItem.id_Usuario">
+            <summary>
+            Identificador do Usuario
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.LogAcessoItem.dt_Entrada">
+            <summary>
+            Data / hora da entrada do usuario
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.LogAcessoItem.dt_Saida">
+            <summary>
+            Data / hora da saida do usuario
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.LogAcessoItem.cod_sucesso">
+            <summary>
+            Codigo de indicacao de acesso valido ou nao S/N
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.PerfilItem.id_Perfil">
+            <summary>
+            Identificador do Perfil (Identity)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.PerfilItem.nome_Perfil">
+            <summary>
+            Nome do Perfil - (Min 5 Max 20)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioEmpresaPerfilItem.id_Usuario">
+            <summary>
+            Identificador do Usuario
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioEmpresaPerfilItem.id_Empresa">
+            <summary>
+            Identificador da Empresa
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioEmpresaPerfilItem.id_Perfil">
+            <summary>
+            Identificador do Perfil
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioItem.id_Usuario">
+            <summary>
+            Identificador do Usuario (Identity)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioItem.nome_Usuario">
+            <summary>
+            Nome do Usuario - (Min 5 Max 50)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioItem.login_Usuario">
+            <summary>
+            Login do Usuario - (Min 5 Max 20)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioItem.senha_Usuario">
+            <summary>
+            Senha do Usuario - (Min 5 Max 10)
+            </summary>
+        </member>
+        <member name="P:Usuario.API.Model.UsuarioItem.Ativo">
+            <summary>
+            Ativo ()
+            </summary>
+        </member>
+    </members>
+</doc>

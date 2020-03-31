@@ -1,0 +1,223 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.EmpresaView
+@{
+                /**/
+
+                Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript: carregaTela('@Url.Action("ListaEmpresa", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>Empresa<a href="#" onclick="javascript: carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+            <!--<p>Here goes another form and form controls.</p>-->
+
+            @using (Html.BeginForm("SalvarEmpresa", "Adm", FormMethod.Post,
+                new { enctype = "multipart/form-data", name = "FormEmpresa", id = "FormEmpresa", @class = "templatemo-login-form" }))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="row form-group">
+                    <div class="col-lg-8 col-md-8 form-group">
+                        <label for="inputFirstName">Nome da Empresa</label> <!--Nome da Empresa-->
+                        @Html.HiddenFor(model => model.Empresa.id_Empresa, new { @id = "id_Empresa" })
+                        @*<input type="text" class="form-control" id="inputFirstName" placeholder="Empresa">*@
+                        @Html.TextBoxFor(model => model.Empresa.nome_Empresa, new { @id = "nome_empresa", @Class = "form-control", @placeholder = "Empresa" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.nome_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 form-group">
+                        <label for="inputLastName">Código Externo</label> <!--Código Externo-->
+                        @*<input type="text" class="form-control" id="inputLastName" placeholder="Insira o Código Externo">*@
+                        @Html.TextBoxFor(model => model.Empresa.codExterno_Empresa, new { @id = "codExterno_Empresa", @Class = "form-control", @placeholder = "Código Externo da empresa" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.codExterno_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-lg-8 col-md-8 form-group">
+                        <label for="inputUsername">Endereço da Empresa</label> <!--Endereço da Empresa-->
+                        @Html.TextBoxFor(model => model.Empresa.endereco_Empresa, new { @id = "endereco_Empresa", @Class = "form-control", @placeholder = "Endereço" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.endereco_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 form-group">
+                        <div class="row form-group">
+                            <div class="col-lg-4 col-md-4 form-group">
+                                <label for="inputUsername">Número</label> <!--Número-->
+                                @Html.TextBoxFor(model => model.Empresa.numero_Empresa, new { @id = "numero_Empresa", @Class = "form-control", @placeholder = "Número" })
+                                <div class="formLine">
+                                    @Html.ValidationMessageFor(x => x.Empresa.numero_Empresa, "", new { @class = "text-danger-yellow" })
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 form-group">
+                                <label for="inputUsername">Complemento</label> <!--Complemento-->
+                                @Html.TextBoxFor(model => model.Empresa.complemento_Empresa, new { @id = "complemento_Empresa", @Class = "form-control", @placeholder = "Complemento" })
+                                <div class="formLine">
+                                    @Html.ValidationMessageFor(x => x.Empresa.complemento_Empresa, "", new { @class = "text-danger-yellow" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-lg-2 col-md-2 form-group">
+                        <label for="inputUsername">CEP</label> <!--CEP-->
+                        @Html.TextBoxFor(model => model.Empresa.cep_Empresa, new { @id = "cep_Empresa", @Class = "form-control", @placeholder = "CEP" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.cep_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 form-group">
+                        <label for="inputUsername">Bairro</label> <!--Bairro-->
+                        @Html.TextBoxFor(model => model.Empresa.bairro_Empresa, new { @id = "bairro_Empresa", @Class = "form-control", @placeholder = "Bairro" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.bairro_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 form-group">
+                        <div class="row form-group">
+                            <div class="col-lg-9 col-md-9 form-group">
+                                <label for="inputUsername">Cidade</label> <!--Cidades-->
+                                @Html.TextBoxFor(model => model.Empresa.cidade_Empresa, new { @id = "cidade_Empresa", @Class = "form-control", @placeholder = "Cidade" })
+                                <div class="formLine">
+                                    @Html.ValidationMessageFor(x => x.Empresa.cidade_Empresa, "", new { @class = "text-danger-yellow" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 form-group">
+                                @Html.HiddenFor(model => model.Empresa.estado_Empresa, new { @id = "hdnestado_Empresa" })
+                                <label for="control-label templatemo-block">UF</label> <!--Estados-->
+                                <div class="custom-select">
+                                    <select id="selEstado" class="form-control">
+                                        @foreach (var item in Model.ListaUfs.OrderBy(m => m.sigla))
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(Model.Empresa.estado_Empresa))
+                                            {
+                                                if (Model.Empresa.estado_Empresa.ToUpper().Trim() == item.sigla.ToUpper().Trim())
+                                                {
+                                                    <option value="@item.sigla" selected>@item.descricao</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.sigla">@item.descricao</option>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.sigla">@item.descricao</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="formLine">
+                                    @Html.ValidationMessageFor(x => x.Empresa.estado_Empresa, "", new { @class = "text-danger-yellow" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-lg-2 col-md-2 form-group">
+                        <label for="inputFirstName">Contato</label> <!--Contato-->
+                        @Html.TextBoxFor(model => model.Empresa.contato_Empresa, new { @id = "contato_Empresa", @Class = "form-control", @placeholder = "Contato" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.contato_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 form-group">
+                        <label for="inputLastName">CNPJ</label> <!--CGC-->
+                        @Html.TextBoxFor(model => model.Empresa.cgC_Empresa, new { @id = "cgC_Empresa", @Class = "form-control", @placeholder = "CNPJ" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.cgC_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 form-group">
+                        <label for="inputLastName">CNES</label> <!--CNES-->
+                        @Html.TextBoxFor(model => model.Empresa.cneS_Empresa, new { @id = "cneS_Empresa", @Class = "form-control", @placeholder = "CNES" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.cneS_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-lg-6 col-md-6 form-group">
+                        <label for="inputLastName">Inscrição Municipal</label> <!--Inscrição Municipal-->
+                        @Html.TextBoxFor(model => model.Empresa.inscricaoMunicipal_Empresa, new { @id = "inscricaoMunicipal_Empresa", @Class = "form-control", @placeholder = "Inscrição Municipal" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.inscricaoMunicipal_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 form-group">
+                        <label for="inputLastName">Inscrição Estadual</label> <!--Inscrição Estadual-->
+                        @Html.TextBoxFor(model => model.Empresa.inscricaoEstadual_Empresa, new { @id = "inscricaoEstadual_Empresa", @Class = "form-control", @placeholder = "Inscrição Estadual" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Empresa.inscricaoEstadual_Empresa, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group text-left">
+                    <button type="button" class="templatemo-white-button" onclick="javascript: excluir('@Url.Action("ExcluirEmpresa", "Adm", new { id_empresa = Model.Empresa.id_Empresa })', 'Deseja excluir esta empresa?');">Apagar</button>
+                    <button type="button" class="templatemo-blue-button" onclick="javascript: salvarempresa('@Url.Action("SalvarEmpresa", "Adm", new { id_empresa = Model.Empresa.id_Empresa })');">Salvar</button>
+                </div>
+
+            }
+
+            @*@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+                {
+                    <div class="formLine">
+                        <div class="messagemSucesso">
+                            <p>@Model.mensagem</p>
+                        </div>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.erro))
+                {
+                    <div class="formLine">
+                        <div class="error messagemErro">
+                            <p>@Model.erro</p>
+                        </div>
+                    </div>
+                }*@
+        </div>
+
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+
+    </div>
+
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    @*<div class="formLine">
+            <div class="error messagemErro">
+                <p>@Model.erro</p>
+            </div>
+        </div>*@
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/valida.empresa.js")

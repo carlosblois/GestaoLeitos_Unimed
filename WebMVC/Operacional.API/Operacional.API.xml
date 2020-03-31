@@ -1,0 +1,814 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Operacional.API</name>
+    </assembly>
+    <members>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.CancelarAceitar(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            TELA DE ATIVIDADES (código: 03) Efetua o CANCELAMENTO DO ACEITE de uma atividade 
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario executor
+            </param>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.CancelarGenerico(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Efetua o CANCELAMENTO GENERICO independente da condição da atividade 
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario executor
+            </param>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.GeraAceitar(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            TELA DE ATIVIDADES (código: 03) Efetua o ACEITE de uma atividade (O Aceite sempre vem de uma atividade no Status SOLICITADO.)
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario executor
+            </param>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.GeraIniciar(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Efetua o Inciar de uma atividade (O iniciar sempre vem de uma atividade no Status ACEITE.)
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario executor
+            </param>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.GeraFinalizarTotalmente(System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{Operacional.API.Model.RespostasChecklistItem},System.Collections.Generic.List{Operacional.API.Enum.ExpoEnum.TipoAtividade})">
+            <summary>
+            Efetua o Finalizar Totalmente de uma atividade (O Finalizar Totalmente sempre vem de uma atividade no Status INICIAR.)
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario executor
+            </param>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+            <param name="lstRespostas">
+            Lista de respostas referente ao questionário
+            </param>
+            <param name="lstAtividadeEncaminhamento">
+            Lista de encaminhamentos de atividades
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.GeraFinalizarParcialmente(System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{Operacional.API.Model.RespostasChecklistItem},System.Collections.Generic.List{Operacional.API.Enum.ExpoEnum.TipoAtividade})">
+            <summary>
+            Efetua o Finalizar Parcialmente de uma atividade (O Finalizar Parcialmente sempre vem de uma atividade no Status INICIAR.)
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario executor
+            </param>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+            <param name="lstRespostas">
+            Lista de respostas referente ao questionário
+            </param>
+            <param name="lstAtividadeEncaminhamento">
+            Lista de encaminhamentos de atividades
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.IncluirAcao(Operacional.API.Model.AcaoItem)">
+            <summary>
+            Inclui uma acao.
+            </summary>
+            <param name="acaoToSave">
+            Objeto que representa a acao da acomodação
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesTODASNaoFinalizadasPorEmpresaPorUsuario(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta  TODAS as atividades de um usuario nao finalizada de uma empresa por Perfil.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario
+            </param>
+            <param name="idPerfil">
+            Identificador de Perfil
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarCheckListAtividadeAnterior(System.Int32)">
+            <summary>
+            Consulta os itens de Checklist cujas as respostas geraram atividade atual.
+            </summary>
+            <param name="idAtividadeAcomodacao">
+            Identificador da Atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesNaoFinalizadasPorEmpresaPorUsuario(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta  as atividades de um usuario nao finalizada de uma empresa.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario
+            </param>
+            <param name="idSetor">
+            Identificador de setor
+            </param>
+            <param name="idCaracteristicaAcomodacao">
+            Identificador de Caracteristica
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesNaoFinalizadasPorEmpresa(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            TELA DE ATIVIDADES (código: 03) Consulta  as atividades de uma empresa de um tipo de atividade, nao finalizada de uma empresa associados a uma Situacao/Acomodacao.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoAtividadeAcomodacao">
+            Identificador de Tipo de Atividade
+            </param>
+            <param name="idSetor">
+            Identificador de setor
+            </param>
+            <param name="idCaracteristicaAcomodacao">
+            Identificador de Caracteristica
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesNaoFinalizadasPorEmpresaPorUsuarioPorTipoAcao(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Consulta  as atividades de uma empresa de um usuário e um tipo de ação, nao finalizada.
+             </summary>
+             <param name="idEmpresa">
+             Identificador de empresa
+             </param>
+             <param name="idUsuario">
+             Identificador de Usuario
+             </param>
+             <param name="idTipoAcaoAcomodacao">
+             Identificador do tipo de ação
+            --5-> SOLICITOU MAS NAO ACEITOU
+            --1-> ACEITOU MAS NAO INICIOU
+            --2-> INICIOU MAS NAO FINALIZOU
+             </param>
+             <param name="idSetor">
+             Identificador de setor
+             </param>
+             <param name="idCaracteristicaAcomodacao">
+             Identificador de Caracteristica
+             </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesAcoesPorEmpresaPorSituacao(System.Int32,System.Int32)">
+            <summary>
+            TELA DE ATIVIDADES (código: 03) Consulta o detalhamento de acoes de uma atividade de uma situacao (Situacao/Acomodacao).
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idSituacao">
+            Identificador de situacao
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesAcoesDetPorEmpresaPorSituacao(System.Int32,System.Int32)">
+            <summary>
+            TELA DE ATIVIDADES (código: 03) Consulta o detalhamento de acoes de uma atividade de uma situacao (Situacao/Acomodacao).
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idSituacao">
+            Identificador de situacao
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarQTDAtividadesPorEmpresaPorTipoAtividade(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            TELA DE ATIVIDADES (código: 03) Consulta  as QTD de atividades de uma empresa especificamente de um tipo de atividade, nao finalizadas.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idTipoAtividadeAcomodacao">
+            Identificador de Tipo de Atividade
+            </param>
+            <param name="idSetor">
+            Identificador de setor
+            </param>
+            <param name="idCaracteristicaAcomodacao">
+            Identificador de Caracteristica
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.EncaminharAtividade(System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{Operacional.API.Enum.ExpoEnum.TipoAtividade})">
+            <summary>
+            ENCAMINHAR LEITOS (código: 04) Encaminha para a execução de outras atividades.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idUsuario">
+            Identificador de Usuario
+            </param>
+            <param name="IdAtividadeAcomodacao">
+            Identificador da Atividade Origem
+            </param>
+            <param name="LstTipoAtividadeToSave">
+            Lista de Tipos de Atividades a serem encaminhados
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.IncluirAtividade(System.Int32,Operacional.API.Model.AtividadeItem)">
+            <summary>
+            Inclui uma atividade.
+            </summary>
+            <param name="atividadeToSave">
+            Objeto que representa a atividade da acomodação
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.PriorizarAtividade(System.Int32,Operacional.API.Enum.ExpoEnum.Priorizar)">
+            <summary>
+            Prioriza uma atividade.
+            </summary>
+            <param name="idAtividade">
+            Identificador da Atividade da Acomodação.
+            </param>
+            <param name="prioridade">
+            Indica se é para priorizar ou não S/N
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.PlusAtividade(System.Int32,Operacional.API.Enum.ExpoEnum.Priorizar)">
+            <summary>
+            Indica que é uma atividade PLUS (Utilizada somente para Higienização).
+            </summary>
+            <param name="idAtividade">
+            Identificador da Atividade da Acomodação.
+            </param>
+            <param name="plus">
+            Indica se é para priorizar ou não S/N
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.GestaoController.ConsultarDashboardHeader(System.Int32)">
+            <summary>
+            TELA DE GESTAO (código: 06) Consulta o Resumo do Dashboard.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.GestaoController.ConsultarDashboardBody(System.Int32)">
+            <summary>
+            TELA DE GESTAO (código: 06) Consulta o detalhe do Dashboard.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.GestaoController.ConsultarDashboardSituacao(System.Int32,System.Int32)">
+            <summary>
+            TELA DE GESTAO (código: 07) Consulta o Dashboard de situação.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa
+            </param>
+            <param name="IdTipoSituacaoAcomodacao">
+            Identificador do tipo de situação
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.GestaoController.ConsultarDashboardAtividade(System.Int32,System.Int32)">
+            <summary>
+            TELA DE GESTAO (código: 08) Consulta o Dashboard de atividade.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa
+            </param>
+            <param name="IdTipoAtividadeAcomodacao">
+            Identificador do tipo de atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.GestaoController.ConsultarDashboardSituacaoAtividade(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            TELA DE GESTAO (código: 09) Consulta o Dashboard de situacao/atividade.
+            </summary>
+            <param name="IdEmpresa">
+            Identificador da Empresa
+            </param>
+            <param name="IdTipoSituacaoAcomodacao">
+            Identificador do tipo de situacao
+            </param>
+            <param name="IdTipoAtividadeAcomodacao">
+            Identificador do tipo de atividade
+            Enviando o valor 0 retornará todos os tipos de atividade
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.SalvarPaciente(System.String,System.String,System.DateTime,System.String)">
+            <summary>
+            Inclui / atualiza um Paciente.
+            </summary>
+            <param name="NomePaciente">
+            Nome do paciente (100)
+            </param>
+            <param name="CodExterno">
+            Identificador externo do paciente para finalidade de integração (10)
+            </param>
+            <param name="DataNascimentoPaciente">
+            Data de Nascimento do Paciente YYYY-MM-DD 00:00:00
+            </param>
+            <param name="GeneroPaciente">
+            Genero do Paciente (1)
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.CancelamentoReserva(System.Int32,System.String,System.String)">
+            <summary>
+            Integração da operação CANCELAMENTO RESERVA
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA SE TEM O PACIENTE ATIVO
+            03) VALIDA ACOMODACAO STATUS RESERVA
+            04) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.Reserva(System.Int32,System.String,System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Integração da operação RESERVA
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA SE TEM PACIENTE ATIVO
+            03) VALIDA ACOMODACAO STATUS VAGO
+            04) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            05) VERIFICA SE O PACIENTE ESTÁ INTERNADO.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="NomePaciente">
+            Nome do Paciente
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+            <param name="GeneroPaciente">
+            Genero do Paciente
+            </param>
+            <param name="DataNascimentoPaciente">
+            Data de Nascimento do Paciente YYYY-MM-DD 00:00:00
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.CancelamentoAlta(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Integração da operação CANCELAMENTO ALTA
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA O PACIENTE EXISTE
+            03) VERIFICA SE TEM O PACIENTE ATIVO NA ACOMODACAO
+            04) VALIDA ACOMODACAO STATUS ALTA MEDICA
+            05) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+            <param name="NumAtendimento">
+            Numero de Atendimento para integração.
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.AltaAdministrativa(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Integração da operação ALTA ADMINISTRATIVA
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA O PACIENTE EXISTE
+            03) VERIFICA SE TEM O PACIENTE ATIVO NA ACOMODACAO
+            04) VALIDA ACOMODACAO STATUS ALTA MEDICA
+            05) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+            <param name="NumAtendimento">
+            Numero de Atendimento para integração.
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.AltaMedica(System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Integração da operação ALTA MEDICA
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA O PACIENTE EXISTE
+            03) VERIFICA SE TEM O PACIENTE ATIVO NA ACOMODACAO
+            04) VALIDA ACOMODACAO STATUS OCUPADO
+            05) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="NomePaciente">
+            Nome do Paciente
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+            <param name="NumAtendimento">
+            Numero de Atendimento para integração.
+            </param>
+            <param name="PendenciaFinanceiraPaciente">
+            Indica se há ou não pendência financeira. 
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.AjusteUTI(System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Integração da operação ALTA MEDICA
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA O PACIENTE EXISTE
+            03) VERIFICA SE TEM O PACIENTE ATIVO NA ACOMODACAO
+            04) VALIDA ACOMODACAO STATUS OCUPADO
+            05) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+            <param name="NumAtendimento">
+            Numero de Atendimento para integração.
+            </param>
+            <param name="PendenciaFinanceiraPaciente">
+            Indica se há ou não pendência financeira. 
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.Internacao(System.Int32,System.String,System.String,System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Integração da operação INTERNAÇÃO
+            REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO
+            02) VERIFICA SE TEM PACIENTE ATIVO
+            03) VALIDA ACOMODACAO STATUS VAGO
+            04) VERIFICA EXISTENCIA DE SLA DA SITUACAO
+            05) VERIFICA SE O PACIENTE ESTÁ INTERNADO.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa do contexto
+            </param>
+            <param name="codExternoAcomodacao">
+            Código da acomodação para integração 
+            </param>
+            <param name="NomePaciente">
+            Nome do Paciente
+            </param>
+            <param name="CodExternoPaciente">
+            Código do Paciente para integração 
+            </param>
+            <param name="NumAtendimento">
+            Numero de Atendimento para integração.
+            </param>
+            <param name="GeneroPaciente">
+            Genero do Paciente
+            </param>
+            <param name="DataNascimentoPaciente">
+            Data de Nascimento do Paciente YYYY-MM-DD 00:00:00
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.IntegracaoController.Transferencia(System.Int32,System.String,System.String,System.Collections.Generic.List{Operacional.API.Enum.ExpoEnum.TipoAtividade},System.String,System.String,System.Collections.Generic.List{Operacional.API.Enum.ExpoEnum.TipoAtividade})">
+             <summary>
+             Integração da operação TRANSFERENCIA
+             REGRAS:
+            01) VERIFICA SE EXISTE A ACOMODACAO ORIGEM
+            02) VERIFICA SE EXISTE A ACOMODACAO DESTINO
+            03) VERIFICA SE A ACOMODACAO TEM UM PACIENTE ATIVO ORIGEM
+            04) VERIFICA SE A ACOMODACAO TEM UM PACIENTE ATIVO DESTINO
+            05) VALIDA SE A SITUACAO DA ACOMODACAO DE DESTINO É VAGO
+            06) VERIFICA SE EXISTE SLA DA SITUACAO DA ACOMODACAO(VAGO) ORIGEM
+            07) VERIFICA SE EXISTE SLA DA SITUACAO DA ACOMODACAO(OCUPADO) DESTINO
+            08) VALIDA A EXISTENCIA DE UMA SITUACAO DA ACOMODACAO ORIGEM(Para Fechar)
+             </summary>
+             <param name="idEmpresa">
+             Identificador de empresa do contexto
+             </param>
+             <param name="codExternoAcomodacaoOrigem">
+             Código da acomodação para integração ORIGEM 
+             </param>
+             <param name="NumAtendimentoOrigem">
+             Numero do Atendimento para integração ORIGEM
+             </param>
+             <param name="lstOrigem">
+             Lista de ipo de atividades a serem geradas na transferencia referente a acomodacao ORIGEM
+             </param>
+             <param name="codExternoAcomodacaoDestino">
+             Código da acomodação para integração DESTINO  
+             </param>
+             <param name="NumAtendimentoDestino">
+             Numero do Atendimento para integração DESTINO
+             </param>
+             <param name="lstDestino">
+             Lista de ipo de atividades a serem geradas na transferencia referente a acomodacao DESTINO
+             </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.SituacaoAcomodacaoController.ConsultarSituacaoPorCodExterno(System.String)">
+            <summary>
+            Consulta a situação ativa de uma acomodação utilizando o seu codigo de integração.
+            </summary>
+            <param name="CodExterno">
+            Codigo de integracao da identificação da Acomodação
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.SituacaoAcomodacaoController.IncluirSituacao(Operacional.API.Model.SituacaoItem)">
+            <summary>
+            Inclui uma situação.
+            </summary>
+            <param name="situacaoToSave">
+            Objeto que representa a situação da acomodação
+            </param>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_AcaoAtividadeAcomodacao">
+            <summary>
+            Identificador da Acao de uma atividade (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_AtividadeAcomodacao">
+            <summary>
+            Identificador da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_TipoAcaoAcomodacao">
+            <summary>
+            Identificador do tipo de ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.dt_InicioAcaoAtividade">
+            <summary>
+            Data de incicio da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.dt_FimAcaoAtividade">
+            <summary>
+            Data fim da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_SLA">
+            <summary>
+            SLA de execução da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_UsuarioExecutor">
+            <summary>
+            Identificador do usuario executor da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_AtividadeAcomodacao">
+            <summary>
+            Identificador da Atividade (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_SituacaoAcomodacao">
+            <summary>
+            Identificador da situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do tipo de situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do tipo de atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.dt_InicioAtividadeAcomodacao">
+            <summary>
+            Data de incicio da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.dt_FimAtividadeAcomodacao">
+            <summary>
+            Data fim da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_UsuarioSolicitante">
+            <summary>
+            Identificador do usuario solicitante
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Cod_Prioritario">
+            <summary>
+            Indicador se é uma atividade prioritária N/S
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Cod_Plus">
+            <summary>
+            Indicador se é uma atividade plus (se aplica a higienização) N/S
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.CheckRespostaAtividadeItem.Id_AtividadeAcomodacao">
+            <summary>
+            Identificador da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.CheckRespostaAtividadeItem.Id_RespostasChecklist">
+            <summary>
+            Identificador da Resposta
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteAcomodacaoItem.Id_PacienteAcomodacao">
+            <summary>
+            Identificador do Paciente Acomodação (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteAcomodacaoItem.Id_Paciente">
+            <summary>
+            Identificador do Paciente 
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteAcomodacaoItem.Id_Acomodacao">
+            <summary>
+            Identificador da Acomodação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteAcomodacaoItem.Dt_Entrada">
+            <summary>
+            Data de entrada na acomodação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteAcomodacaoItem.Dt_Saida">
+            <summary>
+            Data de saída da acomodação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteAcomodacaoItem.NumAtendimento">
+            <summary>
+            Numero de Atendimento do Paciente
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteItem.Id_Paciente">
+            <summary>
+            Identificador do Paciente (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteItem.Nome_Paciente">
+            <summary>
+            Nome do paciente
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteItem.Cod_Externo">
+            <summary>
+            Identificador externo do paciente para finalidade de integração
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteItem.Dt_NascimentoPaciente">
+            <summary>
+            Data de Nascimento do Paciente
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteItem.GeneroPaciente">
+            <summary>
+            Genero do Paciente
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.PacienteItem.PendenciaFinanceira">
+            <summary>
+            Pendencia Financeira
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.RespostasChecklistItem.Id_RespostasChecklist">
+            <summary>
+            Identificador das Respostas (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.RespostasChecklistItem.Id_AtividadeAcomodacao">
+            <summary>
+            Identificador da Atividade das Respostas
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.RespostasChecklistItem.Id_CheckTSTAT">
+            <summary>
+            Identificador do da composicao das respostas Tipos Situacao / Tipo Atividade / Tipo Acomodacao
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.RespostasChecklistItem.Id_Checklist">
+            <summary>
+            Identificador do checklist
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.RespostasChecklistItem.Id_ItemChecklist">
+            <summary>
+            Identificador do item do checklist
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.RespostasChecklistItem.Valor">
+            <summary>
+            Valor preenchido como a resposta do checklist
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Id_SituacaoAcomodacao">
+            <summary>
+            Identificador da situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Id_Acomodacao">
+            <summary>
+            Identificador da acomodação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do tipo de situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.dt_InicioSituacaoAcomodacao">
+            <summary>
+            Data inicio da situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.dt_FimSituacaoAcomodacao">
+            <summary>
+            Data Fim da situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.cod_NumAtendimento">
+            <summary>
+            Numero de identificação do atendimento (para integração)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Id_SLA">
+            <summary>
+            Identificador do SLA
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Cod_Prioritario">
+            <summary>
+            Indicador se é uma situação prioritária
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Alta_Administrativa">
+            <summary>
+            Indicador se ocorreu a alta administrativa
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.Id_Paciente">
+            <summary>
+            Identificador do Paciente 
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.SituacaoItem.PacienteItem">
+            <summary>
+            Id do paciente que está relacionado a Acomodação para armazenar 
+            </summary>
+        </member>
+    </members>
+</doc>

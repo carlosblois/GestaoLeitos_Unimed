@@ -1,0 +1,209 @@
+{
+	"pannelActivities": [
+	  {
+		"icon": "mensageiro",
+		"activity": "MENSAGEIRO",
+		"coloractivity": "#23CCB7",
+		"beds": "08",
+		"percentage": "10%",
+		"time": "50",
+		"colortime": "#23CC72",
+		"status": [
+			{
+				"beds": "02",
+				"clock": "green",
+				"minutes": "40m",
+				"type": "Altas"
+			},
+			{
+				"beds": "03",
+				"clock": "green",
+				"minutes": "70m",
+				"type": "Ocupados"
+			},
+			{
+				"beds": "01",
+				"clock": "green",
+				"minutes": "45m",
+				"type": "Reservados"
+			},
+			{
+				"beds": "02",
+				"clock": "green",
+				"minutes": "40m",
+				"type": "Livres"
+			},
+			{
+				"beds": "00",
+				"clock": "green",
+				"minutes": "00m",
+				"type": "Interditados"
+			}
+		]
+	  },
+	  {
+		"icon": "higienizacao",
+		"activity": "HIGIENIZAÇÃO",
+		"coloractivity": "#23CCB7",
+		"beds": "40",
+		"percentage": "50%",
+		"time": "45",
+		"colortime": "#FF4747",
+		"status": [
+			{
+				"beds": "05",
+				"clock": "green",
+				"minutes": "30m",
+				"type": "Altas"
+			},
+			{
+				"beds": "24",
+				"clock": "yelow",
+				"minutes": "45m",
+				"type": "Ocupados"
+			},
+			{
+				"beds": "03",
+				"clock": "red",
+				"minutes": "55m",
+				"type": "Reservados"
+			},
+			{
+				"beds": "07",
+				"clock": "red",
+				"minutes": "50m",
+				"type": "Livres"
+			},
+			{
+				"beds": "01",
+				"clock": "green",
+				"minutes": "40m",
+				"type": "Interditados"
+			}
+		]
+	  },
+	  {
+		"icon": "camareira",
+		"activity": "CAMAREIRA",
+		"coloractivity": "#23CCB7",
+		"beds": "12",
+		"percentage": "15%",
+		"time": "15",
+		"colortime": "#FFE95D",
+		"status": [
+			{
+				"beds": "02",
+				"clock": "green",
+				"minutes": "14m",
+				"type": "Altas"
+			},
+			{
+				"beds": "05",
+				"clock": "green",
+				"minutes": "20m",
+				"type": "Ocupados"
+			},
+			{
+				"beds": "02",
+				"clock": "yelow",
+				"minutes": "16m",
+				"type": "Reservados"
+			},
+			{
+				"beds": "03",
+				"clock": "yelow",
+				"minutes": "14m",
+				"type": "Livres"
+			},
+			{
+				"beds": "00",
+				"clock": "green",
+				"minutes": "00m",
+				"type": "Interditados"
+			}
+		]
+	  },
+	  {
+		"icon": "manutencao",
+		"activity": "MANUTENÇÃO",
+		"coloractivity": "#23CCB7",
+		"beds": "12",
+		"percentage": "15%",
+		"time": "15",
+		"colortime": "#FFE95D",
+		"status": [
+			{
+				"beds": "02",
+				"clock": "green",
+				"minutes": "14m",
+				"type": "Altas"
+			},
+			{
+				"beds": "05",
+				"clock": "green",
+				"minutes": "20m",
+				"type": "Ocupados"
+			},
+			{
+				"beds": "02",
+				"clock": "yelow",
+				"minutes": "16m",
+				"type": "Reservados"
+			},
+			{
+				"beds": "03",
+				"clock": "yelow",
+				"minutes": "14m",
+				"type": "Livres"
+			},
+			{
+				"beds": "00",
+				"clock": "green",
+				"minutes": "00m",
+				"type": "Interditados"
+			}
+		]
+	  },
+	  {
+		"icon": "engenharia_clinica",
+		"activity": "ENGENHARIA CLÍNICA",
+		"coloractivity": "#23CCB7",
+		"beds": "12",
+		"percentage": "15%",
+		"time": "15",
+		"colortime": "#FFE95D",
+		"status": [
+			{
+				"beds": "02",
+				"clock": "green",
+				"minutes": "14m",
+				"type": "Altas"
+			},
+			{
+				"beds": "05",
+				"clock": "green",
+				"minutes": "20m",
+				"type": "Ocupados"
+			},
+			{
+				"beds": "02",
+				"clock": "yelow",
+				"minutes": "16m",
+				"type": "Reservados"
+			},
+			{
+				"beds": "03",
+				"clock": "yelow",
+				"minutes": "14m",
+				"type": "Livres"
+			},
+			{
+				"beds": "00",
+				"clock": "green",
+				"minutes": "00m",
+				"type": "Interditados"
+			}
+		]
+	  }
+	]
+  }

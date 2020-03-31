@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLeitos", "GLeitos\GLeitos.csproj", "{0436E21A-8149-4AF2-B106-EB8E7F518794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLeitosTO", "GLeitosDTO\GLeitosTO.csproj", "{FBA291DC-280A-4537-8C69-0DFCAD4D3524}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpoFramework", "ExpoFramework\ExpoFramework.csproj", "{406AB653-CDC2-4556-AF4B-542D57B4304B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0436E21A-8149-4AF2-B106-EB8E7F518794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0436E21A-8149-4AF2-B106-EB8E7F518794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0436E21A-8149-4AF2-B106-EB8E7F518794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0436E21A-8149-4AF2-B106-EB8E7F518794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBA291DC-280A-4537-8C69-0DFCAD4D3524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA291DC-280A-4537-8C69-0DFCAD4D3524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA291DC-280A-4537-8C69-0DFCAD4D3524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA291DC-280A-4537-8C69-0DFCAD4D3524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406AB653-CDC2-4556-AF4B-542D57B4304B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406AB653-CDC2-4556-AF4B-542D57B4304B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406AB653-CDC2-4556-AF4B-542D57B4304B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406AB653-CDC2-4556-AF4B-542D57B4304B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0426AA08-5AC2-4C49-B573-60C507BD7C87}
+	EndGlobalSection
+EndGlobal

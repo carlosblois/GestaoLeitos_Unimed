@@ -1,0 +1,161 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.SLASituacaoView
+@{
+    /**/
+
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript: carregaTela('@Url.Action("Index", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>SLA Situação<a href="#" onclick="javascript: carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+
+            @using (Html.BeginForm("SalvarSLASituacao", "Configuracao", FormMethod.Post,
+                new { enctype = "multipart/form-data", name = "FormSLASituacao", id = "FormSLASituacao", @class = "templatemo-login-form" }))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="background_checklist">
+                    <div class="row form-group">
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tipo Situação Acomodação</label> <!-- Tipo Situação Acomodação -->
+                            @Html.HiddenFor(model => model.SlaSituacao.id_TipoSituacaoAcomodacao, new { @id = "hdnid_TipoSituacaoAcomodacao" })
+                            <select id="selTipoSituacaoAcomodacao" class="form-control" @Model.dropDisabled>
+                                <option value="">SELECIONE</option>
+                                @foreach (var item in Model.ListaTipoSituacaoAcomodacao.OrderBy(m => m.nome_TipoSituacaoAcomodacao))
+                                {
+                                    if (item.id_TipoSituacaoAcomodacao == Model.SlaSituacao.id_TipoSituacaoAcomodacao)
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao" selected disabled>@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao">@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.SlaSituacao.id_TipoSituacaoAcomodacao, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tipo Acomodação</label> <!-- Tipo Situação Acomodação -->
+                            @Html.HiddenFor(model => model.SlaSituacao.id_TipoAcomodacao, new { @id = "hdnid_TipoAcomodacao" })
+                            <select id="selTipoAcomodacao" class="form-control" @Model.dropDisabled>
+                                <option value="">SELECIONE</option>
+                                @foreach (var item in Model.ListaTipoAcomodacao.OrderBy(m => m.nome_TipoAcomodacao))
+                                {
+                                    if (item.id_TipoAcomodacao == Model.SlaSituacao.id_TipoAcomodacao)
+                                    {
+                                        <option value="@item.id_TipoAcomodacao" selected disabled>@item.nome_TipoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAcomodacao">@item.nome_TipoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.SlaSituacao.id_TipoAcomodacao, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row form-group">
+
+
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tempo em Minutos</label> <!-- Tempo em minutos -->
+                            @Html.TextBoxFor(model => model.SlaSituacao.tempo_Minutos, new { @id = "tempo_Minutos", @class = "form-control" })
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.SlaSituacao.tempo_Minutos, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 form-group">
+                            @if (Model.SlaSituacao.versao_SLA == "")
+                            {
+                                Model.SlaSituacao.versao_SLA = "1";
+                            }
+                            <label for="inputFirstName">Versão</label> <!-- Versão -->
+                            @Html.TextBoxFor(model => model.SlaSituacao.versao_SLA, new { @name = "versao_SLA1", @id = "versao_SLA1", @class = "form-control", @disabled = true })
+                            @Html.HiddenFor(model => model.SlaSituacao.versao_SLA, new { @id = "versao_SLA" })
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.SlaSituacao.versao_SLA, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 form-group formLine">
+                            <label for="control-label templatemo-block">&nbsp;&nbsp;</label>
+                            <div>
+                                <a href="#" onclick="javascript: salvarsla('@Url.Action("SalvarSLASituacao", "Configuracao")');"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Salvar</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <table id="tblrelacionamentoslasituacao" class="table table-responsive">
+                        <thead>
+                            <tr style="background-color:#003A2F;">
+                                <td>SITUAÇÃO ACOMODAÇÃO</td>
+                                <td>TIPO ACOMODAÇÃO</td>
+                                <td>TEMPO(MINUTOS)</td>
+                                <td>VERSÃO</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaSLASituacao.OrderBy(m => m.nome_TipoSituacaoAcomodacao))
+                            {
+                                <tr class="linhaheight">
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoSituacaoAcomodacao.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.nome_TipoAcomodacao.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.tempo_Minutos.Trim()</p>
+                                    </td>
+                                    <td>
+                                        <p id="nome-empresa">@item.versao_SLA.Trim()</p>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <a href="#" title="Editar SLA Situação" onclick="javascript: editar('@Url.Action("SlaSituacao", "Configuracao", new { id_sla = item.id_SLA})');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>
+                                        <a href="#" title="Excluir SLA Situação" onclick="javascript: excluir('@Url.Action("ExcluirSLASituacao", "Configuracao", new { id_sla = item.id_SLA})', 'Deseja excluir este item?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+            }
+
+        </div>
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/valida.sla.js")
+
+@Scripts.Render("~/scripts/paginar.slasituacao.js")

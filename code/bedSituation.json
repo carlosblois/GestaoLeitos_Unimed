@@ -1,0 +1,39 @@
+{
+	"bedSituation": [
+	  {
+		"icon": "man",
+		"situation": "ALTAS",
+		"color": "#00B1FF",
+		"value": "12",
+		"percentage": "15%"
+	  },
+	  {
+		"icon": "bed",
+		"situation": "OCUPADOS",
+		"color": "#FFE95D",
+		"value": "23",
+		"percentage": "34%"
+	  },
+	  {
+		"icon": "key",
+		"situation": "LIVRES",
+		"color": "#23CC72",
+		"value": "42",
+		"percentage": "37%"
+	  },
+	  {
+		"icon": "ticket",
+		"situation": "RESERVADOS",
+		"color": "#BB54FF",
+		"value": "98",
+		"percentage": "7%"
+	  },
+	  {
+		"icon": "restrict",
+		"situation": "INTERDITADOS",
+		"color": "#FF4747",
+		"value": "33",
+		"percentage": "51%"
+	  }
+	]
+  }

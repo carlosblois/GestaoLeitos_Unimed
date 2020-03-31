@@ -1,0 +1,244 @@
+﻿@using GLeitos.GLeitosTO
+@using ExpoFramework.Framework
+@model GLeitos.Models.DashboardSituacaoView
+@{
+    Layout = "../Layout/_LayoutDashboard.cshtml";
+}
+
+
+<div id="bt_filter">
+    @if (!string.IsNullOrWhiteSpace(Model.id_Setor) || !string.IsNullOrWhiteSpace(Model.id_TipoAtividade))
+    {
+        <img src="~/images/icon_filter_on.png">
+    }
+    else
+    {
+        <img src="~/images/icon_filter.png">
+    }
+</div>
+<div id="box_filter">
+    <img class="bt_close_filter" src="~/images/bt_close_filter.png">
+    <div class="title">
+        <img class="bt_close_filter" src="~/images/icon_filter_green.png">
+        <label>Filtros</label>
+    </div>
+    <div id="contentFilter">
+        <div class="activity">
+            <img src="~/images/icon_filter_play.png">
+            <label>Atividade</label>
+            <div class="">
+                @foreach (TipoAtividadeAcomodacaoTO item in Model.LstTipoAtividade)
+                {
+                    if (Model.id_TipoAtividade == item.id_TipoAtividadeAcomodacao)
+                    {
+                        <input type="radio" name="rdnFiltroTipoAtividade" id="rdnFiltroTipoAtividade" value="@item.id_TipoAtividadeAcomodacao" checked><span>@Funcoes.ToTitleCase(item.nome_TipoAtividadeAcomodacao)</span><br>
+                    }
+                    else
+                    {
+                        <input type="radio" name="rdnFiltroTipoAtividade" id="rdnFiltroTipoAtividade" value="@item.id_TipoAtividadeAcomodacao"><span>@Funcoes.ToTitleCase(item.nome_TipoAtividadeAcomodacao)</span><br>
+                    }
+                }
+            </div>
+        </div>
+        <div class="activity">
+            <img src="~/images/icon_filter_engine.png">
+            <label>Setor</label>
+            <div class="">
+                @foreach (SetorTO item in Model.LstSetor)
+                {
+                    if (Model.id_Setor == item.id_Setor)
+                    {
+                        <input type="radio" name="rdnFiltroSetor" id="rdnFiltroSetor" value="@item.id_Setor" checked><span>@Funcoes.ToTitleCase(item.nome_Setor)</span><br>
+                    }
+                    else
+                    {
+                        <input type="radio" name="rdnFiltroSetor" id="rdnFiltroSetor" value="@item.id_Setor"><span>@Funcoes.ToTitleCase(item.nome_Setor)</span><br>
+                    }
+                }
+            </div>
+        </div>
+        <div class="button_box">
+            <input type="button" class="bt_filter bt_filter_clean" value="Limpar" onclick="javascript: carregaTela('@Url.Action("DashboardSituacao", "Dashboard", new { id_tiposituacaoacomodacao = Model.id_TipoSituacaoAcomodacao })')" />
+            <input type="button" class="bt_filter bt_filter_confirm" value="Ok" onclick="FiltrarSituacao('@Url.Action("DashboardSituacao", "Dashboard")')" />
+        </div>
+    </div>
+</div>
+
+<!--Fundo principal-->
+<div class="dashboard_container situation">
+    <div class="titleBox LinkTitulo" id="titleBoxBold">
+        <a href="#" class="LinkTitulo" onclick="javascript: carregaTela('@Url.Action("Dashboard", "Dashboard", new { area = "" })');return false;">
+            @if (@Model.DashboardSituacao.Count > 0)
+            {
+                <input type="hidden" id="hdnIdTipoSituacaoAcomodacaoFiltro" value="@Model.id_TipoSituacaoAcomodacao" />
+                <i class="far fa-arrow-alt-circle-left back"></i>@Model.DashboardSituacao[0].nome_TipoSituacaoAcomodacao
+            }
+            else
+            {
+                <i class="far fa-arrow-alt-circle-left back"></i>
+            }
+        </a>
+    </div>
+    <div class="boxTop">
+
+        @*@if (Model.DashboardSituacaoBacklog.Count == 0) {
+
+                <img src="~/images/item.imagem">
+                <label class="label_box">@Model.DashboardSituacao[0].nome_TipoSituacaoAcomodacao</label>
+                <div class="boxIntern">
+
+                </div>
+
+            }*@
+        @foreach (DashboardSituacao_AtividadeTO item in Model.DashboardSituacaoBacklog)
+        {
+            <div class="box first_column">
+                @if (item.Acomodacoes.Count > 0)
+                {
+                    <div class="divTotalizacao">
+                        <div class="image">
+                            <img style="width:48px;height:48px;" src="~/images/@item.imagem">
+                        </div>
+                        <div class="linhatot">
+                            <span class="tot">@item.Acomodacoes.Count</span>
+                            <span class="label_box">@item.nome_TipoSituacaoAcomodacao</span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="divTotalizacao">
+                        <img style="width:40px;height:40px;" src="~/images/@item.imagem">
+                        <label class="label_box">@item.nome_TipoSituacaoAcomodacao</label>
+                    </div>
+                }
+                <div class="boxIntern">
+                    <div class="cursorUp">up</div>
+                    <div class="scrolling">
+                        @{string urlAcomodacao = ""; }
+                        @foreach (DashboardSituacao_AcomodacaoTO leito in item.Acomodacoes)
+                        {
+                            urlAcomodacao = Model.url_getAcomodacao + @leito.id_Acomodacao;
+                            <a href="#" onclick="MostraDetalheAcomodacaoTipoAtividade('@urlAcomodacao', '', '@leito.id_PerfilUsuario', '@leito.id_PerfilAdministrador', '@leito.cod_Acesso');return false;">
+                                <div>
+                                    <p class="titleBox">@leito.nome_Acomodacao.ToUpper()&nbsp;</p>
+                                    <p class="titleBoxWhite">Setor:&nbsp;@leito.nome_Setor.ToUpper()</p>
+                                    @*<p class="subTitleBox">Status: <strong>@leito.nome_Status&nbsp;</strong></p>*@
+                                    <div class="iconLineBacklog">
+                                        <img src="~/@leito.imagem_sla">
+                                        <img src="~/@leito.imagem_prioridade">
+                                        <img src="~/@leito.imagem_isolamento">
+                                        <img src="~/@leito.imagem_pendencia_financeira">
+                                        <img class="lastIcon" src="~/@leito.imagem_limpezaplus">
+                                    </div>
+                                    <span>&nbsp;</span>
+                                    <img class="arrow_right_backlog" rel="modal:open" src="~/images/arrow_right.png">
+
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="cursorDown">down</div>
+                </div>
+            </div>
+        }
+
+
+
+
+
+        @foreach (DashboardSituacao_AtividadeTO item in Model.DashboardSituacao.OrderBy(m => m.ordem))
+        {
+
+            <div class="box">
+                @if (item.Acomodacoes.Count > 0)
+                {
+
+                    <a href="#" class="LinkTitulo" onclick="javascript: carregaTela('@Url.Action("DashboardSituacaoAtividade", "Dashboard", new { id_tiposituacaoacomodacao = item.id_TipoSituacaoAcomodacao, id_tipoatividadeacomodacao = item.id_TipoAtividadeAcomodacao })');return false;">
+                        <div class="divTotalizacao">
+                            <div class="image">
+                                <img style="width:48px;height:48px;" src="~/images/@item.imagem">
+                            </div>
+                            <div class="linhatot">
+                                <span class="tot">@item.Acomodacoes.Count</span>
+                                <span class="label_box">@item.nome_TipoAtividadeAcomodacao</span>
+                            </div>
+                        </div>
+                    </a>
+
+                }
+                else
+                {
+                    <div class="divTotalizacao">
+                        <img style="width:48px;height:48px;" src="~/images/@item.imagem">
+                        <label class="label_box">@item.nome_TipoAtividadeAcomodacao</label>
+                    </div>
+                }
+                <div class="boxIntern">
+                    <div class="cursorUp">up</div>
+                    <div class="scrolling">
+                        @{string urlAcomodacao = ""; }
+                        @foreach (DashboardSituacao_AcomodacaoTO leito in item.Acomodacoes)
+                        {
+                            urlAcomodacao = Model.url_getAcomodacao + @leito.id_Acomodacao;
+                            <a href="#" onclick="MostraDetalheAcomodacaoTipoAtividade('@urlAcomodacao', '@item.id_TipoAtividadeAcomodacao', '@leito.id_PerfilUsuario', '@leito.id_PerfilAdministrador', '@leito.cod_Acesso');return false;">
+                                <div>
+                                    <p class="titleBox">@leito.nome_Acomodacao.ToUpper()&nbsp;</p>
+                                    <p class="subTitleBox">Setor:<strong>&nbsp;@leito.nome_Setor.ToUpper()</strong></p>
+                                    <p class="subTitleBox">Atividade: <strong>&nbsp;@item.nome_TipoAtividadeAcomodacao</strong></p>
+                                    <p class="subTitleBox">Status: <strong>@leito.nome_Status_Label&nbsp;</strong></p>
+                                    <div class="iconLine">
+                                        <img src="~/@leito.imagem_sla">
+                                        <img src="~/@leito.imagem_prioridade">
+                                        <img src="~/@leito.imagem_isolamento">
+                                        <img src="~/@leito.imagem_pendencia_financeira">
+                                        <img class="lastIcon" src="~/@leito.imagem_limpezaplus">
+                                    </div>
+                                    @if (leito.tempo_Utilizado_Atividade != "0" && leito.tempo_Utilizado_Atividade != "00:00")
+                                    {
+                                        <img class="icon_clock" src="~/images/icon_crono_on.png"><span>@leito.tempo_Utilizado_Atividade</span>
+                                    }
+                                    else
+                                    {
+                                        <img class="icon_clock" src="~/images/icon_crono_off.png"><span>@leito.tempo_Utilizado_Atividade</span>
+                                    }
+                                    <img class="arrow_right" src="~/images/arrow_right.png">
+                                </div>
+                            </a>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Html.HiddenFor(model => model.IdUsuarioLogado, new { @id = "hdnIdUsuario" })
+@Html.HiddenFor(model => model.url_isolaAcomodacao, new { @id = "hdnurl_isolaAcomodacao" })
+@Html.HiddenFor(model => model.url_priorizaAcomodacao, new { @id = "hdnurl_priorizaAcomodacao" })
+@Html.HiddenFor(model => model.url_limpezaPlusAcomodacao, new { @id = "hdnurl_limpezaPlusAcomodacao" })
+@Html.HiddenFor(model => model.url_EncaminharAtividade, new { @id = "hdnurl_EncaminharAtividade" })
+@Html.HiddenFor(model => model.url_EncaminharSituacao, new { @id = "hdnurl_EncaminharSituacao" })
+@Html.HiddenFor(model => model.url_getHistoricoAcomodacao, new { @id = "hdnurl_getHistoricoAcomodacao" })
+@Html.HiddenFor(model => model.url_GerarAtividade, new { @id = "hdnurl_GerarAtividade" })
+@Html.HiddenFor(model => model.url_CancelarAtividade, new { @id = "hdnurl_CancelarAtividade" })
+@Html.HiddenFor(model => model.url_getAcomodacao, new { @id = "hdnurl_getAcomodacao" })
+@Html.HiddenFor(model => model.tkn_operacional, new { @id = "hdntkn_operacional" })
+@Html.HiddenFor(model => model.tkn_configuracao, new { @id = "hdntkn_configuracao" })
+@Html.HiddenFor(model => model.tkn_administrativo, new { @id = "hdntkn_administrativo" })
+@Html.HiddenFor(model => model.url_listatipoatividade, new { @id = "hdnurl_listatipoatividade" })
+@Html.HiddenFor(model => model.url_listatiposituacao, new { @id = "hdnurl_listatiposituacao" })
+@Html.HiddenFor(model => model.url_sendMensagem, new { @id = "hdnurl_sendMensagem" })
+@Html.HiddenFor(model => model.url_getMensagens, new { @id = "hdnurl_getMensagens" })
+
+
+@Scripts.Render("~/scripts/dashboard_situacao.js")
+@Scripts.Render("~/scripts/homelayout.js")

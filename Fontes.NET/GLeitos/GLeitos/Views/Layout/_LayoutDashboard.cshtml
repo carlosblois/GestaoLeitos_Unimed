@@ -1,0 +1,310 @@
+﻿@using System.Configuration;
+@using ExpoFramework.Framework
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - Gestão de Leitos</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+
+    <link href='http://fonts.googleapis.com/css?family=Calibri:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/all.css")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @*@Styles.Render("~/Content/Adm/templatemo-style.css")*@
+    @Styles.Render("~/Content/home.css")
+    @Styles.Render("~/Content/mais.css")
+    @Styles.Render("~/Content/Dashboard/dashboard.css")
+    @Styles.Render("~/Content/jquery.modal.min.css")
+    @Styles.Render("~/Content/datatables.min.css")
+
+
+    @Scripts.Render("~/scripts/adm/jquery-1.11.2.min.js")
+    @Scripts.Render("~/scripts/adm/jquery-ui.js")
+
+    @Scripts.Render("~/scripts/adm/bootstrap-filestyle.min.js")
+    @*@Scripts.Render("~/scripts/adm/templatemo-script.js")*@
+    @Scripts.Render("~/scripts/datatables.min.js")
+    @Scripts.Render("~/scripts/funcoes.js")
+
+    @RenderSection("scripts", required: false)
+
+    @if (Session["id_PerfilSel"] == null)
+    {
+        <script>window.document.location = '@Url.Action("LogoffAcesso", "Login", new { Mensagem = "Acesso restrito à administradores." })'</script>
+    }
+</head>
+
+<body>
+    <div class="loader">
+        <img src="~/images/loading.gif" alt="Processando...">
+    </div>
+    <div class="msgbackground">
+        <main id="idQuestaoGL" class="mainmsg">
+            <section class="sectionmsg">
+                <div>
+                    <i class="fas fa-exclamation-triangle fa-2x imsg"></i>
+                    <p class="pmsg"><label id="lblQuestion">Deseja excluir este item?</label></p>
+                    <input type="hidden" id="urlExclusao" value="" />
+                    <div>
+                        <button type="button" class="buttonnomsg buttonmsg" onclick="excluir_no();">Não</button>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="excluir_yes();">Sim</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="msgencerrabackground">
+        <main id="idQuestaoGL" class="mainmsg">
+            <section class="sectionmsg">
+                <div>
+                    <i class="fas fa-exclamation-triangle fa-2x imsg"></i>
+                    <p class="pmsg"><label id="lblQuestionAtividade">Deseja encerrar esta atividade?</label></p>
+                    <div>
+                        <button type="button" class="buttonnomsg buttonmsg" onclick="EncerrarAtividade_no();">Não</button>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="EncerrarAtividade_yes();">Sim</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="msgokbackground">
+        <main id="idMsgGL" class="mainmsg">
+            <section class="sectionmsg">
+                <div>
+                    <i class="fas fa-exclamation-triangle fa-2x imsg"></i>
+                    <p class="pmsg"><label id="lblMsgOK">O item foi salvo com sucesso!</label></p>
+                    <div>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="msg_ok();">OK</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    @*<div class="msgencaminhamento" id="idDivMsgEncaminhamento">
+            <main id="idMsgEncaminhamento" class="mainmsgEncaminhamento">
+                <div class="modalEncaminhamento" style="display:inline-block;">
+                    <a class="close-modal" onclick="FecharEncaminhamento();">Close</a>
+                    <p class="pmsg"><label>Encaminhar para?</label></p>
+                    <div id="divListaEncaminhamentoSituacao" class="pmsgitens">
+                        <span>Situação</span>
+                        <select id="selTipoSituacaoEncaminha" class="form-control">
+                            <option value="">SELECIONE</option>
+                        </select>
+                    </div>
+                    <div id="divListaEncaminhamento" class="pmsgitens">
+
+                    </div>
+                    <div>
+                        <button type="button" class="buttonyesmsg buttonmsg" onclick="EncaminharAcomodacao();">OK</button>
+                    </div>
+                </div>
+            </main>
+        </div>*@
+
+    <div class="msgmensagem mensagem current hideModal" style="display:none !important;" id="idDivMensagem">
+        <div class="mainmsgMensagem">
+            <div class="modal" style="display:inline-block;">
+                <a class="close-modal" onclick="FecharMensagem();">Close</a>
+                <div class="title">MENSAGEM</div>
+                <div class="mensagem_container">
+                    <input type="hidden" id="hdnIdAtividadeMsg" value="" />
+                    <input type="hidden" id="hdnIdUsuarioEmissor" value="@Session["id_Usuario"]" />
+                    <input type="hidden" id="hdnIdUsuarioDest" value="" />
+                    <input type="hidden" id="hdnIdEmpresa" value="@Session["id_EmpresaSel"]" />
+                    @*<div class="row form-group">*@
+                    <div class="col-lg-8 col-md-8 form-group">
+                        @*<label for="inputFirstName">Texto</label>*@
+                        <input type="text" id="txtMensagemAtividade" class="form-control" value="" />
+                    </div>
+                    <div class="col-lg-2 col-md-2 form-group">
+                        @*<label for="inputFirstName">&nbsp;</label>*@
+                        <input type="button" class="bt-send" value=" Enviar " onclick="EnviarMensagem();">
+                    </div>
+                    @*</div>*@
+
+                    <div class="cb"></div>
+
+                    <div class="modalHistoryMensagem" id="divModalHistoryMensagem">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="msgencaminhamento encaminhamento current hideModal" style="display:none !important;" id="idDivMsgEncaminhamento">
+        <div class="mainmsgEncaminhamento">
+            <div class="modal" style="display:inline-block;">
+                <a class="close-modal" onclick="FecharEncaminhamento();">Close</a>
+                <div class="title">ENCAMINHAR PARA:</div>
+                <div class="encaminhamento_container">
+                    <input type="hidden" id="hdnIdTipoSituacaoSelEncaminha" value="" />
+                    <div class="subtitle">Escolha uma Situação</div>
+                    <div class="bt-box" id="selTipoSituacaoEncaminha">
+                        @*<a class="bt_situacao">
+                                <spam class="icon_alta"></spam>Alta Médica
+                            </a>
+                            <a class="bt_situacao">
+                                <spam class="icon_ocupado"></spam>Ocupado
+                            </a>
+                            <a class="bt_situacao selected">
+                                <spam class="icon_reservado"></spam>Reserva
+                            </a>
+                            <a class="bt_situacao">
+                                <spam class="icon_vago"></spam>Vago
+                            </a>
+                            <a class="bt_situacao">
+                                <spam class="icon_interditado"></spam>Interditado
+                            </a>
+                            <a class="bt_situacao selected">
+                                <spam class="icon_liberado"></spam>Liberado
+                            </a>*@
+                    </div>
+                    <div class="cb"><input type="hidden" id="hdnIdTipoAtividadeSelEncaminha" value="" /></div>
+                    <div class="grayline"></div>
+                    <div class="subtitle">Escolha a(s) Atividade(s)</div>
+                    <div class="bt-boxatv" id="selTipoAtividadeEncaminha">
+                        @*<a class="bt_atividade">
+                                <spam class="button_on"></spam>Aguarda Familiar
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_on"></spam>Camareira Pós
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Higienização
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Alta Administrativa
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Camareira Pré
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_on"></spam>Interdição
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Alta Programada
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_on"></spam>Enfermagem
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Manutenção
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_on"></spam>Ambulância
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Engenharia
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_off"></spam>Mensageiro
+                            </a>
+                            <a class="bt_atividade">
+                                <spam class="button_on"></spam>Nononono...
+                            </a>*@
+                    </div>
+                    <div class="cb"></div>
+                    <input type="button" class="bt-send" value="ENCAMINHAR" onclick="EncaminharAcomodacao();">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="headerDash">
+        <img class="logo" src="~/images/GL-logo.png" />
+        <div class="greeting">olá,<strong>@Session["nome_Usuario"].ToString()</strong></div>
+        <div class="config"><strong>&nbsp;<br /><i class="fa fa-sign-out-alt fa-fw"></i>&nbsp;<a href="#" onclick="javascript: carregaTela('@Url.Action("Logoff", "Login", new { area = "" })');">Sair</a></strong></div>
+        @if (Funcoes.AcessoAdministrador(Session["id_PerfilSel"].ToString(), ConfigurationManager.AppSettings["CodPerfilAdministrador"].ToString()))
+        {
+            <div class="config"><strong>&nbsp;<br /><i class="fas fa-cogs"></i>&nbsp;<a href="@Url.Action("Index", "Adm")">Configurações</a></strong></div>
+        }
+        <div class="config"><strong>&nbsp;<br /><i class="fas fa-list"></i>&nbsp;<a href="@Url.Action("ListaDashboardPorSituacao", "Dashboard")">Acomodações</a></strong></div>
+
+    </div>
+    <div class="dashboard_container">
+        <div class="jquery-modal blocker hideModal" id="modalAcomodacao">
+            <div class="modal" style="display:inline-block;">
+                <a class="close-modal" onclick="FecharDetalheAcomodacao();">Close</a>
+                <div class="title"><label id="lblModalAcomodacao">-</label>&nbsp;<label id="lblModalSetor">-</label></div>
+                <input type="hidden" id="hdnIdAcomodacao" value="" />
+                <input type="hidden" id="hdncodExterno_Acomodacao" value="" />
+                <input type="hidden" id="hdnPerfilUsuario" value="" />
+                <input type="hidden" id="hdnPerfilAdministrador" value="" />
+                <input type="hidden" id="hdnCodAcesso" value="" />
+                <input type="hidden" id="hdnEncaminhaDireto" value="" />
+                <div class="modaltab">
+                    <div class="modaltabColumn">
+                        Paciente:&nbsp;<label id="lblModalPaciente"></label><br>
+                        Sexo:&nbsp;<label id="lblModalGenero"></label> <br>
+                        Idade:&nbsp;<label id="lblModalIdade"></label>
+                    </div>
+                    <div class="modaltabColumn">
+                        Situação: <strong>&nbsp;<label id="lblModalSituacao">-</label></strong> <br>
+                        <input type="hidden" id="hdnIdSituacaoAcomodacao" value="" />
+                        <input type="hidden" id="hdnIdTipoSituacaoAcomodacao" value="" />
+                        Atividade: <strong>&nbsp;<label id="lblModalAtividade">-</label></strong> <br />
+                        <input type="hidden" id="hdnIdAtividadeAcomodacao" value="" />
+                        <input type="hidden" id="hdnIdTipoAtividadeAcomodacao" value="" />
+                        Pendência Financeira: <strong>&nbsp;<label id="lblModalPendencia">-</label></strong>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <div class="modalSLA">
+                    <div class="modaltabColumn">
+                        <title>SLA</title>
+                        <img class="imgModalModal" id="imgModalSLA" src="~/images/icon_modal_red_clock.png">
+                        <p><label id="lblModalTempoExecucaoSLA">-</label>&nbsp;min</p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Meta</title>
+                        <img class="imgModalModal" id="imgModalMeta" src="~/images/icon_modal_target.png">
+                        <p><label id="lblModalTempoExecucao">-</label>&nbsp;min</p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Status</title>
+                        <p class="lineStatus"><label id="lblModalAcaoAtividade">-</label><br><label id="lblInicioAcao">-:-</label>h</p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Tipo</title>
+                        <p class="lineType"><label id="lblModalTipoAcomodacao">-</label></p>
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Hig. Plus</title>
+                        <a onclick="LimpezaPlus();" id="linkLimpezaPlus"><img id="imgLimpezaPlus" src="~/images/icon_modal_plus.png"></a>
+                        <input type="hidden" id="hdncod_Plus" value="" />
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Isolar</title>
+                        <a onclick="Isolar();" id="linkIsolar"><img id="imgIsolar" src="~/images/icon_modal_alert.png"></a>
+                        <input type="hidden" id="hdncod_Isolamento" value="" />
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Priorizar</title>
+                        <a onclick="Priorizar();" id="linkPriorizar"><img id="imgPriorizar" src="~/images/icon_modal_bell.png"></a>
+                        <input type="hidden" id="hdnprioridadeAtividade" value="" />
+                    </div>
+                    <div class="modaltabColumn">
+                        <title>Encaminhar</title>
+                        <a onclick="PrepararEncaminhamento();" id="linkEncaminhar"><img id="imgEncaminhar" src="~/images/icon_modal_return.png"></a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <div class="modalHistory" id="divModalHistory">
+                </div>
+            </div>
+        </div>
+        <!--Fundo principal-->
+        @RenderBody()
+        @Scripts.Render("~/scripts/dashboardgeral.js")
+        <input type="hidden" id="tkDetalheAcomodacao" value="@ViewBag.tkDetalheAcomodacao" />
+        <input type="hidden" id="hdnpercentualAtencaoSLA" value="@ViewBag.percentualAtencaoSLA" />
+    </div>
+</body>
+</html>

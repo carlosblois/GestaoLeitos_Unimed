@@ -1,0 +1,198 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.ListaSLAView
+@{
+    /**/
+
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript: carregaTela('@Url.Action("Index", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>SLA<a href="#" onclick="javascript: carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+
+            @using (Html.BeginForm("ListarSLA", "Configuracao", FormMethod.Post,
+                new { enctype = "multipart/form-data", name = "FormSLA", id = "FormSLA", @class = "templatemo-login-form" }))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="background_checklist">
+                    <div class="row form-group">
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tipo Situação Acomodação</label> <!-- Tipo Situação Acomodação -->
+                            @Html.HiddenFor(model => model.ListaSla.id_TipoSituacaoAcomodacao, new { @id = "hdnid_TipoSituacaoAcomodacao" })
+                            <select id="selTipoSituacaoAcomodacao" class="form-control" @Model.dropDisabled>
+                                <option value="">SELECIONE</option>
+                                @foreach (var item in Model.ListaTipoSituacaoAcomodacao.OrderBy(m => m.nome_TipoSituacaoAcomodacao))
+                                {
+                                    if (item.id_TipoSituacaoAcomodacao == Model.ListaSla.id_TipoSituacaoAcomodacao)
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao" selected disabled>@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao">@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.ListaSla.id_TipoSituacaoAcomodacao, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tipo Atividade Acomodação</label> <!-- Tipo Atividade Acomodação -->
+                            @Html.HiddenFor(model => model.ListaSla.id_Empresa, new { @id = "hdnid_Empresa" })
+                            @Html.HiddenFor(model => model.ListaSla.id_TipoAtividadeAcomodacao, new { @id = "hdnid_TipoAtividadeAcomodacao" })
+                            <select id="selTipoAtividadeAcomodacao" class="form-control" @Model.dropDisabled>
+                                <option value="">SELECIONE</option>
+                                @foreach (var item in Model.ListaTipoAtividadeAcomodacao.OrderBy(m => m.nome_TipoAtividadeAcomodacao))
+                                {
+                                    if (item.id_TipoAtividadeAcomodacao == Model.ListaSla.id_TipoAtividadeAcomodacao)
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao" selected>@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao">@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.ListaSla.id_TipoAtividadeAcomodacao, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+
+                    <div class="row form-group">
+
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tipo de Ação Acomodação</label> <!-- Tipo Acao Acomodação -->
+                            @Html.HiddenFor(model => model.ListaSla.id_TipoAcaoAcomodacao, new { @id = "hdnid_TipoAcaoAcomodacao" })
+                            <select id="selTipoAcaoAcomodacao" class="form-control" @Model.dropDisabled>
+                                <option value="0">SELECIONE</option>
+                                @foreach (var item in Model.ListaTipoAcaoAcomodacao.OrderBy(m => m.nome_TipoAcaoAcomodacao))
+                                {
+                                    if (item.id_TipoAcaoAcomodacao == Model.ListaSla.id_TipoAcaoAcomodacao)
+                                    {
+                                        <option value="@item.id_TipoAcaoAcomodacao" selected disabled>@item.nome_TipoAcaoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAcaoAcomodacao">@item.nome_TipoAcaoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.ListaSla.id_TipoAcaoAcomodacao, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 form-group">
+                            <label for="inputFirstName">Tipo de Acomodação</label> <!-- Tipo Acomodação -->
+                            @Html.HiddenFor(model => model.ListaSla.id_TipoAcomodacao, new { @id = "hdnid_TipoAcomodacao" })
+                            <select id="selTipoAcomodacao" class="form-control" @Model.dropDisabled>
+                                <option value="0">SELECIONE</option>
+                                @foreach (var item in Model.ListaTipoAcomodacao.OrderBy(m => m.nome_TipoAcomodacao))
+                                {
+                                    if (item.id_TipoAcomodacao == Model.ListaSla.id_TipoAcomodacao)
+                                    {
+                                        <option value="@item.id_TipoAcomodacao" selected disabled>@item.nome_TipoAcomodacao</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.id_TipoAcomodacao">@item.nome_TipoAcomodacao</option>
+                                    }
+                                }
+                            </select>
+                            <div class="formLine">
+                                @Html.ValidationMessageFor(x => x.ListaSla.id_TipoAcomodacao, "", new { @class = "text-danger-yellow" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-1 form-group formLine">
+                            <label for="control-label templatemo-block">&nbsp;&nbsp;</label>
+                            <div>
+                                <a href="#" onclick="javascript: listarsla('@Url.Action("ListarSLA", "Configuracao")');"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Listar</button></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 form-group formLine">
+                            <label for="control-label templatemo-block">&nbsp;</label>
+                            <div>
+                                <a href="#" onclick="javascript: window.location.href='@Url.Action("SLA", "Configuracao", new { area = "" })'"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Novo SLA</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <table id="tblrelacionamentosla" class="table table-responsive">
+                        <thead>
+                            <tr style="background-color:#003A2F;">
+                                <td>SITUAÇÃO ACOMODAÇÃO</td>
+                                <td>ATIVIDADE ACOMODAÇÃO</td>
+                                <td>AÇÃO ACOMODAÇÃO</td>
+                                <td>TIPO ACOMODAÇÃO</td>
+                                <td>TEMPO</td>
+                                <td>VERSÃO</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaSLAEmpresa.OrderBy(m => m.nome_TipoSituacaoAcomodacao))
+                            {
+                            <tr class="linhaheight">
+                                <td>
+                                    <p id="nome-empresa">@item.nome_TipoSituacaoAcomodacao.Trim()</p>
+                                </td>
+                                <td>
+                                    <p id="nome-empresa">@item.nome_TipoAtividadeAcomodacao.Trim()</p>
+                                </td>
+                                <td>
+                                    <p id="nome-empresa">@item.nome_TipoAcaoAcomodacao.Trim()</p>
+                                </td>
+                                <td>
+                                    <p id="nome-empresa">@item.nome_TipoAcomodacao.Trim()</p>
+                                </td>
+                                <td>
+                                    <p id="nome-empresa">@item.tempo_Minutos.Trim()</p>
+                                </td>
+                                <td>
+                                    <p id="nome-empresa">@item.versao_SLA.Trim()</p>
+                                </td>
+                                <td style="text-align:right;">
+                                    <a href="#" title="Editar SLA" onclick="javascript: editar('@Url.Action("Sla", "Configuracao", new { id_sla = item.id_SLA})');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>
+                                    <a href="#" title="Excluir SLA" onclick="javascript: excluir('@Url.Action("ExcluirSLA", "Configuracao", new { id_sla = item.id_SLA})', 'Deseja excluir este item?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+            }
+
+        </div>
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/valida.listarsla.js")
+@Scripts.Render("~/scripts/paginar.listarsla.js")

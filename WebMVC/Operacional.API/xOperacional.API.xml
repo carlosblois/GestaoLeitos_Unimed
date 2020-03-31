@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Operacional.API</name>
+    </assembly>
+    <members>
+        <member name="M:Operacional.API.Controllers.AcaoAtividadeAcomodacaoController.GeraAceite(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            ACEITE
+            </summary>
+            <param name="idAtividadeAcomodacao">
+            Identificador de setor
+            </param>
+            <param name="idTipoAcaoAcomodacao">
+            Identificador de Caracteristica
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesNaoFinalizadasPorEmpresaPorUsuario(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Consulta as atividades de um usuario de uma empresa associados a uma Situacao/Acomodacao.
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idUsuario">
+            Identificador de usuario
+            </param>
+            <param name="idSetor">
+            Identificador de setor
+            </param>
+            <param name="idCaracteristicaAcomodacao">
+            Identificador de Caracteristica
+            </param>
+        </member>
+        <member name="M:Operacional.API.Controllers.AtividadeAcomodacaoController.ConsultarAtividadesAcoesPorEmpresaPorSituacao(System.Int32,System.Int32)">
+            <summary>
+            Consulta as atividades e acoes de uma situacao (Situacao/Acomodacao).
+            </summary>
+            <param name="idEmpresa">
+            Identificador de empresa
+            </param>
+            <param name="idSituacao">
+            Identificador de situacao
+            </param>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_AcaoAtividadeAcomodacao">
+            <summary>
+            Identificador da Acao de uma atividade (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_AtividadeAcomodacao">
+            <summary>
+            Identificador da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_TipoAcaoAcomodacao">
+            <summary>
+            Identificador do tipo de ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.dt_InicioAcaoAtividade">
+            <summary>
+            Data de incicio da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.dt_FimAcaoAtividade">
+            <summary>
+            Data fim da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_SLA">
+            <summary>
+            SLA de execução da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AcaoItem.Id_UsuarioExecutor">
+            <summary>
+            Identificador do usuario executor da ação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_AtividadeAcomodacao">
+            <summary>
+            Identificador da Atividade (Identity)
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_SituacaoAcomodacao">
+            <summary>
+            Identificador da situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_TipoSituacaoAcomodacao">
+            <summary>
+            Identificador do tipo de situação
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_TipoAtividadeAcomodacao">
+            <summary>
+            Identificador do tipo de atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.dt_InicioAtividadeAcomodacao">
+            <summary>
+            Data de incicio da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.dt_FimAtividadeAcomodacao">
+            <summary>
+            Data fim da atividade
+            </summary>
+        </member>
+        <member name="P:Operacional.API.Model.AtividadeItem.Id_UsuarioSolicitante">
+            <summary>
+            Identificador do usuario solicitante
+            </summary>
+        </member>
+    </members>
+</doc>

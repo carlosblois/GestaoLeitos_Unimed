@@ -1,0 +1,191 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.LoginView
+@{
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg content-align">
+
+            <!--AQUI ENTRA O CONTEÚDO DA PÁGINA-->
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaEmpresa", "Adm", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-building fa-2x font-content"></i><p>Empresa<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaSetor", "Adm", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-arrows-alt fa-2x font-content"></i><p>Setor<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("CaracteristicaAcomodacao", "Adm", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        @*<i class="fas fa-id-card"></i>*@
+                        <i class="fa fa-id-card fa-2x font-content"></i>
+                        <p>Característica<br />Acomodação</p>
+
+                    </div>
+                </div>
+            </a>
+            @*<a href="#" onclick="javascript: carregaTela('@Url.Action("CaracteristicaAcomodacao", "Adm", new { area = "" })');return false;">
+            <div class="content-dash">
+                <div class="div-dash">
+                    <i class="fa fa-procedures fa-2x font-content"></i><div>Características</div>
+                </div>
+            </div>
+        </a>*@
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaTipoAcomodacao", "Adm", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        @*<i class="fas fa-tenge"></i>*@
+                        <i class="fa fa-tenge fa-2x font-content"></i><p>Tipo <br />Acomodação&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaAcomodacao", "Adm", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-bed fa-2x font-content"></i><p>Acomodação<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaPerfil", "Usuario", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-user-circle fa-2x font-content"></i><p>Perfil<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaUsuario", "Usuario", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-fingerprint fa-2x font-content"></i><p>Usuário<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            @*<a href="#" onclick="javascript: carregaTela('@Url.Action("ListaEmpresa", "Adm", new { area = "" })');return false;">
+            <div class="content-dash">
+                <div>
+                    <i class="fa fa-hand-holding-heart fa-2x"></i><p>Atividade</p>
+                </div>
+            </div>
+        </a>*@
+
+            @*<a href="#" onclick="javascript: carregaTela('@Url.Action("ListaEmpresa", "Adm", new { area = "" })');return false;">
+            <div class="content-dash">
+                <div>
+                    <i class="fa fa-file-medical-alt fa-2x"></i><p>Situação</p>
+                </div>
+            </div>
+        </a>*@
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("SlaSituacao", "Configuracao", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div>
+                        @*<i class="far fa-clock"></i> ou <i class="fas fa-watch"></i>*@
+                        <i class="far fa-clock fa-2x"></i><p>SLA Situação<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListarSla", "Configuracao", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div>
+                        <i class="fa fa-clock fa-2x"></i><p>SLA<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ItemCheckList", "Configuracao", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div>
+                        @*<i class="fas fa-check-square"></i>*@
+                        <i class="fa fa-check-square fa-2x"></i><p>Itens CheckList<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaCheckList", "Configuracao", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div>
+                        <i class="fa fa-tasks fa-2x"></i><p>Check-Lists<br />&nbsp;</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("FluxoAutomatico", "Configuracao", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-stream fa-2x font-content"></i><p>Fluxo<br />Automático</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("FluxoAutomaticoCheck", "Configuracao", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-stream fa-2x font-content"></i><p>Fluxo<br />Check-List</p>
+                    </div>
+                </div>
+            </a>
+
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("ListaAcomodacaoPorSituacao", "Adm", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-cog fa-2x font-content"></i><p>Operação<br />(Confirmar)</p>
+                    </div>
+                </div>
+            </a>
+
+            @*<a href="#" onclick="javascript: carregaTela('@Url.Action("ListaEmpresa", "Adm", new { area = "" })');return false;">
+            <div class="content-dash">
+                <div class="div-dash">
+                    <i class="fa fa-dice-d6 fa-2x font-content"></i><p>Módulo</p>
+                </div>
+            </div>
+        </a>*@
+
+
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("Dashboard", "Dashboard", new { area = "" })');">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fas fa-tachometer-alt fa-2x font-content"></i><p>Dashboard<br />&nbsp;</p>
+
+                    </div>
+                </div>
+            </a>
+
+
+
+
+
+        </div>
+
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+
+    </div>
+
+</div>
+@Scripts.Render("~/scripts/homelayout.js")

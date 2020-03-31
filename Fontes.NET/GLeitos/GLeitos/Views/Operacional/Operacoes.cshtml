@@ -1,0 +1,86 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.OperacaoView
+@{
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg content-align">
+
+            <!--AQUI ENTRA O CONTEÚDO DA PÁGINA-->
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("Internacao", "Operacional", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-building fa-2x font-content"></i><p>Internação</p>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("AltaMedica", "Operacional", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-building fa-2x font-content"></i><p>Alta Médica</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("AltaHospitalar", "Operacional", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-building fa-2x font-content"></i><p>Alta Hospitalar</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("Reserva", "Operacional", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-arrows-alt fa-2x font-content"></i><p>Reserva</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" onclick="javascript: carregaTela('@Url.Action("Transferencia", "Operacional", new { area = "" })');return false;">
+                <div class="content-dash">
+                    <div class="div-dash">
+                        <i class="fa fa-bed fa-2x font-content"></i><p>Transferência</p>
+                    </div>
+                </div>
+            </a>
+
+            @if (!string.IsNullOrWhiteSpace(Model.mensagem))
+            {
+                <div class="formLine">
+                    <div class="messagemSucesso">
+                        <p>@Model.mensagem</p>
+                    </div>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.erro))
+            {
+                <div class="formLine">
+                    <div class="error messagemErro">
+                        <p>@Model.erro</p>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+
+    </div>
+
+</div>
+@Scripts.Render("~/scripts/homelayout.js")

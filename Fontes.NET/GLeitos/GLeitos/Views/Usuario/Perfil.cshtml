@@ -1,0 +1,179 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.PerfilView
+@{
+    /**/
+
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+            <h2 class="margin-bottom-10">Perfil<a href="#" onclick="javascript:carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+
+            @using (Html.BeginForm("SalvarPerfil", "Usuario", FormMethod.Post,
+                new { enctype = "multipart/form-data", name = "FormPerfil", id = "FormPerfil", @class = "templatemo-login-form" }))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="row form-group">
+                    <div class="col-lg-4 col-md-4 form-group">
+                        <label for="inputFirstName">Nome do Perfil</label> <!--Nome da Perfil -->
+                        @Html.HiddenFor(model => model.Perfil.id_Perfil, new { @id = "hdnid_Perfil" })
+                        @Html.TextBoxFor(model => model.Perfil.nome_Perfil, new { @id = "nome_Perfil", @Class = "form-control", @placeholder = "Perfil" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.Perfil.nome_Perfil, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 form-group">
+                        <label for="inputFirstName">Tipo do Perfil</label>
+                        @Html.HiddenFor(model => model.codTipoPerfil, new { @id = "hdncodTipoPerfil" })
+                        <select id="selTipoPerfil" class="form-control">
+                            <option value="0">Selecione</option>
+                            @foreach (var item in Model.ListaTipoPerfil.OrderBy(m => m.nome_tipo))
+                            {
+                                if (Model.codTipoPerfil == item.cod_tipo)
+                                {
+                                    <option value="@item.cod_tipo" selected>@item.nome_tipo</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.cod_tipo">@item.nome_tipo</option>
+                                }
+
+                            }
+                        </select>
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.codTipoPerfil, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 form-group">
+                        <label for="inputLastName"></label>
+                        <button type="button" class="templatemo-blue-button bottom-ok" onclick="javascript: salvarperfil('@Url.Action("SalvarPerfil", "Usuario", new { id_perfil = Model.Perfil.id_Perfil})');">Salvar</button>
+                    </div>
+                </div>
+
+
+                if (!string.IsNullOrWhiteSpace(Model.Perfil.id_Perfil))
+                {
+                    <div class="background_checklist">
+                        <div class="row form-group">
+                            <div class="col-lg-3 col-md-3 form-group">
+                                <label for="inputFirstName">Tipo Situação Acomodação</label> <!-- Tipo Situação Acomodação -->
+                                @*@Html.HiddenFor(model => model.id_TipoSituacaoAcomodacao, new { @id = "hdnid_TipoSituacaoAcomodacao" })*@
+                                <select id="selTipoSituacaoAcomodacao" class="form-control">
+                                    <option value="" selected>Selecione</option>
+                                    @foreach (var item in Model.ListaTipoSituacaoAcomodacao.OrderBy(m => m.nome_TipoSituacaoAcomodacao))
+                                    {
+                                        <option value="@item.id_TipoSituacaoAcomodacao">@item.nome_TipoSituacaoAcomodacao</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-md-3 form-group">
+                                <label for="inputFirstName">Tipo Atividade Acomodação</label> <!-- Tipo Atividade Acomodação -->
+                                @*@Html.HiddenFor(model => model.id_TipoAtividadeAcomodacao, new { @id = "hdnid_TipoAtividadeAcomodacao" })*@
+                                <select id="selTipoAtividadeAcomodacao" class="form-control">
+                                    <option value="" selected>Selecione</option>
+                                    @foreach (var item in Model.ListaTipoAtividadeAcomodacao.OrderBy(m => m.nome_TipoAtividadeAcomodacao))
+                                    {
+                                        <option value="@item.id_TipoAtividadeAcomodacao">@item.nome_TipoAtividadeAcomodacao</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 form-group">
+                                <label for="inputFirstName">Acesso</label> <!-- Acesso do Perfil por Atividade/Situacao -->
+                                @*@Html.HiddenFor(model => model.id_TipoAtividadeAcomodacao, new { @id = "hdnid_TipoAtividadeAcomodacao" })*@
+                                <select id="selTipoAcesso" class="form-control">
+                                    <option value="" selected>Selecione</option>
+                                    @foreach (var item in Model.ListaTipoAcesso.OrderBy(m => m.nome_tipo))
+                                    {
+                                        <option value="@item.cod_tipo">@item.nome_tipo</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 form-group formLine">
+                                <label for="control-label templatemo-block">&nbsp;&nbsp;</label>
+                                <div>
+                                    <a href="#" onclick="javascript: adicionaRelacionamento('@Url.Action("AdicionaRelacionamentoPerfilTSTA", "Usuario", new { id_perfil = Model.Perfil.id_Perfil })');"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Adicionar</button></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <table id="tblrelacionamentoperfil" class="table table-responsive">
+                            <thead>
+                                <tr style="background-color:#003A2F;">
+                                    <td>TIPO SITUAÇÃO ACOMODAÇÃO</td>
+                                    <td>TIPO ATIVIDADE ACOMODAÇÃO</td>
+                                    <td>ACESSO</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ListaAcessoEmpresaPerfilTsTa.OrderBy(m => m.nome_TipoSituacaoAcomodacao))
+                                {
+                                    <tr class="linhaheight">
+                                        <td>
+                                            <p id="nome-empresa">@item.nome_TipoSituacaoAcomodacao.Trim()</p>
+                                        </td>
+                                        <td>
+                                            <p id="nome-empresa">@item.nome_TipoAtividadeAcomodacao.Trim()</p>
+                                        </td>
+                                        <td>
+                                            @{
+                                                string strAcesso = "";
+                                                strAcesso = item.cod_Tipo.Trim() == "E" ? "Executar" : "Visualizar";
+                                            }
+                                            <p id="nome-empresa">@strAcesso</p>
+
+                                        </td>
+                                        <td>
+                                            <a href="#" title="Solicitar Atividade" onclick="javascript: excluir('@Url.Action("ExcluirRelacionamentoAcessoPerfil", "Usuario", new { id_AcessoEmpresaPerfilTipoSituacaoTipoAtividade = item.id_AcessoEmpresaPerfilTipoSituacaoTipoAtividade, id_perfil = item.id_Perfil})', 'Deseja excluir este item?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+
+
+
+
+            }
+
+            @*@foreach (var item in Model.ListaAcessoEmpresaPerfilTsTa)
+                {
+                    <div class="line-company">
+                        <p id="nome-empresa">@item.</p>
+                        <div class="icon-action">
+                            <a href="#" title="Editar" onclick="javascript: editar_perfil('@item.id_Perfil', '@item.nome_Perfil');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>
+                            <a href="#" title="Excluir" onclick="javascript: excluir('@Url.Action("ExcluirPerfil", "Usuario", new { id_perfil = item.id_Perfil })', 'Deseja excluir este perfil?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                        </div>
+                    </div>
+                }*@
+
+        </div>
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/valida.perfil.js")
+@Scripts.Render("~/scripts/paginar.acessoperfil.js")

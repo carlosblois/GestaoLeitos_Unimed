@@ -1,0 +1,84 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.ItemCheckListView
+@{
+    /**/
+
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript: carregaTela('@Url.Action("Index", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>Item de Check-List<a href="#" onclick="javascript: carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+
+            @using (Html.BeginForm("SalvarItemCheckList", "Configuracao", FormMethod.Post,
+                new { enctype = "multipart/form-data", name = "FormItemCheckList", id = "FormItemCheckList", @class = "templatemo-login-form" }))
+            {
+                @Html.ValidationSummary(true);
+
+                <div class="row form-group">
+                    <div class="col-lg-8 col-md-8 form-group">
+                        <label for="inputFirstName">Nome do Item Check-List</label> <!--Nome da ItemCheckList -->
+                        @Html.HiddenFor(model => model.ItemCheckList.id_ItemChecklist, new { @id = "hdnid_ItemCheckList" })
+                        @Html.TextBoxFor(model => model.ItemCheckList.nome_ItemChecklist, new { @id = "nome_ItemCheckList", @Class = "form-control", @placeholder = "Nome do item de CheckList" })
+                        <div class="formLine">
+                            @Html.ValidationMessageFor(x => x.ItemCheckList.nome_ItemChecklist, "", new { @class = "text-danger-yellow" })
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 form-group">
+                        <label for="inputLastName"></label>
+                        <button type="button" class="templatemo-blue-button bottom-ok" onclick="javascript: salvaritemchecklist('@Url.Action("SalvarItemCheckList", "Configuracao", new { id_perfil = Model.ItemCheckList.id_ItemChecklist})');">Salvar</button>
+                    </div>
+                </div>
+
+            }
+            <table id="tblitemchecklist" class="table table-responsive">
+                <thead>
+                    <tr style="background-color:#003A2F;">
+                        <td>NOME</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListaItemCheckList)
+                    {
+                        <tr class="linhaheight">
+                            <td>
+                                @item.nome_ItemChecklist.Trim()
+                            </td>
+                            <td style="text-align:right;">
+                                @*<div class="line-company">
+                                    <div class="icon-action">*@
+                                <a href="#" title="Editar" onclick="javascript: editar_itemchecklist('@item.id_ItemChecklist', '@item.nome_ItemChecklist');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>
+                                <a href="#" title="Excluir" onclick="javascript: excluir('@Url.Action("ExcluirItemCheckList", "Configuracao", new { id_itemchecklist = item.id_ItemChecklist })', 'Deseja excluir este item de Check-List?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                                @*</div>
+                                    </div>*@
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+    </div>
+</div>
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/valida.itemchecklist.js")
+@Scripts.Render("~/scripts/paginar.itemchecklist.js")

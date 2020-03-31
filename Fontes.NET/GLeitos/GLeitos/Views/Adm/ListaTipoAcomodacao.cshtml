@@ -1,0 +1,80 @@
+﻿@using GLeitos.GLeitosTO
+@model GLeitos.Models.ListaTipoAcomodacaoView
+@{
+    /**/
+
+    Layout = "../Layout/_LayoutGLeitos.cshtml";
+}
+
+
+<!--Fundo principal-->
+<div class="templatemo-content-container">
+
+    <div class="templatemo-content-container">
+        <div class="templatemo-content-widget black-bg">
+
+            <h2 class="margin-bottom-10"><a href="#" onclick="javascript: carregaTela('@Url.Action("Index", "Adm")');"><i class="arrow-back fa fa-arrow-alt-circle-left fa-fw"></i></a>Tipo Acomodação<a href="#" onclick="javascript: carregaTela('@Url.Action("Index","Adm")');"><i class="fas fa-home fa-fw icon-home" title="Início"></i></a></h2> <!--Título da Página-->
+
+            <div>
+                <!--Botão-->
+                <a href="#" onclick="javascript: window.location.href='@Url.Action("TipoAcomodacao", "Adm", new { area = "" })'"><button type="button" class="templatemo-green-button margin-bottom-10" id="btn_novo">Novo Tipo de Acomodação</button></a>
+            </div>
+            <br />
+            <table id="tbltipoacomodacao" class="table table-responsive">
+                <thead>
+                    <tr style="background-color:#003A2F;">
+                        <td>NOME</td>
+                        <td>CÓD. EXTERNO</td>
+                        <td>CARACTERÍSTICA</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListaTipoAcomodacoes)
+                    {
+                        <tr class="linhaheight">
+                            <td>
+                                @item.nome_TipoAcomodacao.Trim()
+                            </td>
+                            <td>
+                                @item.codExterno_TipoAcomodacao.Trim()
+                            </td>
+                            <td>
+                                @item.nome_CaracteristicaAcomodacao.Trim()
+                            </td>
+                            <td style="text-align:right;">
+                                @*<div class="line-company">
+                                    <div class="icon-action">*@
+                                        <a href="#" title="Editar" onclick="javascript: editar('@Url.Action("TipoAcomodacao", "Adm", new { id_tipoacomodacao = item.id_TipoAcomodacao })');"><button type="button" class="templatemo-black-button"><i class="fas fa-edit fa-fw"></i></button></a>
+                                        <a href="#" title="Excluir" onclick="javascript: excluir('@Url.Action("ExcluirTipoAcomodacao", "Adm", new { id_empresa = item.id_Empresa, id_tipoacomodacao = item.id_TipoAcomodacao })', 'Deseja excluir este tipo de acomodação?');"><button type="button" class="templatemo-black-button"><i class="fas fa-trash fa-fw"></i></button></a>
+                                    @*</div>
+                                </div>*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+        <footer class="text-right">
+            <p>
+                Copyright &copy; 2019 Unimed Nordeste-RS
+                | Desenvolvido por <a href="http://www.exporj.com.br/" target="s" class="texto-link">ExpoRJ</a>
+            </p>
+        </footer>
+
+    </div>
+
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.mensagem))
+{
+    <script>emite_msg('@Model.mensagem');</script>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.erro))
+{
+    <script>emite_msg('@Model.erro');</script>
+}
+@Scripts.Render("~/scripts/paginar.tipoacomodacao.js")
