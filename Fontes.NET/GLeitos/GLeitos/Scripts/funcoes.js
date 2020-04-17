@@ -454,8 +454,9 @@ function getHistoricoAcomodacao(caminho_url, token) {
                                 else
                                     conteudoHistory += '                <img src="../images/icon_modal_action_off.png">';
                             }
-                            conteudoHistory += '&nbsp;&nbsp;<a href="#" onclick="PrepararMensagem(' + val.id_AtividadeAcomodacao + ', ' + val.id_Usuario + ');return false;"><i class="fas fa-comments"></i></a>';
-
+                            if (trataretorno(val.aceite) != '' && val.id_Usuario != '') {
+                                conteudoHistory += '&nbsp;&nbsp;<a href="#" onclick="PrepararMensagem(' + val.id_AtividadeAcomodacao + ', ' + val.id_Usuario + ');return false;"><i class="fas fa-comments"></i></a>';
+                            }
                             conteudoHistory += '                    </div>';
                             conteudoHistory += '                <div class="cb"></div>';
                             conteudoHistory += '            </div>';
@@ -509,10 +510,10 @@ function getMensagens(caminho_url, token) {
                 var conteudoHistory = '';
 
                 conteudoHistory += '<div class="titleLine">';
-                conteudoHistory += '    <div class="modaltabColumn" style="width: 120px !important;">';
+                conteudoHistory += '    <div class="modaltabColumn" style="width: 140px !important;">';
                 conteudoHistory += '        <title>Data Emissão</title>';
                 conteudoHistory += '    </div>';
-                conteudoHistory += '    <div class="modaltabColumn" style="width: 120px !important;">';
+                conteudoHistory += '    <div class="modaltabColumn" style="width: 140px !important;">';
                 conteudoHistory += '        <title>Recebida</title>';
                 conteudoHistory += '    </div>';
                 conteudoHistory += '    <div class="modaltabColumn" style="width: 100px !important;">';
@@ -521,7 +522,7 @@ function getMensagens(caminho_url, token) {
                 conteudoHistory += '    <div class="modaltabColumn" style="width: 100px !important;">';
                 conteudoHistory += '       <title>Receptor</title>';
                 conteudoHistory += '    </div>';
-                conteudoHistory += '    <div class="modaltabColumn" style="width: 465px !important; text-align:left !important;">';
+                conteudoHistory += '    <div class="modaltabColumn" style="width: 425px !important; text-align:left !important;">';
                 conteudoHistory += '       <title>Mensagem</title>';
                 conteudoHistory += '    </div>';
                 conteudoHistory += '</div>';
@@ -541,10 +542,10 @@ function getMensagens(caminho_url, token) {
 
                             conteudoHistory += '<div class="line">';
 
-                                conteudoHistory += '<div class="modaltabColumn" style="width: 120px !important; display: flex; padding-left: 10px;">';
+                                conteudoHistory += '<div class="modaltabColumn" style="width: 140px !important; display: flex; padding-left: 10px;">';
                                 conteudoHistory += '<div>' + formataData(dataEmissao, 'C') + '</div>';
                                 conteudoHistory += '</div>';
-                                conteudoHistory += '<div class="modaltabColumn" style="width: 120px !important;">';
+                                conteudoHistory += '<div class="modaltabColumn" style="width: 140px !important;">';
                                 conteudoHistory += '' + Recebimento + '';
                                 conteudoHistory += '</div>';
 
@@ -556,7 +557,7 @@ function getMensagens(caminho_url, token) {
                                 conteudoHistory += '' + trataretornoHtml(val.login_Usuario_Destinatario);
                                 conteudoHistory += '</div>';
 
-                            conteudoHistory += '<div class="modaltabColumn" style="width: 465px !important; text-align:left !important;">';
+                            conteudoHistory += '<div class="modaltabColumn" style="width: 425px !important; text-align:left !important;">';
                                 conteudoHistory += '' + trataretornoHtml(val.textoMensagem) + '';
                                 conteudoHistory += '</div>';
 
