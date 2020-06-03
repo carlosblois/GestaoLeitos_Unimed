@@ -353,27 +353,27 @@ namespace Administrativo.API.Controllers
                 Cache<ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTO> mycache = new Cache<ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTO>(_settings.cacheConnection, _settings.cacheTime);
 
                 l_ListAcomodacaoTO = await mycache.GetListAsync("ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacao_" + cachePrefix +
-                                                                IdAcomodacao.ToString());
+                                                                IdAcomodacao.ToString() + IdTipoAtividade.ToString());
                 if (l_ListAcomodacaoTO.Count == 0)
                 {
-                    ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTO sqlClass = new ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTO();
-                    sqlClass.ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTOCommand(IdAcomodacao, _settings.ConnectionString, ref l_ListAcomodacaoTO);
+                    ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoIdTipoAtividadeTO sqlClass = new ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoIdTipoAtividadeTO();
+                    sqlClass.ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoIdTipoAtividadeTOCommand(IdAcomodacao, IdTipoAtividade, _settings.ConnectionString, ref l_ListAcomodacaoTO);
 
                     if (l_ListAcomodacaoTO.Count > 0)
                     {
                         await mycache.SetListAsync("ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacao_" + cachePrefix +
-                                                    IdAcomodacao.ToString(), l_ListAcomodacaoTO);
+                                                    IdAcomodacao.ToString() + IdTipoAtividade.ToString(), l_ListAcomodacaoTO);
                     }
                 }
             }
             else
             {
-                ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTO sqlClass = new ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTO();
-                sqlClass.ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoTOCommand(IdAcomodacao, _settings.ConnectionString, ref l_ListAcomodacaoTO);
+                ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoIdTipoAtividadeTO sqlClass = new ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoIdTipoAtividadeTO();
+                sqlClass.ConsultarAcomodacaoDetalheSituacaoAtividadePorIdAcomodacaoIdTipoAtividadeTOCommand(IdAcomodacao, IdTipoAtividade, _settings.ConnectionString, ref l_ListAcomodacaoTO);
             }
 
 
-            return Ok(l_ListAcomodacaoTO.Where(m => m.Id_TipoAtividadeAcomodacao== IdTipoAtividade).FirstOrDefault());
+            return Ok(l_ListAcomodacaoTO);
 
         }
 
