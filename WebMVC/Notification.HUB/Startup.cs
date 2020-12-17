@@ -210,6 +210,7 @@ namespace Notification.HUB
             eventBus.Subscribe<AtividadeSaveIE, AtividadeSaveIEHandler>();
             eventBus.Subscribe<AtividadePriorizadaIE, AtividadePriorizadaIEHandler>();
             eventBus.Subscribe<FinalizaAtividadeAcomodacaoIE, FinalizaAtividadeAcomodacaoIEHandler>();
+            eventBus.Subscribe<SituacaoSaveIE, SituacaoSaveIEHandler>();
         }
 
 

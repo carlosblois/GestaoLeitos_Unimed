@@ -16,7 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.HealthChecks;
 using Microsoft.Extensions.Logging;
-using StackExchange.Redis;
+//using StackExchange.Redis;
 using System;
 using System.Reflection;
 using IdentityServer4.AspNetIdentity;
@@ -26,6 +26,8 @@ namespace Identityhub.API
 {
     public class Startup
     {
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -88,6 +90,7 @@ namespace Identityhub.API
 
             .Services.AddTransient<IProfileService, ProfileService>();
 
+
             var container = new ContainerBuilder();
             container.Populate(services);
 
@@ -133,6 +136,7 @@ namespace Identityhub.API
                 context.Response.Headers.Add("Content-Security-Policy", "script-src 'unsafe-inline'");
                 await next();
             });
+
 
             app.UseForwardedHeaders();
             // Adds IdentityServer

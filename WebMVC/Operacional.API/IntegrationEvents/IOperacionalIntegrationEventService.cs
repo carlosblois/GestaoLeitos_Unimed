@@ -28,7 +28,8 @@ namespace Operacional.API.IntegrationEvents
 
 
         Task SaveEventAndInternacaoAsync(IntegrationEvent EvtPac, IntegrationEvent EvtPacAc, IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, PacienteItem pacienteToSave, SituacaoItem situacaoToSave);
-        Task SaveEventAndAltaMedicaAsync( IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, SituacaoItem situacaoToSave);
+        Task SaveEventAndAltaMedicaAsync( IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, SituacaoItem situacaoToSave, List<IntegrationEvent> lstAtvEvento);
+        Task SaveEventAndAltaMedicaAsync(IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, SituacaoItem situacaoToSave);
         Task SaveEventAndAltaHospitalarAsync(IntegrationEvent EvtPacAcomodacao, IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, SituacaoItem situacaoToSave);
         Task SaveEventAndCancelamentoAltaAsync(IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, SituacaoItem situacaoToSave, List<IntegrationEvent> lstAtvEvento);
         
@@ -38,6 +39,12 @@ namespace Operacional.API.IntegrationEvents
                                             IntegrationEvent EvtPacNewOr, IntegrationEvent EvtPacNewDs,
                                             SituacaoItem sitOrToSave, SituacaoItem sitDsToSave,
                                             PacienteAcomodacaoItem pacToSaveOr, PacienteAcomodacaoItem pacToSaveDs);
+
+        Task SaveEventAndTransferenciaAsync(IntegrationEvent EvtFimSitOr, IntegrationEvent EvtFimSitDs,
+                                            IntegrationEvent EvtSitNewOr, IntegrationEvent EvtSitNewDs,
+                                            IntegrationEvent EvtPacNewOr, IntegrationEvent EvtPacNewDs,
+                                            SituacaoItem sitOrToSave, SituacaoItem sitDsToSave,
+                                            PacienteAcomodacaoItem pacToSaveOr, PacienteAcomodacaoItem pacToSaveDs, List<IntegrationEvent> lstAtvEvento);
 
         Task PublishThroughEventBusAsync(List<IntegrationEvent> lstEvt);
         Task PublishThroughEventBusAsync(IntegrationEvent evt);

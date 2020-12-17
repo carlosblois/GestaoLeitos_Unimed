@@ -393,7 +393,7 @@ namespace Operacional.API.IntegrationEvents
             });
         }
 
-        public async Task SaveEventAndAltaMedicaAsync(IntegrationEvent EvtSitS, IntegrationEvent EvtSitU , SituacaoItem situacaoToSave)
+        public async Task SaveEventAndAltaMedicaAsync(IntegrationEvent EvtSitS, IntegrationEvent EvtSitU , SituacaoItem situacaoToSave, List<IntegrationEvent> lstAtvEvento)
         {
             List<IntegrationEvent> lst = new List<IntegrationEvent>();
             var strategy = _operacionalContext.Database.CreateExecutionStrategy();
@@ -409,6 +409,11 @@ namespace Operacional.API.IntegrationEvents
                         lst.Add(EvtSitS);
                         lst.Add(EvtSitU);
 
+                        foreach (IntegrationEvent AtvEVT in lstAtvEvento)
+                        {
+                            lst.Add(AtvEVT);
+                        }
+
                         await _eventLogService.SaveEventAsync(lst, _operacionalContext.Database.CurrentTransaction.GetDbTransaction());
                         transaction.Commit();
                     }
@@ -422,7 +427,35 @@ namespace Operacional.API.IntegrationEvents
             });
         }
 
+        public async Task SaveEventAndAltaMedicaAsync(IntegrationEvent EvtSitS, IntegrationEvent EvtSitU, SituacaoItem situacaoToSave)
+        {
+            List<IntegrationEvent> lst = new List<IntegrationEvent>();
+            var strategy = _operacionalContext.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
+            {
+                using (var transaction = _operacionalContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        await _operacionalContext.SaveChangesAsync();
+                        //Tratamento de Identity
+                        ((Events.SituacaoSaveIE)EvtSitS).SituacaoAcomodacaoId = situacaoToSave.Id_SituacaoAcomodacao;
+                        lst.Add(EvtSitS);
+                        lst.Add(EvtSitU);
 
+                        
+                        await _eventLogService.SaveEventAsync(lst, _operacionalContext.Database.CurrentTransaction.GetDbTransaction());
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        var sqlException = ex.InnerException as System.Data.SqlClient.SqlException;
+                        throw new Exception(sqlException.Number + "::" + sqlException.Message);
+                    }
+                }
+            });
+        }
         public async Task SaveEventAndInternacaoAsync(IntegrationEvent EvtPac, IntegrationEvent EvtPacAc, IntegrationEvent EvtSitS, IntegrationEvent EvtSitU,  PacienteItem pacienteToSave, SituacaoItem situacaoToSave)
         {
             List<IntegrationEvent> lst = new List<IntegrationEvent>();
@@ -468,7 +501,8 @@ namespace Operacional.API.IntegrationEvents
                                                             SituacaoItem sitOrToSave, 
                                                             SituacaoItem sitDsToSave,
                                                             PacienteAcomodacaoItem pacToSaveOr, 
-                                                            PacienteAcomodacaoItem pacToSaveDs)
+                                                            PacienteAcomodacaoItem pacToSaveDs,
+                                                            List<IntegrationEvent> lstAtvEvento)
         {
             List<IntegrationEvent> lst = new List<IntegrationEvent>();
             var strategy = _operacionalContext.Database.CreateExecutionStrategy();
@@ -494,6 +528,10 @@ namespace Operacional.API.IntegrationEvents
                         ((Events.PacienteAcomodacaoSaveIE)EvtPacNewDs).PacienteAcomodacaoId = pacToSaveDs.Id_PacienteAcomodacao;
                         lst.Add(EvtPacNewDs);
 
+                        foreach (IntegrationEvent AtvEVT in lstAtvEvento)
+                        {
+                            lst.Add(AtvEVT);
+                        }
 
                         await _eventLogService.SaveEventAsync(lst, _operacionalContext.Database.CurrentTransaction.GetDbTransaction());
                         transaction.Commit();
@@ -508,6 +546,54 @@ namespace Operacional.API.IntegrationEvents
             });
         }
 
+        public async Task SaveEventAndTransferenciaAsync(IntegrationEvent EvtFimSitOr,
+                                                            IntegrationEvent EvtFimSitDs,
+                                                            IntegrationEvent EvtSitNewOr,
+                                                            IntegrationEvent EvtSitNewDs,
+                                                            IntegrationEvent EvtPacNewOr,
+                                                            IntegrationEvent EvtPacNewDs,
+                                                            SituacaoItem sitOrToSave,
+                                                            SituacaoItem sitDsToSave,
+                                                            PacienteAcomodacaoItem pacToSaveOr,
+                                                            PacienteAcomodacaoItem pacToSaveDs)
+        {
+            List<IntegrationEvent> lst = new List<IntegrationEvent>();
+            var strategy = _operacionalContext.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
+            {
+                using (var transaction = _operacionalContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        await _operacionalContext.SaveChangesAsync();
+                        lst.Add(EvtFimSitOr);
+                        lst.Add(EvtFimSitDs);
+
+                        //Tratamento de Identity
+                        ((Events.SituacaoSaveIE)EvtSitNewOr).SituacaoAcomodacaoId = sitOrToSave.Id_SituacaoAcomodacao;
+                        lst.Add(EvtSitNewOr);
+                        ((Events.SituacaoSaveIE)EvtSitNewDs).SituacaoAcomodacaoId = sitDsToSave.Id_SituacaoAcomodacao;
+                        lst.Add(EvtSitNewDs);
+
+
+                        ((Events.PacienteAcomodacaoSaveIE)EvtPacNewOr).PacienteAcomodacaoId = pacToSaveOr.Id_PacienteAcomodacao;
+                        lst.Add(EvtPacNewOr);
+                        ((Events.PacienteAcomodacaoSaveIE)EvtPacNewDs).PacienteAcomodacaoId = pacToSaveDs.Id_PacienteAcomodacao;
+                        lst.Add(EvtPacNewDs);
+
+
+                        await _eventLogService.SaveEventAsync(lst, _operacionalContext.Database.CurrentTransaction.GetDbTransaction());
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        var sqlException = ex.InnerException as System.Data.SqlClient.SqlException;
+                        throw new Exception(sqlException.Number + "::" + sqlException.Message);
+                    }
+                }
+            });
+        }
         public async Task SaveEventAndAcaoContextChangesAsync(IntegrationEvent evt, AcaoItem acaoToSave)
         {
             var strategy = _operacionalContext.Database.CreateExecutionStrategy();

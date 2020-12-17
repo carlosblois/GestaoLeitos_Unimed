@@ -50,7 +50,7 @@ namespace Operacional.API.TO
             m_sql += "                      SituacaoAcomodacao AS S ON AA.Id_SituacaoAcomodacao = S.Id_SituacaoAcomodacao INNER JOIN ";
             m_sql += "                      Acomodacao AS AC ON S.Id_Acomodacao = AC.Id_Acomodacao INNER JOIN ";
             m_sql += "                      TipoAcomodacao AS T ON AC.Id_Empresa = T.Id_Empresa AND AC.Id_TipoAcomodacao = T.Id_TipoAcomodacao ";
-            m_sql += "              WHERE(AC.Id_Empresa = @Id_Empresa) AND (AA.dt_FimAtividadeAcomodacao IS NULL) ";
+            m_sql += "              WHERE(AC.Id_Empresa = @Id_Empresa) AND (AA.dt_FimAtividadeAcomodacao IS NULL) AND (S.dt_FimSituacaoAcomodacao IS NULL) ";
             if (IdSetor != 0)
             {
                 m_sql += "       AND (Id_Setor = @Id_Setor) ";

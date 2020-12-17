@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\useradmin\Source\Repos\Leitos\WebMVC\Usuario.API\Usuario.API.xml</DocumentationFile>
+    <DocumentationFile>C:\Repos\GestaoLeitos_Unimed\WebMVC\Usuario.API\Usuario.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

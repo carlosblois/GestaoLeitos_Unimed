@@ -1212,6 +1212,17 @@ namespace Operacional.API.Controllers
             ////TRATA FLUXO DE TRANSICAO DE SITUACAO
             List<AtividadeItem> lstAt = await Util.TrataFluxoSituacao(ConfiguracaoURL, tokenURL, idEmpresa, situacaoToUpdate.Id_TipoSituacaoAcomodacao, idTipoAcomodacao);
 
+            List<IntegrationEvent> lstAtvEvento = new List<IntegrationEvent>();
+
+            if (lstAt.Count > 0)
+            {
+                foreach (AtividadeItem Atividade in lstAt)
+                {
+                    List<ConsultarAcessoAtividadeEmpresaPerfilTO> Perfis = await ConsultaAcessoPerfilPorTipoSituacaoTipoAtividadeAsync(AdministrativoURL, tokenURL, idEmpresa, Atividade.Id_TipoSituacaoAcomodacao, Atividade.Id_TipoAtividadeAcomodacao);
+                    lstAtvEvento.Add(Util.CriaEventoAtividade(Atividade, Perfis, IdAcomodacao));
+                }
+
+            }
 
             //INCLUI SITUACAO NOVA
             SituacaoItem situacaoToSave = new SituacaoItem();
@@ -1255,7 +1266,7 @@ namespace Operacional.API.Controllers
             try
             {
                 // Achieving atomicity between original Catalog database operation and the IntegrationEventLog thanks to a local transaction
-                await _operacionalIntegrationEventService.SaveEventAndAltaMedicaAsync(saveNewSituacaoEvent, finalizaSituacaoEvent, situacaoToSave);
+                await _operacionalIntegrationEventService.SaveEventAndAltaMedicaAsync(saveNewSituacaoEvent, finalizaSituacaoEvent, situacaoToSave, lstAtvEvento);
             }
             catch (Exception e)
             {
@@ -1264,10 +1275,12 @@ namespace Operacional.API.Controllers
                 return BadRequest(e.Message);
             }
             // Publish through the Event Bus and mark the saved event as published
-            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(saveNewSituacaoEvent);
-            // Publish through the Event Bus and mark the saved event as published
-            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(finalizaSituacaoEvent);
+            //await _operacionalIntegrationEventService.PublishThroughEventBusAsync(saveNewSituacaoEvent);
+            //// Publish through the Event Bus and mark the saved event as published
+            //await _operacionalIntegrationEventService.PublishThroughEventBusAsync(finalizaSituacaoEvent);
 
+            // Publish through the Event Bus and mark the saved event as published
+            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(lstAtvEvento);
 
             return CreatedAtAction(nameof(AltaMedica), "OK");
         }
@@ -2124,6 +2137,7 @@ namespace Operacional.API.Controllers
                 }
             }
 
+
             //INCLUI SITUACAO NOVA DESTINO
             SituacaoItem situacaoToDsSave = new SituacaoItem();
             situacaoToDsSave.cod_NumAtendimento = NumAtendimentoDestino;
@@ -2138,6 +2152,21 @@ namespace Operacional.API.Controllers
             situacaoToDsSave.AtividadeItems = lstAtDs;
 
             _operacionalContext.SituacaoItems.Add(situacaoToDsSave);
+
+            //Trata envio do Push das atividades de destino
+
+            List<IntegrationEvent> lstAtvEvento = new List<IntegrationEvent>();
+
+            if (lstAtDs.Count > 0)
+            {
+                foreach (AtividadeItem Atividade in lstAtDs)
+                {
+                    List<ConsultarAcessoAtividadeEmpresaPerfilTO> Perfis = await ConsultaAcessoPerfilPorTipoSituacaoTipoAtividadeAsync(AdministrativoURL, tokenURL, idEmpresa, Atividade.Id_TipoSituacaoAcomodacao, Atividade.Id_TipoAtividadeAcomodacao);
+                    lstAtvEvento.Add(Util.CriaEventoAtividade(Atividade, Perfis, IdAcomodacaoDs));
+                }
+
+            }
+
 
             //ATUALIZA PACIENTE DE ORIGEM
             pacienteToValidateOr.Dt_Saida = DateTime.Now;
@@ -2215,7 +2244,7 @@ namespace Operacional.API.Controllers
                 await _operacionalIntegrationEventService.SaveEventAndTransferenciaAsync(finalizaSituacaoOrEvent, 
                     finalizaSituacaoDsEvent, saveNewSituacaoOrEvent, saveNewSituacaoDsEvent,
                     saveNewPacienteAcomodacaoOrEvent, saveNewPacienteAcomodacaoDsEvent,
-                    situacaoToOrSave, situacaoToDsSave, pacienteToValidateOr, pacienteAcomodacaoToSave);
+                    situacaoToOrSave, situacaoToDsSave, pacienteToValidateOr, pacienteAcomodacaoToSave, lstAtvEvento);
             }
             catch (Exception e)
             {
@@ -2235,6 +2264,8 @@ namespace Operacional.API.Controllers
             await _operacionalIntegrationEventService.PublishThroughEventBusAsync(saveNewPacienteAcomodacaoOrEvent);
             // Publish through the Event Bus and mark the saved event as published
             await _operacionalIntegrationEventService.PublishThroughEventBusAsync(saveNewPacienteAcomodacaoDsEvent);
+            // Publish through the Event Bus and mark the saved event as published
+            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(lstAtvEvento);
 
             return CreatedAtAction(nameof(Transferencia), "OK");
         }
@@ -2355,6 +2386,17 @@ namespace Operacional.API.Controllers
             ////TRATA FLUXO DE TRANSICAO DE SITUACAO
             List<AtividadeItem> lstAt = await Util.TrataFluxoSituacao(ConfiguracaoURL, tokenURL, idEmpresa, situacaoToOr.Id_TipoSituacaoAcomodacao, idTipoAcomodacao);
 
+            if (lstAt.Count >0 )
+            {
+                foreach (AtividadeItem Atividade in lstAt)
+                {
+                    List<ConsultarAcessoAtividadeEmpresaPerfilTO> Perfis = await ConsultaAcessoPerfilPorTipoSituacaoTipoAtividadeAsync(AdministrativoURL, tokenURL, idEmpresa, Atividade.Id_TipoSituacaoAcomodacao, Atividade.Id_TipoAtividadeAcomodacao);
+                    lstAtvEvento.Add(Util.CriaEventoAtividade(Atividade, Perfis, IdAcomodacao));
+                }
+                    
+            }
+
+
             //ATUALIZA A SITUACAO ORIGEM ANTERIOR
             situacaoToOr.dt_FimSituacaoAcomodacao = DateTime.Now;
             _operacionalContext.SituacaoItems.Update(situacaoToOr);
@@ -2431,11 +2473,14 @@ namespace Operacional.API.Controllers
                 return BadRequest(e.Message);
             }
             // Publish through the Event Bus and mark the saved event as published
-            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(finalizaSituacaoOrEvent);
-            // Publish through the Event Bus and mark the saved event as published
-            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(saveNewSituacaoOrEvent);
+            //await _operacionalIntegrationEventService.PublishThroughEventBusAsync(finalizaSituacaoOrEvent);
+            //// Publish through the Event Bus and mark the saved event as published
+            //await _operacionalIntegrationEventService.PublishThroughEventBusAsync(saveNewSituacaoOrEvent);
 
-            if (IdTipoSituacaoDestino == (int)TipoSituacao.LIBERADO)
+            // Publish through the Event Bus and mark the saved event as published
+            await _operacionalIntegrationEventService.PublishThroughEventBusAsync(lstAtvEvento);
+
+            ////////////if (IdTipoSituacaoDestino == (int)TipoSituacao.LIBERADO)
             {
                 string urlApiLiberacao = _settings.urlApiLiberacao;
                 string rotaApiLiberacao = _settings.rotaApiLiberacao;

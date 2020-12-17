@@ -62,6 +62,8 @@ namespace Operacional.API.TO
         public void ConsultarAtividadesAcoesDetTOCommand(int idEmpresa, int idSituacao, string connection, ref List<ConsultarAtividadeAcoesDetTO> l_ListAtividadeAcaoTO)
         {
 
+            
+
 
             m_sql = " SELECT Id_AtividadeAcomodacao,Id_TipoAtividadeAcomodacao,Nome_TipoAtividadeAcomodacao, ";
             m_sql += " upper(( ";
@@ -84,7 +86,7 @@ namespace Operacional.API.TO
             m_sql += " SOLICITADO, ACEITE, CHECKIN, SEMICHECKOUT, CHECKOUT, SLA,dt_FimAtividadeAcomodacao ";
             m_sql += " FROM ";
             m_sql += " ( ";
-            m_sql += "   SELECT   DA.Id_AtividadeAcomodacao,DA.Id_SituacaoAcomodacao, DA.Id_TipoAtividadeAcomodacao, DA.Nome_TipoAtividadeAcomodacao, DA.Nome_Status, DA.dt_InicioAcaoAtividade,  S.TOT AS SLA , dt_FimAtividadeAcomodacao, Id_Usuario ";
+            m_sql += "   SELECT   DA.Id_AtividadeAcomodacao,DA.Id_SituacaoAcomodacao, DA.Id_TipoAtividadeAcomodacao, DA.Nome_TipoAtividadeAcomodacao, DA.Nome_Status, DA.dt_InicioAcaoAtividade,  S.TOT AS SLA , dt_FimAtividadeAcomodacao ";
             m_sql += "   FROM     vw_DetalheAtividade AS DA LEFT JOIN ";
             m_sql += "           vw_SLAAtividade AS S ON DA.Id_Empresa = S.Id_Empresa AND DA.Id_TipoSituacaoAcomodacao = S.Id_TipoSituacaoAcomodacao AND DA.Id_TipoAtividadeAcomodacao = S.Id_TipoAtividadeAcomodacao AND  DA.Id_TipoAcomodacao = S.Id_TipoAcomodacao";
             m_sql += "   WHERE   (DA.Id_SituacaoAcomodacao = @Id_SituacaoAcomodacao) AND(DA.Id_Empresa = @Id_Empresa) ";

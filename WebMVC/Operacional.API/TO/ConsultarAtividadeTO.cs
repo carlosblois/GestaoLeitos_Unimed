@@ -142,10 +142,11 @@ namespace Operacional.API.TO
 
             m_sql = " SELECT Nome_TipoAtividadeAcomodacao, Nome_Acomodacao, Nome_Setor, ";
             m_sql += "       Nome_TipoSituacaoAcomodacao, dt_InicioSituacaoAcomodacao, Tempo_Minutos,";
-            m_sql += "       Nome_TipoAcomodacao, Nome_CaracteristicaAcomodacao, Cod_Prioritario, Id_AtividadeAcomodacao, CodExterno_Acomodacao,Id_TipoAtividadeAcomodacao, Id_Acomodacao, Id_Setor, Id_TipoSituacaoAcomodacao, Id_CaracteristicaAcomodacao, Id_SituacaoAcomodacao , ";
-            m_sql += "       id_SLA AS IdSLASituacao, TOT AS TempoTotalSLAAtividade , Id_TipoAcomodacao , Cod_Isolamento, PrioridadeAtividade, Cod_Plus, PendenciaAdministrativa";
-            m_sql += " FROM  vw_ListaOperacional";
-            m_sql += " WHERE (Id_Empresa = @Id_Empresa) AND (dt_FimAtividadeAcomodacao IS NULL) ";
+            m_sql += "       Nome_TipoAcomodacao, Nome_CaracteristicaAcomodacao, Cod_Prioritario, vw.Id_AtividadeAcomodacao, CodExterno_Acomodacao,Id_TipoAtividadeAcomodacao, Id_Acomodacao, Id_Setor, Id_TipoSituacaoAcomodacao, Id_CaracteristicaAcomodacao, Id_SituacaoAcomodacao , ";
+            m_sql += "       vw.id_SLA AS IdSLASituacao, TOT AS TempoTotalSLAAtividade , Id_TipoAcomodacao , Cod_Isolamento, PrioridadeAtividade, Cod_Plus, AcaoAtividadeAcomodacao.dt_InicioAcaoAtividade, PendenciaAdministrativa ";
+            m_sql += " FROM  vw_ListaOperacional AS vw INNER JOIN ";
+            m_sql += " AcaoAtividadeAcomodacao ON vw.Id_AtividadeAcomodacao = AcaoAtividadeAcomodacao.Id_AtividadeAcomodacao ";
+            m_sql += " WHERE (Id_Empresa = @Id_Empresa) AND (dt_FimAtividadeAcomodacao IS NULL) AND (AcaoAtividadeAcomodacao.dt_FimAcaoAtividade IS NULL) ";
             m_sql += "       AND (Id_Usuario = @Id_Usuario)";
             if (IdSetor != 0)
             {
